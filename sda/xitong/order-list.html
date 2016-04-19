@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>订单列表</title>
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/css.css" />
+<script type="text/javascript" src="js/jquery1.9.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/sdmenu.js"></script>
+<script type="text/javascript" src="js/laydate/laydate.js"></script>
+</head>
+<body>
+<div class="header">
+  <div class="logo"><img  src="img/logo.png" /></div>
+  <div class="header-right">  <i class="icon-off icon-white"></i> <a id="modal-973558" href="#modal-container-973558" role="button" data-toggle="modal">注销</a> <i class="icon-user icon-white"></i> <a href="#">管理员</a> 
+    <div id="modal-container-973558" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:300px; margin-left:-150px; top:30%">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel"> 注销系统 </h3>
+      </div>
+      <div class="modal-body">
+        <p> 您确定要注销退出系统吗？ </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+        <a class="btn btn-primary" style="line-height:20px;" href="登录.html" >确定退出</a> </div>
+    </div>
+  </div>
+</div>
+<!-- 顶部 -->
+<div id="middle">
+  <div class="left">
+    <script type="text/javascript">
+var myMenu;
+window.onload = function() {
+	myMenu = new SDMenu("my_menu");
+	myMenu.init();
+};
+</script><div id="my_menu" class="sdmenu">
+    <div> <span>收件管理</span> <a href="order-list.html">订单列表</a>  </div>
+    <div class="collapsed"> <a href="order.html"><span>业务管理 </span></a></div>
+    <div class="collapsed"> <a href="order-fanyi.html"><span>翻译管理 </span></a> </div>
+    <div class="collapsed"> <span>数据统计</span> <a href="yewutongji.html">业务统计</a> <a href="fanyitongji.html">翻译统计</a> </div>
+    <div class="collapsed"> <a href="user.html"><span>用户管理</span></a> </div>
+    <div class="collapsed"> <a href="jiaose.html"><span>角色管理</span></a> </div>
+    <div class="collapsed"> <span>模板制作</span><a href="#">模板导入</a> <a href="#">模板列表</a></div>
+     <div class="collapsed"> <span>业务设置</span> <a href="yewuset.html">委托单位设置</a> <a href="yewuset-moban.html">模板类型设置</a><a href="yewuset-shoujian.html">收件类型设置</a> </div>
+	  <div class="collapsed"> <a href="fanyiset.html"><span>翻译设置</span> </a> </div>
+  </div>
+</div>
+  <div class="Switch"></div>
+  <script type="text/javascript">
+	$(document).ready(function(e) {
+    $(".Switch").click(function(){
+	$(".left").toggle();
+	 
+		});
+});
+</script>
+  <div class="right"  id="mainFrame">
+    <div class="right_cont">
+      <ul class="breadcrumb">
+        当前位置： <a href="#">首页</a> <span class="divider">/</span> <a href="#">收件管理</a>>订单列表
+      </ul>
+     <table class="table table-bordered">
+         <tr>
+     <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">开始时间：</td>
+     <td width="15%"><input type="text"  class="laydate-icon span1-1" id="Calendar" value="2015-08-25"  /></td>
+     <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">结束时间：</td>
+     <td width="15%"><input type="text"  class="laydate-icon  span1-1" id="Calendar2" value="2015-08-25"  /></td>
+     <td width="55%" align="left" nowrap="nowrap" > <input name="" type="text"  value="订单ID  名称 单位 受理人"/>
+              <input type="button" value="搜索" class="btn btn-info " style="width:80px;" /></td>
+     
+     </tr>
+       </table>
+	     <div class="modal-footer"  style="text-align:center">
+         <a href="ceate-renwu.html"> <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" style="width:80px">添加</button></a>
+        </div>
+	   
+	   
+	   
+ <table class="table table-bordered table-striped table-hover">
+        <tbody>
+          <tr align="center">
+            <td width="80" nowrap="nowrap"><strong>订单号</strong></td>
+            <td width="172" nowrap="nowrap"><strong>委托单位</strong></td>
+			<td width="100" nowrap="nowrap"><strong>联系人</strong></td>
+             <td width="105" nowrap="nowrap"><strong> 手机号码 </strong></td> 
+            <td width="65" nowrap="nowrap"><strong> 团队人数 </strong></td> 
+			<td width="90" nowrap="nowrap"><strong> 收件时间 </strong></td> 
+			<td width="60" nowrap="nowrap"><strong> 费用 </strong></td> 
+			<td width="90" nowrap="nowrap"><strong> 受理人 </strong></td> 
+			<td width="100" nowrap="nowrap"><strong> 操作 </strong></td> 
+          </tr>
+		  
+		      <tr align="center">
+            <td width="80" nowrap="nowrap">BS-2121212</strong></td>
+            <td width="172" nowrap="nowrap">xxxx公司</strong></td>
+			<td width="100" nowrap="nowrap">张三</strong></td>
+             <td width="105" nowrap="nowrap"> 13111111111 </strong></td> 
+            <td width="65" nowrap="nowrap"> 200 </strong></td> 
+			<td width="90" nowrap="nowrap"> 2015-8-12 10:15 </strong></td> 
+			<td width="60" nowrap="nowrap"> 300 </strong></td> 
+			<td width="90" nowrap="nowrap"> 李丽丽 </strong></td> 
+			<td width="100" nowrap="nowrap"> 编辑&nbsp;|&nbsp;删除 </strong></td> 
+          </tr> 
+		  
+		    <tr align="center">
+            <td width="80" nowrap="nowrap">BS-2121212</strong></td>
+            <td width="172" nowrap="nowrap">xxxx公司</strong></td>
+			<td width="100" nowrap="nowrap">张三</strong></td>
+             <td width="105" nowrap="nowrap"> 13111111111 </strong></td> 
+            <td width="65" nowrap="nowrap"> 200 </strong></td> 
+			<td width="90" nowrap="nowrap"> 2015-8-12 10:15 </strong></td> 
+			<td width="60" nowrap="nowrap"> 300 </strong></td> 
+			<td width="90" nowrap="nowrap"> 李丽丽 </strong></td> 
+			<td width="100" nowrap="nowrap"> 编辑&nbsp;|&nbsp;删除 </strong></td> 
+          </tr>   <tr align="center">
+            <td width="80" nowrap="nowrap">BS-2121212</strong></td>
+            <td width="172" nowrap="nowrap">xxxx公司</strong></td>
+			<td width="100" nowrap="nowrap">张三</strong></td>
+             <td width="105" nowrap="nowrap"> 13111111111 </strong></td> 
+            <td width="65" nowrap="nowrap"> 200 </strong></td> 
+			<td width="90" nowrap="nowrap"> 2015-8-12 10:15 </strong></td> 
+			<td width="60" nowrap="nowrap"> 300 </strong></td> 
+			<td width="90" nowrap="nowrap"> 李丽丽 </strong></td> 
+			<td width="100" nowrap="nowrap"> 编辑&nbsp;|&nbsp;删除 </strong></td> 
+          </tr>   <tr align="center">
+            <td width="80" nowrap="nowrap">BS-2121212</strong></td>
+            <td width="172" nowrap="nowrap">xxxx公司</strong></td>
+			<td width="100" nowrap="nowrap">张三</strong></td>
+             <td width="105" nowrap="nowrap"> 13111111111 </strong></td> 
+            <td width="65" nowrap="nowrap"> 200 </strong></td> 
+			<td width="90" nowrap="nowrap"> 2015-8-12 10:15 </strong></td> 
+			<td width="60" nowrap="nowrap"> 300 </strong></td> 
+			<td width="90" nowrap="nowrap"> 李丽丽 </strong></td> 
+			<td width="100" nowrap="nowrap"> 编辑&nbsp;|&nbsp;删除 </strong></td> 
+          </tr> 	
+		  
+		  
+		  </tbody></table>
+    </div>
+  </div>
+</div>
+<!-- 底部 -->
+<div id="footer"></div>
+<script>
+!function(){
+laydate.skin('molv');
+laydate({elem: '#Calendar'});
+laydate.skin('molv');
+laydate({elem: '#Calendar2'});
+}();
+ 
+</script>
+</body>
+</html>

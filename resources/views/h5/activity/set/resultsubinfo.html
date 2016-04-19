@@ -1,0 +1,56 @@
+<!doctype html>
+<html class="no-js">
+<head>{template h5/common/header}
+
+</head>
+<body>
+<header data-am-widget="header"
+        class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center"><a href="javascript:history.go(-1)" class=""> <img src="/assets/images/jtou.png"/> </a>
+        </div>
+    </div>
+    <h1 align="center" class="am-header-title"> {$team_match->team_a_name} VS {$team_match->team_b_name}</h1>
+</header>
+<!-- Menu -->
+
+<table class="am-table am-table-bordered am-table-radius am-table-striped">
+    {loop $list $row}
+    <tr>
+        <td>
+            {loop $row->category_a_list $key $val}
+            {$val->user_team_member_name}&nbsp;{=$val->user_team_member_sex==1?'男':'女'}
+
+            {/loop}
+            <br>
+            VS
+            <br>
+            {loop $row->category_b_list $key $val}
+            {$val->user_team_member_name}&nbsp;{=$val->user_team_member_sex==1?'男':'女'}
+
+            {/loop}
+
+        </td>
+        <td>
+            {=$row->win_a_count?:0}
+
+
+            <br>
+            ..<br>
+
+
+            {=$row->win_b_count?:0}
+        </td>
+    </tr>
+    {/loop}
+</table>
+
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

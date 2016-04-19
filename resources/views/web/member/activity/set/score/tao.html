@@ -1,0 +1,95 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>赛况</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="http://s.amazeui.org/assets/2.x/css/amaze.min.css?v=ifp65slu">
+    <style>
+        li.sle a img {
+            width: 80px;
+            height: 40px;
+        }
+
+        .z-game {
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            width: 100%;
+        }
+
+        .z-game-info {
+            background: #66CCFF;
+            font-size: 12px;
+        }
+
+        .z-game-info .fbtn {
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header data-am-widget="header"
+        class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center"><a href="javascript:history.go(-1)" class=""> <img src="/assets/images/jtou.png"/> </a>
+        </div>
+    </div>
+    <h1 align="center" class="am-header-title"> 第{$turn}轮打分信息 </h1>
+</header>
+<div data-am-widget="tabs"
+     class="am-tabs am-tabs-default"
+        >
+    <div class="am-tabs-bd">
+
+        <div data-tab-panel-1 class="am-tab-panel ">
+            {loop $team_group  $key $row}
+            <table class="am-table am-table-bordered am-table-radius am-table-striped">
+                <thead>
+                <tr>
+                    <th>第{$key}组</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {loop $row $r}
+                <tr>
+                    <td>{$r->team_a_name}
+                        VS
+                        {$r->team_b_name}
+                    </td>
+
+                    <td>{=$r->win_a?:0}
+                        :
+                        {=$r->win_b?:0}
+                    </td>
+                    <td><a href="/h5/member/activity/set/score_sub?team_match_id={$r->id}">打分</a></td>
+                </tr>
+                {/loop}
+                </tbody>
+            </table>
+            {/loop}
+
+        </div>
+
+    </div>
+
+    <a href="/h5/activity/resultinfo?activity_turn_id={$activity_turn_id}">查看成绩</a>
+
+</div>
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

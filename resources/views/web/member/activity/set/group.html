@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="http://s.amazeui.org/assets/2.x/css/amaze.min.css?v=ifp65slu">
+    <style>
+        li.sle a img{ width:80px; height:40px;}
+        .z-game{border-bottom:1px solid #ddd;text-align:center;width:100%;}
+        .z-game-info{background:#66CCFF; font-size:12px;}
+        .z-game-info .fbtn{margin:auto;}
+    </style>
+</head>
+<body>
+<header data-am-widget="header"
+        class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center"><a href="javascript:history.go(-1)" class=""> <img  src="/assets/images/jtou.png"/> </a> </div>
+    </div>
+    <h1 align="center" class="am-header-title"> 比赛名称 </h1>
+</header>
+
+<form class="am-form s-form" method="post" action="/h5/member/activity/group">
+    <fieldset>
+        <legend><h1>第{$row->turn}轮</h1></legend>
+        {if  $row->can_change}
+        {if $row_prev&&$row_prev->game_system==0}{else}
+        <div class="am-form-group nid"  id="nid">
+            <label for="doc-ipt-email-1">分组数</label>
+            <select data-am-selected name="group_count">
+                <option value="0">请选择</option>
+                {loop $team_count_list $val}
+                <option value="{$val}">{$val}</option>
+                {/loop}
+            </select>
+        </div>
+        {/if}
+        {/if}
+
+        <fieldset   {if  !$row->can_change} disabled {/if}>
+
+            <div class="am-form-group">
+                    {if $row_prev&&$row_prev->game_system==0}
+                    <label class="am-radio-inline">
+                        <input type="radio" name="game_system" class="noids"  checked        name="docInlineRadio" id="ddf"  value="0"> 淘汰赛
+                    </label>
+                    {else}
+                    <label class="am-radio-inline">
+                        <input type="radio" name="game_system" class="noids" {if $row->game_system==0} checked {/if}       name="docInlineRadio" id="ddf"  value="0"> 淘汰赛
+                    </label>
+                    <label class="am-radio-inline">
+                        <input type="radio" name="game_system" class="yesids" {if $row->game_system==2}checked{/if}   name="docInlineRadio"  value="2"> 内循环　
+                    </label>
+                    <label class="am-radio-inline">
+                        <input type="radio"  name="game_system"  class="yesids" {if $row->game_system==1}checked{/if}   name="docInlineRadio"  value="1"> 外循环　　
+                    </label>
+                    {/if}
+            </div>
+        </fieldset>
+        {if  $row->can_change}
+        <p><button type="submit" class="am-btn am-btn-default">分组</button></p>
+        {/if}
+        {if  !$row->can_change}
+        <a href="/h5/activity/groupinfo?activity_turn_id={$row->id}">查看结果</a>
+        {/if}
+    </fieldset>
+    <input type="hidden"  name="activity_id"  value="{$row->activity_id}">
+    <input type="hidden"  name="activity_turn_id"  value="{$row->id}">
+    <input type="hidden"  name="turn"  value="{$row->turn}">
+</form>
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".s-form").each(function(){
+            var $this=$(this);
+            var $yesids=$this.find(".yesids");
+            var $noids=$this.find(".noids");
+            var $nid=$this.find(".nid");
+
+            if($noids.attr("checked")) $nid.hide();
+            else $nid.show();
+
+            $noids.click(function(){
+                $nid.slideUp();
+            });
+            $yesids.click(function(){
+                $nid.slideDown();
+            });
+        });
+    });
+</script>
+</body>
+</html>

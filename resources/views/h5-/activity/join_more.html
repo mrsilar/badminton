@@ -1,0 +1,19 @@
+<!doctype html>
+<html class="no-js">
+<head>{template h5/common/header}
+</head>
+<body>
+<a href="/h5/activity/show/{$activity_id}">返回</a>   
+<br>
+<form action="/h5/activity/join_more" method="post">
+{loop $person $v}
+ {$v->name}<input name="person[]" type="checkbox" value="{$v->id}"   >
+{/loop}
+<input type="hidden" name="team_id"  value="{$team_id}"/>
+<input type="hidden" name="activity_id"  value="{$activity_id}"/><br>
+  <input type="submit" value="添加" />
+</form>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+</body>
+</html>

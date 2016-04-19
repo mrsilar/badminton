@@ -1,0 +1,61 @@
+<div class="page-footer" >
+  <div class="container-lg">
+    <ul>
+      <li>
+        <h4> 益乐赛</h4>
+        <ul>
+          <li><a href="/about" target="_blank">关于我们</a></li>
+          <li><a href="/intro#intro-4" target="_blank">联系我们</a></li>
+          <li><a href="/newslist" target="_blank">媒体报道</a></li>
+          <li><a href="/event/9274236812200" target="_blank">职位招聘</a></li>
+          <li><a href="/app" target="_blank">益乐赛APP下载</a></li>
+        </ul>
+      </li>
+      <li>
+        <h4> 主办方服务</h4>
+        <ul>
+          <li><a href="/zhubanfang" target="_blank">主办方首页</a></li>
+          <li><a href="/create-help" target="_blank">活动流程简介</a></li>
+          <li><a href="/intro#intro-2" target="_blank">费用标准</a></li>
+          <!-- 					<li><a href="http://www.huodongxing.com/guanjia" target="_blank">验票APP下载</a></li>
+ -->
+        </ul>
+      </li>
+      <li>
+        <h4> 更多…</h4>
+        <ul>
+          <li><a href="/topic" target="_blank">专题精选</a></li>
+          <li><a href="/calendar" target="_blank">活动日历</a></li>
+          <li><a href="/webapi" target="_blank">开放平台</a></li>
+          <li><a href="/friendlink" target="_blank">友情链接</a></li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <h4> 关注我们</h4>
+        <ul>
+          <li><a href="http://weibo.com/haijiayou" target="_blank"><span class="weibo"></span>新浪微博</a></li>
+          <li><a href="http://user.qzone.qq.com/2867213" target="_blank"><span class="qq"></span>QQ空间</a></li>
+          <li><a href="http://zhan.renren.com/haijiayou" target="_blank"><span class="renren"></span>人人小站</a></li>
+        </ul>
+      </li>
+      <li style="margin-left: 30px;margin-right: 25px;">
+        <h4> 微信扫一扫</h4>
+        <img src="/pc/images/yilesai.jpg" alt="">
+        <div style="margin-left: -3px;">ihaijiayou</div>
+      </li>
+      <li style="width: auto;">
+        <h4>益乐赛APP</h4>
+        <img src="/pc/images/yilesai.jpg" alt="">
+        <div style="text-indent: 1em">扫码下载</div>
+      </li>
+    </ul>
+  </div>
+  <div class="ft" style="text-align:center;padding-bottom:30px">
+    <div class="bx2">
+      <p>益乐赛--全民公益在线文体活动平台！</p>
+      <p>Copyright (C) <a href="http://www.yilesai.com" target="_blank">YiLeSai.com</a> , All Rights Reserved.</p>
+      <p><a href="http://wx.haijiayou.com/web/home/index" target="_blank"> 益乐赛</a> 版权所有 沪ICP备15033451号</p>
+    </div>
+  </div>
+</div>

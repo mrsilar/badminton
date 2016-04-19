@@ -1,0 +1,124 @@
+/* Write your styles */
+.rensu{ float:left; width:100%;}
+.redsliang{ color:#FF3300}
+.bmbtn{ padding:3px; width:80px; float:right;  height:25px; text-align:center; line-height:20px; background:#FF9900;color:#fff;
+    -moz-border-radius: 8px; font-size:80%;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:0px 0px 10px 15px;           /* W3C syntax */}
+
+  .timezhou p{ line-height:20px; padding:0px; margin:0px;}
+   .timezhou{ margin-top:10px;margin-bottom:10px; }
+   
+    .fbtn{ padding:3px; width:40px;    height:29px; text-align:center; line-height:20px; background:#FF9900;color:#fff;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+     
+    .fbtn-no{ padding:3px; width:40px;    height:29px; text-align:center; line-height:20px; background:#ddd;color:#333;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+  .m-widget-list li{ padding-left:15px;}
+.bm a{ color:#fff}
+.bm{margin:5px; width:96%;    height:30px; text-align:center; line-height:38px; background:#0e90d2;color:#fff;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+.bm1{ width:90%; margin-left:5%;    height:45px; padding-bottom:5px; text-align:center; line-height:45px; background:#0e90d2;color:#fff;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px; border:none;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+.m-widget-list li{ padding-left:15px;}
+
+.bms{  line-height:30px;  font-size:80%}
+
+
+  #vld-tooltip {
+    position: absolute;
+    z-index: 1000;
+    padding: 5px 10px;
+    background: #F37B1D;
+    min-width: 150px;
+    color: #fff;
+    transition: all 0.15s;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+    display: none;
+  }
+.am-tabs-default .am-tabs-nav{ font-size:110%;}
+  #vld-tooltip:before {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -8px;
+    content: "";
+    border-width: 0 8px 8px;
+    border-color: transparent transparent #F37B1D;
+    border-style: none inset solid;
+  } 
+ .rightdl{ text-align:right; padding-right:5%;margin-top:20px; margin-bottom:30px; }
+  .rightdl a{ text-decoration:none; color:#6699FF}
+ 
+  .margins{ margin-top:5px;}
+  .searchiput input{ width:90%; margin:auto; border:1px solid #ddd; line-height:40px; height:40px; margin-top:5px; margin-bottom:5px;}
+ .am-g{border-top:1px solid #ddd; border-left:1px solid #ddd;border-right:1px solid #ddd; }
+  .lineright{ border-bottom:1px solid #ddd;border-right:1px solid #ddd; line-height:30px; color:#6699CC }
+  .linebottom{ border-bottom:1px solid #ddd;line-height:30px; color:#333333}
+    .lineleft{ border-bottom:1px solid #ddd;border-left:1px solid #ddd; line-height:30px; color:#6699CC }
+ .jfline{ border-bottom:1px solid #ddd;  width:100%; line-height:20px;}
+
+ .topline{ border-top:1px solid #ddd; width:100%; line-height:20px;} 
+ .lxwmsl{background:#fff; height:40px; font-size:90%;}
+  .grayline4{ height:20px; background:#f0f0f0;border-top:1px solid #ccc;  }
+ .grayline{ height:15px; background:#f3f3f3; border-bottom:1px solid #ccc;border-top:1px solid #ccc;margin-top:5px;  }
+ .grayline2{ height:1px; background:#ddd; margin-bottom:5px}
+  .grayline1{ height:10px; background:#f3f3f3; }
+  .grayline5{ height:1px; background:#ddd; }
+ .bottomline{  color:#666; border-bottom:1px solid #ddd}
+ 
+.textcenter{ text-align:center;}
+.borders{ border:1px solid #ddd; margin:auto 10px ; width:90%;}
+
+.selsei{width:100%; background:none; border:none}
+.kaishd{text-align:left; float:left;font-weight:normal; margin-left:-10px; padding:0px;}
+.am-list a{ color:#666}
+.am-comment a{ color:#666}.bmbtn a{ color:#fff}
+.m-widget-list{ font-size:93%;} 
+
+.bming{width:50px; height:50px; position:absolute; right:5px; margin-top:-53px; padding-bottom:10px; text-align:center; line-height:50px; border: 1px solid #0e90d2;color:#0e90d2;
+    -moz-border-radius: 80px;      /* Gecko browsers */
+    -webkit-border-radius: 80px;  /* Webkit browsers */
+  border-radius:80px; }
+.rightlistw{float:right; text-align:right; width:80x; margin-right:10px;}  
+  
+.rightlist{float:left; width:50%; margin-left:10px;}
+.leftlist{float:left; width:70px;}
+
+.quyu{ padding:3px; width:40px;    height:25px; text-align:center; line-height:20px; font-size:80%; background:#FF9900;color:#fff;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+  
+ .guanzhu{ padding:3px; width:70px;    height:45px; text-align:center; line-height:40px; font-size:80%; border:1px solid #FF9900;color:#FF9900;
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+  border-radius:5px;           /* W3C syntax */}
+  
+  .quyu{ padding:3px; width:40px;    height:25px; text-align:center; line-height:20px; font-size:80%; background:#FF9900;color:#fff;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+  
+ .suzi{ padding:3px 7px 3px 7px; margin-right:1px;      height:25px; text-align:center; line-height:20px; font-size:80%; background:#FF9900;color:#fff;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+  
+   .suzi-gray{ padding:3px 7px 3px 7px; margin-right:1px;      height:25px; text-align:center; line-height:20px; font-size:80%; background:#ddd;color:#666;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+  
+  .listuser{ line-height:35px;}
+  .botom{border:1px solid #ccc; border-bottom:10px solid #ddd; }

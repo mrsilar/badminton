@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>学法答题</title>
+<meta name="keywords" content="">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="">
+
+<link rel="stylesheet" type="text/css" href="/Public/JqueryUI/themes/base/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="/Public/JqueryUI/themes/base/jquery-ui-timepicker-addon.css" />
+<link rel="stylesheet" type="text/css" href="/Public/JqueryUI/themes/base/jquery.ui.accordion.css" />
+<link type="text/css" href="/Public/haijiayou/css/style.css" rel="stylesheet">
+<link href="/Public/haijiayou/css/component.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Public/haijiayou/js/jquery.js"></script>
+<script type="text/javascript" src="/Public/haijiayou/js/modernizr.custom.js"></script>
+<script type="text/javascript" src="/Public/haijiayou/js/jquery.dlmenu.js"></script>
+<link rel="stylesheet" type="text/css" href="/Public/haijiayou/images/css.css">
+<link rel="stylesheet" type="text/css" href="/Public/haijiayou/images/newComm.css">
+</head>
+<body>
+<div class="main">
+  <header>
+    <div class="left" id="wapesfxqy_B01_22"><a href="javascript:history.back(-1);" class="back"><i></i></a></div>
+    <div class="cent"> <span>学法抢答</span> </div>
+    <div class="head-icon"> <a href="javascript:void(0);" class="icon-nav" id="header_menu_25" > <span><i></i>
+      <p>导航</p>
+      </span> </a></div>
+    <div id="cdang">
+      <p><a href="/Activity/sport-list.html" >活动中心</a></p>
+      <p><a href="/Member/Activity/create.html" >创建活动</a></p>
+      <p><a href="/Member/Club/create.html" >创建俱乐部</a></p>
+      <p><a href="/Club/clublist.html" >加入俱乐部</a></p>
+    </div>
+    <style>
+
+#cdang{ position:absolute; z-index:9999; right:0px; top:45px; font-size:12px; width:120px; background:#f3f3f3; display:none  }
+.online{ position:fixed; bottom:43px;z-index:9999; right:0px;   font-size:12px; width:41px;    }
+#cdang p { line-height:30px; padding-left:15px; border-bottom:1px solid #ddd}
+ .main { width:100%;
+top: 0px;
+position: absolute;
+}
+#cdang p a{ color:#333}
+</style>
+    <script>
+
+ 
+function kfu(){
+	$("#cdang").show(); 
+}
+
+//menu
+$(document).ready(function(){
+	 $('#header_menu_25').click(function(){
+		  showMenu(event);
+	  });
+
+	  function showMenu(evt){
+
+		  evt.stopPropagation?evt.stopPropagation():evt.cancelBubble=true;
+		  $("#cdang").slideDown("10000");//you can give it a speed
+	  }
+
+	  function hideMenu(){
+		  $("#cdang").slideUp("fast");
+	  }
+
+	  document.onclick=function(){hideMenu();}
+  
+});
+
+</script>
+    <div class="online"> <a href="http://www.haijiayou.com/Sports/downzl.html"><img src="/Public/haijiayou/images/wenhao.gif" width="40" ></a> </div>
+  </header>
+  <div class="xqMain" style=" float:left; width:100%;background: url(/Public/haijiayou/images/qda.jpg) center top no-repeat; background-size:100%" >
+     <div class="dati">
+      <ul id="isd">
+        <li class="titledati">40、如果郝帅算作工伤，他当月有工资吗？如果有，该享受病假工资还是全额工资？</li>
+        <li id="A" >
+          <table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td style="padding-left:5px; padding-right:5px;"><input name="" type="radio" value=""></td>
+              <td>A、有，病假工资    </td>
+            </tr>
+          </table>
+        </li>
+        <li id="B">
+          <table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td style="padding-left:5px; padding-right:5px;"><input name="" type="radio" value=""></td>
+              <td>B、有，全额工资  </td>
+            </tr>
+          </table>
+        </li>
+        <li id="C">
+          <table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td style="padding-left:5px; padding-right:5px;"><input name="" type="radio" value=""></td>
+              <td>C、没有</td>
+            </tr>
+          </table>
+        </li>
+<!--  <li id="D">
+          <table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td style="padding-left:5px; padding-right:5px;"><input name="" type="radio" value=""></td>
+              <td> D、不明确</td>
+            </tr>
+          </table>
+        </li>-->
+      </ul>
+    </div>
+    <div class="dfen">
+      <div id="answer_id" class="datisl"> </div>
+    </div>
+    <div class="dadui">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr alig10 1n00 {dfen;="center">
+  <td width="100%" align="center"><a href="http://www.haijiayou.com/t39a.html"><img src="/Public/haijiayou/images/shangyiti.png"  width="35%" ></a></td>
+
+         </tr>
+      </table>
+    </div>
+
+  </div>
+  <style>
+footer {padding-bottom:20px; }
+</style>
+  <!--foot begin-->
+  <div class="doot" style="position:fixed; height:40px; width:100%; background:#f9f9f9; border-top:1px solid #eee; bottom:0px; color:#fff">
+    <div class="ver flexbox"> <a id="wapdsy_D05_01" href="/" > <span>首页</span></a> <a id="wapdsy_D05_01" href="/Culture/index.html" style="background:#FF6600; color:#fff"><span>职工文化</span></a> <a id="wapdsy_D05_02" href="/Sports/index.html"><span>职工体育</span></a> <a id="wapdsy_D05_03" href="/Member/Index/index.html"><span>我的</span></a> </div>
+  </div>
+  <style>
+footer {padding-bottom:0px;   }
+</style>
+  <div class="footer"> </div>
+  <div id="dialog" title="系统消息"></div>
+  <div id="dialog_confirm" title="系统消息"></div>
+  <div id="dialog_prograssbar" title="请稍候...">
+    <div id="progressbar"></div>
+  </div>
+  <script>
+	var GROUP = "";
+	var PUBLIC = "/Public";
+	var LAN = "cn";
+	if ( ''!=LAN ) {
+		LAN = LAN + '/';
+	}
+</script>
+  <div style="display:none">
+    <noscript>
+    <a href="http://www.51.la/?17751373" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/17751373.asp" style="border:none" /></a>
+    </noscript>
+  </div>
+  <script>
+ 		//selectLeixing("hghq");
+ 		</script>
+  <link rel="stylesheet" type="text/css" href="/Public/Editor/themes/default/default.css" />
+  <script type="text/javascript" src="/Public/Editor/kindeditor-min.js"></script> 
+  <script type="text/javascript" src="/Public/Editor/lang/zh_CN.js"></script> 
+  
+  <!--foot end--> 
+</div>
+<script  type="text/javascript">
+$(document).ready(function(){
+    $("#A").click(function(){
+		 $("#answer_id").html("答错了");
+  });
+    $("#B").click(function(){
+  htmlobj=$.ajax({url:"http://www.haijiayou.com/Question/submit_answer?question_id="+7+"&answer=B",async:false});
+   $("#answer_id").html("真棒！答对了！");
+  });
+    $("#C").click(function(){
+  htmlobj=$.ajax({url:"http://www.haijiayou.com/Question/submit_answer?question_id="+7+"&answer=C",async:false});
+   $("#answer_id").html("答错了");
+  });
+      $("#D").click(function(){
+  htmlobj=$.ajax({url:"http://www.haijiayou.com/Question/submit_answer?question_id="+7+"&answer=D",async:false});
+ $("#answer_id").html("答错了");
+  });
+});
+</script>
+</body>
+</html>

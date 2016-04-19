@@ -1,0 +1,127 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    {template h5/common/header}
+    <style>
+        .am-list {
+            margin-bottom: 0rem;
+            padding-left: 0px;
+        }
+
+        .am-list > li {
+            position: relative;
+            display: block;
+            margin-bottom: -1px;
+            background-color: #fff;
+            border-bottom: 1px solid #dedede;
+        }
+    </style>
+</head>
+
+<body>
+<div align="center">
+    <!-- Header -->
+</div>
+<header data-am-widget="header" class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center">
+            <a href="javascript:history.go(-1)" class="">
+                <img src="/assets/images/jtou.png"/> </a>
+        </div>
+    </div>
+    <h1 align="center" class="am-header-title"> 人员列表 </h1>
+</header>
+<div class="am-container">
+    <a href="/h5/member/person/create">
+        <div class="am-form-group">
+            <div class="am-u-sm-4 am-u-sm-offset-8">
+                <button type="submit" class="am-btn am-btn-default"
+                        style="width:100%; border:none; height:40px; margin-top:15px;">新增队员
+                </button>
+            </div>
+        </div>
+</div>
+</a>
+<div class="grayline2"></div>
+<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+    <div class="am-list-news-bd">
+        <ul class="am-list" style="border-top:none">
+            {loop $list $row}
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="width:100%">
+                <div class="rightlist">
+                    <h3 class="am-list-item-hd">{$row->name}.{=$row->sex==1?'男':'女'}</h3>
+
+                    <div class="am-list-item-text">电话：{$row->phone_number}</div>
+                    <div class="am-list-item-text">身份证：{$row->identity_card}</div>
+                </div>
+                <div class="rightlistw">
+                    {if $type=="captain"}
+                       <input name="person_id" {if $captain==$row->id}checked{/if} type="checkbox" value="{$row->id}">
+                    {else}
+                      <input name="person_id" {if in_array($row->id,$common)}checked{/if}  type="checkbox" value="{$row->id}">
+                    {/if}
+                </div>
+            </li>
+            {/loop}
+        </ul>
+        <button type="submit" class="am-btn am-btn-secondary" id="submitid"
+                style="width:100%; border:none; height:40px; margin-top:15px;">提交
+        </button>
+    </div>
+</div>
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+    var type = "{$type}";
+    $('#submitid').click(
+            function () {
+                var chk_value = [];
+                $("input[name='person_id']:checked").each(function () {
+                    chk_value.push($(this).val());
+                });
+                var date = new Date();
+                var join_team_name = "join_team_"+type;
+                date.setTime(date.getTime() + (60 * 60 * 1000));
+                $.cookie(join_team_name, chk_value, {
+                    expires: date,
+                    path: '/'
+                });
+
+                if (type == 'captain') {
+                    if (chk_value.length < 1) {
+                        alert('队长不能为空');
+                        return;
+                    }
+                    if (chk_value.length > 1) {
+                        alert('队长只能一人');
+                        return;
+                    }
+                window.location.href = '/h5/activity/join3';
+                return;
+            }
+                $.get("/h5/activity/join_activity", {},
+
+                        function (data, status) {
+                            if (data.code == 0) {
+                                window.location.href = '/h5/member/activity';
+                            } else {
+                                alert(data.msg);
+                            }
+
+                        });
+
+            }
+    );
+</script>
+<style>
+    li.sle a img {
+        width: 80px;
+        height: 40px;
+    }
+</style>
+</body>
+
+</html>

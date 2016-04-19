@@ -1,0 +1,387 @@
+<!doctype html>
+<html class="no-js">
+<head>
+ {template web/common/header}
+ <link rel="stylesheet" type="text/css" href="/pc/css/css.css" />
+<link rel="stylesheet" type="text/css" href="/pc/css/all.css" />
+<link rel="stylesheet" type="text/css" href="/pc/css/bootstrap.min.css" />
+
+<link rel="stylesheet" type="text/css" href="/pc/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/pc/css/yls.css" />
+<link rel="stylesheet" type="text/css" href="/pc/css/st_test.css" />
+<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+</head>
+<body>
+ {template web/common/header2}
+
+<div id="container-lg" class="container-lg event-details">
+<style type="text/css">
+    #bdshare{padding-bottom: 0}
+    .share .share-btns a,.share .share-btns span{background-image:url(http://cdn.huodongxing.com/Content/v2.0/dist/css/sprite/share-logins.32.png);!important;padding: 0;width:20px;height:20px;}
+    .share .bds_douban{background-position:-42px 0!important}
+    .share .bds_douban:hover,.share .bds_douban:focus,.share .bds_douban:active{background-position:-63px 0!important}
+    .share .bds_qzone{background-position:-84px 0!important}
+    .share .bds_qzone:hover,.share .bds_qzone:focus,.share .bds_qzone:active{background-position:-105px 0!important}
+    .share .bds_renren{background-position:-126px 0!important}
+    .share .bds_renren:hover,.share .bds_renren:focus,.share .bds_renren:active{background-position:-147px 0!important}
+    .share .bds_tsina{background-position:-168px 0!important}
+    .share .bds_tsina:hover,.share .bds_tsina:focus,.share .bds_tsina:active{background-position:-189px 0!important}
+</style>
+<div class="jumbotron media">
+    <img class="pull-left media-object" src="http://wimg.huodongxing.com/logo/201510/5304291823000/562113142236006_v2.jpg@!wmlogo" alt="" style="width:440px;height:260px;">
+	<div class="media-body">
+        <h2 class="media-heading">资本与物流创业邦面对面——大型沙龙论坛</h2>
+        <div>
+            <em class="icon-time" title="活动时间"></em> 2015年11月7日 8:00 ～ 2015年11月7日 17:00
+        </div>
+        <div class="address">
+            <em class="icon-place" title="活动地点"></em><a target="_blank" href="http://www.huodongxing.com/event/map/5304291823000">（上海青浦）华徐公路e通世界南区A栋1楼</a>
+        </div>
+		<div>
+			<em class="icon-statistics" title="活动名额"></em> 限额300人（已报名32）		</div>
+			<div>
+				<a href="http://www.huodongxing.com/people/6341414043834" target="_blank"><em class="icon-master" title="活动发起人"></em> <img class="face" src="http://cdn.huodongxing.com/Content/v2.0/img/face/female/small/3.jpg" alt=""> 56CAFE</a>
+			</div>
+        <div class="func">
+            <button id="btn_register_main" class="btn btn-sign-up1 charge" onclick="javascript:startRegisterEvent();">我要报名</button>
+			<div class="ticket-tips sr-only" id="event_ticket_select_tips">付费活动，请选择票种</div>
+				<button class="btn btn-like btn-lg" name="eventFollowBtn" onclick="javascript:followThisEvent(this);"><span class="icon-favorites-before"></span><span>收藏</span><span class="num">67</span></button>
+            <!--<div id="zdclock_btn" style="width:113px;height:37px;display:none;"><iframe src="http://static.open.zdworks.com/web/widget_ad5b2c87427e786123f77fbff1559ea6fa56776f.html?v=1376548832001&amp;btnType=0&amp;p=1&amp;wd_width=137&amp;wd_height=37&amp;wd_type=0&amp;wd_imgUrl=http%3A%2F%2Fimg.zdworkscdn.com%2Fpic%2F2b820b4af031d615c5a038f15251259b426abb5c.png&amp;wd_activeUrl=http%3A%2F%2Fimg.zdworkscdn.com%2Fpic%2F97ad0eaef078d81234fd439e62b22121839f50d1.png&amp;wd_addedUrl=http%3A%2F%2Fimg.zdworkscdn.com%2Fpic%2Fb4869a8144d17226aa0617dd7a61f1feb8f5f678.png&amp;clc_appKey=b6f647ef0696fde8&amp;clc_clockId=1&amp;clc_title=%E8%B5%84%E6%9C%AC%E4%B8%8E%E7%89%A9%E6%B5%81%E5%88%9B%E4%B8%9A%E9%82%A6%E9%9D%A2%E5%AF%B9%E9%9D%A2%E2%80%94%E2%80%94%E5%A4%A7%E5%9E%8B%E6%B2%99%E9%BE%99%E8%AE%BA%E5%9D%9B&amp;clc_note=%E6%9C%89%E9%A1%B9%E7%9B%AE%E5%90%97%EF%BC%9F%E4%BD%A0%E9%9C%80%E8%A6%81%E5%88%9B%E4%B8%9A%E8%B5%84%E9%87%91%E5%90%97%EF%BC%9F%E8%AF%B7%E5%90%AC%E6%8A%95%E8%B5%84%E4%BA%BA%E6%80%8E%E4%B9%88%E8%AF%B4%EF%BC%8120&amp;clc_iconUrl=http%3A%2F%2Fcdn.huodongxing.com%2Flogo%2F201510%2F5304291823000%2F562113142236006_v2.jpg&amp;clc_bgUrl=&amp;clc_type=0&amp;clc_startTime=1446804000&amp;clc_jumpTitle=%E8%B5%84%E6%9C%AC%E4%B8%8E%E7%89%A9%E6%B5%81%E5%88%9B%E4%B8%9A%E9%82%A6%E9%9D%A2&amp;clc_jumpUrl=http%3A%2F%2Fwww.huodongxing.com%2Fevent%2F5304291823000&amp;clc_jumpAppUrl=&amp;clc_jumpAppPackage=" id="widget_1" scrolling="no" style="background-color: transparent; margin: 0px; padding: 0px; border: 0px none; outline: medium none; height: 24px; width: 88px; overflow: hidden;" name="widget_1" frameborder="0"></iframe></div><!-- 正点闹钟-->
+			<!--<div class="share" style="display:none">
+				<span>分享</span>
+                <div class="share-btns">
+                    <!-- Baidu Button BEGIN -->
+					
+                   <!-- <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" data="{'bdDes':'#线下活动# 我在 @活动行 发现一个不错的活动 #资本与物流创业邦面对面——大型沙龙论坛#，分享给大家！','text':'#线下活动# 我在 @活动行 发现一个不错的活动 #资本与物流创业邦面对面——大型沙龙论坛#，分享给大家！','title':'#线下活动# 我在 @活动行 发现一个不错的活动 #资本与物流创业邦面对面——大型沙龙论坛#，分享给大家！','pic':'http://cdn.huodongxing.com/logo/201510/5304291823000/562113142236006_v2.jpg','url':'http://www.huodongxing.com/event/5304291823000','wbuid':'2853471142'}">
+						<a href="#" title="分享到新浪微博" class="bds_tsina"></a>
+					    <a href="#" title="分享到豆瓣网" class="bds_douban"></a>
+					    <a href="#" title="分享到人人网" class="bds_renren"></a>
+					    <a href="#" title="分享到QQ空间" class="bds_qzone"></a>
+                    </div>
+					<script src="http://bdimg.share.baidu.com/static/js/bds_s_v2.js?cdnversion=401888" type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=4239668"></script>
+                    
+                    <script type="text/javascript">
+                        var bds_config = { 'snsKey':{'tsina':'1979413226'} };
+                        $(function () {
+                            window.setTimeout(function () {
+                                document.getElementById('bdshell_js').src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+                            }, 200);
+                        });
+                    </script> -->
+                    <!-- Baidu Button END -->
+			    <!--</div><a class="weixin" title="分享到微信" href="#" onclick="javascript:$('#wechat_modal').show();return false;"><sup>new</sup></a>
+            </div>-->
+           <!-- <a style="display:none" class="pull-right" href="#accuse-layer" data-toggle="modal">举报</a>
+       --> </div>
+    </div>
+</div>
+
+
+
+</div>
+
+
+  
+
+<nav>
+    <div class="navSpeak">
+        <div class="navBody">
+            <div class="container">
+                <ul class="nav nav-pills headNav">
+                    <li data-plne="meeting" class="col-lg-3 col-md-3 meeting" title="XXX活动介绍">
+                        <i alt="活动介绍" class="bgIcon"></i>活动介绍</li>
+                    <li data-plne="agenda" class="col-lg-3 col-md-3 agenda" title="XXX参赛名单">
+                        <i alt="参赛名单" class="bgIcon"></i>参赛名单</li>
+                    <li data-plne="speaker" class="col-lg-3 col-md-3 speaker" title="XXX比赛秩序册">
+                        <i alt="比赛秩序册" class="bgIcon"></i>比赛秩序册</li>                   
+                    <li data-plne="signUp1" class="col-lg-3 col-md-3 signUp1"title="XXX比赛成绩" >
+                       <i alt="比赛成绩" class="bgIcon"></i>比赛成绩</li>    			
+				</ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="mainBgs">
+    <div class="container">
+        <div class="row" id="meeting">
+            <div class="contentName">
+                <h3>活动介绍<span class="nameEnglish">Notice Of Meeting</span></h3>
+            </div>
+            <div>
+                
+                
+                <p>为了推进数据整合和信息共享、发展以数据为基础的医疗健康服务体系，<strong>2015年11月28日至29日，“2015中国医疗健康大数据峰会”即将在北京召开</strong>，<strong>此次会议将围绕“开放、变革、发展”的主题</strong>，届时将邀请主管部门、科研机构、医疗机构、优秀企业、市场研究机构等领导与专家、高层及千余位行业精英参与。</p><p>深入探讨科学推进推进医疗健康大数据的应用和价值挖掘、推动医疗健康大数据依法有序开放、医疗健康大数据互联互通、数据标准与安全等医疗健康大数据相关热点议题。为我国医疗健康的数据的发展提供前瞻的思想与观点，为研究制定促进健康医疗大数据应用的政策和战略献计献策。</p><p><strong>此次会议是由“中国移动医疗产业大会”组委会倾力组织的又一智慧医疗行业品牌盛会</strong>，中国移动医疗产业大会自2010年开始举办，推动智慧医疗、移动医疗在中国的应用与发展，至今已连续5年8届成功举办行业品牌盛会，共有400多场行业领导、专家、企业主题报告，<strong>会议共有近万人次行业精英、3000多人次医疗机构参加</strong>，是电视、网络、平面、新媒体全面覆盖的行业盛会，受到业内专家普遍关注与认可，得到了工信部、卫生部及相关专家、国内外企业的支持与肯定，成为推动产业发展的权威高层会议，也是产业链交流、合作、学习的重要平台。</p><p style="text-align:center"><img alt="2015中国医疗健康大数据峰会" src="huojia_files/event1444724541.jpg" class="img-responsive"><strong>2014峰会现场精彩图片</strong></p><p>全
+球信息通信技术、互联网蓬勃发展，人们对PC、手机、移动互联等应用与产品的使用越来越频繁，每个人都成为了数据的创造者，大数据时代已经到来，并已渗透
+到我们生活的每个领域。我国政府高度重视大数据产业的发展，并逐步推动大数据在政务、工业、医疗、金融、通信等行业示范与应用。</p><p style="text-align:center"><img alt="2015中国医疗健康大数据峰会" src="huojia_files/event1444724540.jpg" class="img-responsive"><strong>2014峰会现场精彩图片</strong></p><p>今
+年，国务院发布《关于印发促进大数据发展行动纲要的通知》（下称《纲要》），《纲要》指出在公共服务大数据工程中要构建医疗健康服务大数据。科学推进医疗
+健康大数据的应用，依法有序地推动医疗健康大数据开放融合及大数据库的建立。医疗健康大数据的地位和作用越来越得到政府和社会的关注，并将作为“十三五”
+人口健康信息化建设的核心。</p><p style="text-align:center"><img alt="2015中国医疗健康大数据峰会" src="huojia_files/event1444724542.jpg" class="img-responsive"><strong>2014峰会现场精彩图片</strong></p><p>医
+疗健康大数据的开放共享，是对新形势下医改的重要探索，也是实现智慧医疗的重要手段。目前，国内一些医疗机构及相关的企业已经迈开了数据分析共享的探索步
+伐。去年，百度与北京市政府联合推出北京健康云平台，今年9月，广东移动在清远市清城区建立卫生信息化平台，实现了电子病历档案的共享；阿里云将合作组建
+“云上安心”联盟等。</p><p style="text-align:center"><img alt="2015中国医疗健康大数据峰会" src="huojia_files/event1444724635.jpg" class="img-responsive"><strong>2014峰会现场精彩图片</strong></p><p>医
+疗健康大数据的使用使个人医疗健康数据成为重要的经济资源，带来了医疗健康服务产业的发展与变革，个性化的医疗服务、精准医疗、个性化的药品，这些都是未
+来充满想象空间的商机；目前以智能设备为感应终端，通过大数据、云计算、互联网等技术主动感知老年人的需求，获取医疗健康数据，进行智能化管理和服务的智
+慧养老模式正在得到养老市场的广泛关注，利用大数据对老年人进行个性化的健康管理、制造适老化的老年用品也是不错的投资机会。</p><p style="text-align:center"><img alt="2015中国医疗健康大数据峰会" src="huojia_files/event1444724636.jpg" class="img-responsive"><strong>2014峰会现场精彩图片</strong></p><p>尽
+管大数据会给医疗健康产业带来诸多商机，但当前我国对于医疗健康大数据的探索还处在起步阶段，在发展过程中依旧面临着诸多的挑战和机遇：医院、研究机构等
+专业单位的数据不愿公开，医疗健康大数据过于分散局限，新的“信息孤岛”形势严峻；医疗健康大数据无法有效互联互通；缺乏统一的医疗行业标准，数据大混
+乱；探索主要集中于对数据的收集和储存，数据的分析和应用还比较弱等。发展以数据为基础的医疗健康服务体系，将推动我国医疗健康服务与管理水平的整体提
+高、医学科研与教育的快速前进，促进移动医疗、智慧医疗的创新和产业发展。</p><p>&nbsp;</p><h3 style="text-align:center"><span style="color:#006400"><strong>往届数据统计</strong></span></h3><p><span style="color:#006400"><strong><img alt="2015中国医疗健康大数据峰会" src="huojia_files/event1444724784.jpg" class="img-responsive"></strong></span></p><p>&nbsp;</p><p>&nbsp;</p>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mainBgs">
+    <div class="container">
+        <div class="row" id="agenda">
+            <div class="contentName">
+                <h3>参赛名单<span class="nameEnglish">Agenda</span></h3>
+            </div>
+            <div>
+                
+                  
+                
+                <h3 style="text-align:center"><span style="color:#006400"><strong>大会板块</strong></span></h3><p>&nbsp;</p><p><img alt="2015中国医疗健康大数据峰会" src="huojia_files/event1444723201.jpg" class="img-responsive"></p><p><span style="color:#006400"><strong>高层会晤</strong></span></p><p>会前VIP休息室，与主管部门领导、行业专家、企业高层举办的专享空间；</p><p><img alt="2015中国医疗健康大数据峰会" src="huojia_files/event1444723202.jpg" class="img-responsive"></p><p><span style="color:#006400"><strong>开幕式–高层峰会</strong></span></p><p>开幕式–高层峰会-中国医疗健康大数据峰会特邀政府及地方主管部门领导、专家、企业高层通过致辞、主题报告、主题演讲等形式，对政策与环境、行业趋势、发展洞察等权威信息。</p><p><img alt="2015中国医疗健康大数据峰会" src="huojia_files/event1444723203.jpg" class="img-responsive"></p><p><span style="color:#006400"><strong>价值与商业论坛</strong></span></p><p>价
+值与商业论坛-中国医疗健康大数据峰会大数据将在医疗健康产业引发重要变革，面对海量医疗健康大数据，如何利用大数据提高医疗与健康产业商业价值。本论坛
+将深入探讨科研、教学、医疗机构、生物医学、健康产品与服务等医疗健康大数据的价值，探索生态链合作的商业模式、商业前景。</p><p><img alt="2015中国医疗健康大数据峰会" src="huojia_files/event1444723203_002.jpg" class="img-responsive"></p><p><span style="color:#006400"><strong>应用与创新论坛</strong></span></p><p>大数据的分析与挖掘将成为提升核心竞争力的重要工具，交流最新的大数据技术与应用、创新的产品，在医疗、医学、健康等医疗健康大数据挖掘、分析的服务与创新。电子病历、移动医疗、移动健康、互联网+医疗健康、可穿戴设备等如何利用大数据创新产品与服务。</p><p>&nbsp;</p><p>&nbsp;</p>
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mainBgs">
+    <div class="container">
+        <div class="row" id="speaker">
+            <div class="contentName">
+                <h3>比赛秩序册<span class="nameEnglish">Speakers</span></h3>
+            </div>
+            <div>
+                
+                
+                
+                <h3 style="text-align:center"><span style="color:#006400"><strong>在邀嘉宾</strong></span></h3><p><img alt="2015中国医疗健康大数据峰会" src="huojia_files/event1444722978.jpg" class="img-responsive"></p>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mainBgs" style="background: #fff">
+    <div class="container">
+        <div class="row signUpFree" id="signUp1">
+            <div class="contentName">
+                <h3>比赛成绩<span class="nameEnglish">Registration fee</span></h3>
+            </div>
+            
+            
+                
+                <!--标准-->
+                <div class="signUpBody" style="">
+                    <div class="message">
+                        <!--<h2>报名信息</h2>-->
+                        <!--<hr>-->
+                        <table class="mess_table set_font_style">
+                            <thead>
+                            <tr style="background:#F0F0F0;height:50px;">
+                                <th class="col-lg-3 col-md-3 col-xs-3 col-sm-3 ">类型</th>
+                                <th class="col-lg-2 col-md-2 col-xs-2 col-sm-2 ">报名截止时间</th>
+                                <th class="col-lg-2 col-md-1 col-xs-1 col-sm-1 ">单价</th>
+                                <th class="col-lg-1 col-md-1 col-xs-1 col-sm-2">返现</th>
+                                <th class="col-lg-2 col-md-2 col-xs-2 col-sm-2 name_num">选择数量</th>
+                            </tr>
+                            </thead>
+                            <tbody class="mess_tbody set_font_style">
+                            
+                            
+                            <tr class="table_tr set_font_style" style="height:60px;">
+                                <td>
+                                    <input class="price_radio" id="p2800" name="price_radio" data-status="false" type="radio">&nbsp;<label for="p2800">
+                                    
+                                    全程参会
+                                    
+                                </label></td>
+                                <td class="end-time">2015-11-27 00:00:00</td>
+                                <td class="set_font_style" style="font-family:microsoft yahei;font-size:16px;">
+                                    
+                                    <a class="price1" data-disabled="false" data-price="2800" data-pricetype="RMB" data-sign="￥" style="font-family:microsoft yahei;font-size:16px;">￥2800</a>
+                                    
+                                    
+                                    <img class="ticket_info" onmouseover="$(this).next('div').show();" onmouseout="$(this).next('div').hide();" src="huojia_files/ticket_info.png" style="display:none;">
+                                    
+                                    
+                                    <div class="new_tooltip">
+                                        <p>权益：全程参会、全套会议资料、可公开演讲PPT、会议午餐；</p>
+                                    </div>
+                                    
+                                </td>
+                                <td class="price_return set_font_style" data-return="140" data-sign="￥">
+                                    
+                                    ￥140
+                                    
+                                </td>
+                                <td>
+                                    <!-- 限制购买人数 -->
+                                    <span class="limit_people" style="display:none;"></span>
+                                    
+                                    <select data-number="" class="quantitys"><option selected="selected" value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                            
+                            <tr class="table_tr set_font_style" style="height:60px;">
+                                <td>
+                                    <input class="price_radio" id="p6800" name="price_radio" data-status="false" type="radio">&nbsp;<label for="p6800">
+                                    
+                                    VIP嘉宾
+                                    
+                                </label></td>
+                                <td class="end-time">2015-11-27 00:00:00</td>
+                                <td class="set_font_style" style="font-family:microsoft yahei;font-size:16px;">
+                                    
+                                    <a class="price1" data-disabled="false" data-price="6800" data-pricetype="RMB" data-sign="￥" style="font-family:microsoft yahei;font-size:16px;">￥6800</a>
+                                    
+                                    
+                                    <img class="ticket_info" onmouseover="$(this).next('div').show();" onmouseout="$(this).next('div').hide();" src="huojia_files/ticket_info.png" style="display:none;">
+                                    
+                                    
+                                    <div class="new_tooltip">
+                                        <p>权益：VIP座席+桌签、刊登公司LOGO+简介、参加会议高层讨论、全程参会所有权益</p>
+                                    </div>
+                                    
+                                </td>
+                                <td class="price_return set_font_style" data-return="340" data-sign="￥">
+                                    
+                                    ￥340
+                                    
+                                </td>
+                                <td>
+                                    <!-- 限制购买人数 -->
+                                    <span class="limit_people" style="display:none;"></span>
+                                    
+                                    <select data-number="" class="quantitys"><option selected="selected" value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
+                                    
+                                </td>
+                            </tr>
+                            
+                            
+                        </tbody></table>
+                    </div>
+                    <div class="col-lg-12 text-right total_price" style="border-bottom: 1px solid #F4F4F4;margin-bottom: 20px">
+                        <div class="price_intro text-left" style="float: left;width: 75%"></div>
+                        <p class="total_price_num" style="font-family:microsoft yahei;font-size:20px;color:#666666;">
+                            共<span class="priceNumber"></span>张，总计:<span class="priceZhongji" style="font-family:microsoft yahei;font-size:24px;color:red;"></span>
+                        </p>
+                        <div class="total_return_num" style="margin-top:10px;margin-bottom: 20px;">
+                            <p class="returnPrice">
+                                <span class="show_note glyphicon glyphicon-exclamation-sign" style="margin-right:10px;color: #2c3e50;font-size: 14px"></span>
+                                返现金额：
+                                <span></span>
+                            </p>
+                            <div class="show_note_font text-left">
+                                <p style="line-height:22px;">支付成功后，客服会在2小时内与您确认参会人信息，届时请提供接收返现的支付宝账号给客服。<br>返现时间：一周内返现。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="orderForm text-center" style=" width: 60%; clear: both;margin: 57px 0 0 14%;float:none;border: none">
+                        <div class="col-lg-3"></div>
+                        <p class="col-lg-9" style="margin-bottom: 20px;padding: 0 !important;">购票人信息 <br><span style=" font-size: 15px;color: #A1A1A1;">购买后会有专人电邮核实参会信息，并提供参会相关凭证。</span></p>
+
+                        <form action="/submitorder/" method="post" class="submitForm set_font_style">
+                            <input name="number" id="number" value="0" type="hidden">
+                            <input name="price" id="money" type="hidden">
+                            <input name="csrfmiddlewaretoken" value="UQTsRSrX3eFbi2onnCwHuAAHbldqXiug" type="hidden">
+                            <div class="col-lg-3"><span style="color: red;padding: 0 5px;">*</span>姓名</div>
+                                <div class="col-lg-9"><input id="customer_name" class="name" name="name" role="button" type="text"></div>
+                            <div class="col-lg-3"><span style="color: red;padding: 0 5px;">*</span>手机号</div>
+                            <div class="col-lg-9"><input id="mobilphone" class="mobilphone" name="mobilphone" type="text"><span class="tips">请输入正确的手机号</span></div>
+                            <div class="col-lg-3"><span style="color: red;padding: 0 5px;">*</span>验证码</div>
+                            <div>
+                            <div class="col-lg-6"><input id="captcha" class="capcha" name="captcha" type="text"></div>
+                            <div class="col-lg-3 getVerificationCode">
+                                <img onclick="this.setAttribute('src','/get_check_code_image/?nocache='+Math.random());" src="huojia_files/a.gif" alt="CheckCode" style="width: 122px" id="cap_img">
+                            </div>
+                            </div>
+                            <br style="clear: both">
+                            <div class="col-lg-3 youxiang"><span style="color: red;padding: 0 5px;">*</span>邮箱</div>
+                            <div class="col-lg-9 "><input id="email" class="email" name="email" type="text"><span class="tips">请输入正确的邮箱</span></div>
+                            <div class="col-lg-3 "></div>
+                            <div class="col-lg-9 "><textarea name="remark" id="remarks" placeholder="备注：请补充您需要知道的信息"></textarea></div>
+                            <div class="col-lg-offset-3 col-lg-9 checkbox text-left">
+                                <label for="invoice"><input id="invoice" name="fapiao" type="checkbox">我需要发票</label>
+                            </div>
+                            <div class="Invoice_div">
+                                <div class="col-lg-3">发票抬头</div>
+                                <div class="col-lg-9"><input name="Invoice" type="text"></div>
+                                <div class="col-lg-3">邮寄地址</div>
+                                <div class="col-lg-9"><input name="mail_address" type="text"></div>
+                            </div>
+                            <input value="9116277" name="event_id" id="event_id_for_submit" type="hidden">
+                            <input name="event_name" value="2015中国医疗健康大数据峰会" type="hidden">
+                            <input value="0" class="" id="return_cash" name="return_cash" type="hidden">
+                            <div class="col-lg-offset-3 col-lg-9 orderFormSubmit">
+                                <button>报名</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+            
+            
+        </div>
+
+    </div>
+</div><div id="sideNavigationBar">
+    <ul>
+        
+        <li class="collection" data-id="9116277">
+            <span></span>
+            收藏
+        </li>
+        
+        <!--<li class="barQrcode">-->
+            <!--<span class="bgIcon"></span>-->
+            <!--微信<br/>二维码-->
+        <!--</li>-->
+        <li class="barShare">
+            <span class="bgIcon"></span>
+            分享
+        </li>
+        <li class="barShopping">
+            <span class="bgIcon2"></span>
+            报名
+        </li>
+        <li class="barBarkTop">
+            <span class="bgIcon"></span>
+            返回顶部
+        </li>
+    </ul>
+</div>
+<div style="display: none;" class="barQrcodeHide">
+    <img src="huojia_files/st_erweima.png" alt="2015中国医疗健康大数据峰会">
+</div>
+<div style="top: 2874px; left: 1022px; display: none;" class="barShareHide">
+    <div id="shartQrcode"><canvas height="180" width="180"></canvas><canvas height="180" width="180"></canvas></div>
+    <p>微信扫一扫 分享至朋友圈</p>
+</div>
+
+    </div>
+	
+<style>
+li.sle a img{ width:80px; height:40px;}
+</style>
+ 
+ <script type="text/javascript" src="/pc/js/all.js"></script>
+<script type="text/javascript" src="/pc/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/pc/js/homeBanner.js"></script>
+<script type="text/javascript" src="/pc/js/libs.js"></script>
+<script type="text/javascript" src="/pc/js/st_test.js"></script>
+{template web/common/footer}
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html class="no-js">
+<head>{template h5/common/header}
+</head>
+<body>
+	<header data-am-widget="header" class="am-header am-header-default">
+		<div class="am-header-left am-header-nav">
+			<div align="center">
+				<a href="javascript:history.go(-1)" class=""> <img
+					src="/assets/images/jtou.png" />
+				</a>
+			</div>
+		</div>
+	</header>
+	<!-- Menu -->
+	<table
+		class="am-table am-table-bordered am-table-radius am-table-striped">
+		<thead>
+			<tr>
+				<th>{$team_match->team_a_name}&nbsp;&nbsp;{$team_match->team_b_name}(<a style="color: #52b2ff" href="/h5/member/activity/specail/four/change_member_small?team_match_id={$team_match->id}">人员调整</a>)</th>
+			</tr>
+		</thead>
+		<tbody>
+
+		<tr>
+			<td></td>
+			{loop $team_item_b $ki $vi}
+			<td>
+				{$vi[0]->user_team_member_name}&nbsp;
+				{$vi[0]->user_team_member_sex}<br>
+				{$vi[1]->user_team_member_name}&nbsp;
+				{$vi[1]->user_team_member_sex}
+			</td>
+			{/loop}
+		</tr>
+			{loop $team_item_a $ka $va}
+			<tr>
+				<td>
+					{$va[0]->user_team_member_name}&nbsp;
+					{$va[0]->user_team_member_sex}<br>
+					{$va[1]->user_team_member_name}&nbsp;
+					{$va[1]->user_team_member_sex}
+				</td>
+				{loop $team_item_b $kb $vb}
+				<td>
+					{$team_member_match[$ka][$kb]->win_a_count}:{$team_member_match[$ka][$kb]->win_b_count}
+				</td>
+				{/loop}
+			</tr>
+			{/loop}
+		</tbody>
+	</table>
+	{template h5/common/footer}
+	<script src="/assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+	<script src="/assets/js/amazeui.min.js"></script>
+	<script type="text/javascript">
+		
+	</script>
+</body>
+</html>

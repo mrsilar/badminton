@@ -1,0 +1,69 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    {template h5/common/header}
+    <style>
+    .am-list {
+        margin-bottom: 0rem;
+        padding-left: 0px;
+    }
+    
+    .am-list>li {
+        position: relative;
+        display: block;
+        margin-bottom: -1px;
+        background-color: #fff;
+        border-bottom: 1px solid #dedede;
+    }
+    </style>
+</head>
+
+<body>
+    <div align="center">
+        <!-- Header -->
+    </div>
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <div align="center">
+                <a href="javascript:history.go(-1)" class=""> <img src="/assets/images/jtou.png" /> </a>
+            </div>
+        </div>
+        <h1 align="center" class="am-header-title"> 队伍列表 </h1>
+    </header>
+    <div class="am-panel-group" id="accordion"> {loop $list $row}
+        <div class="am-panel am-panel-default">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-<?php echo $row['id']?>'}"> {$row['name']}<span style="float:right; color:#999; font-size:14px;">成员&nbsp;></span></h4>
+            </div>
+            <div id="do-not-say-{$row['id']}" class="am-panel-collapse am-collapse">
+                <div class="am-panel-bd">
+                    <div class="am-g">
+                        {if $row['members']} {loop $row['members']['captain'] $v}
+                        <div class="am-u-sm-4 lineright">队长</div>
+                        <div class="am-u-sm-8 lineleft">{$v['name']}，{$v['sex']}</div>
+                        {/loop} {loop $row['members']['common'] $v}
+                        <div class="am-u-sm-4 lineright">队员</div>
+                        <div class="am-u-sm-8 lineleft">{$v['name']}，男</div>
+                        {/loop} {loop $row['members']['backup'] $v}
+                        <div class="am-u-sm-4 lineright">备选</div>
+                        <div class="am-u-sm-8 lineleft">{$v['name']}，男</div>
+                        {/loop} {/if}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {/loop} </div>
+
+    {template h5/common/footer}
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/amazeui.min.js"></script>
+    <style>
+    li.sle a img {
+        width: 80px;
+        height: 40px;
+    }
+    </style>
+</body>
+
+</html>

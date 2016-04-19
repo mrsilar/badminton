@@ -1,0 +1,197 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>比分记录</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="http://s.amazeui.org/assets/2.x/css/amaze.min.css?v=ifp65slu">
+    <style>
+        li.sle a img {
+            width: 80px;
+            height: 40px;
+        }
+
+        .am-tabs {
+            padding: 0;
+            margin: 0;
+        }
+
+        .z-team {
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            width: 100%;
+        }
+
+        .z-team td {
+            border: 1px solid #ddd;
+        }
+
+        h2 {
+            margin-top: 10px !important;
+        }
+
+        input {
+            display: inline-block;
+            width: 60px !important;
+        }
+
+        .z-game {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center"><a href="javascript:history.go(-1)" class=""> <img src="/assets/images/jtou.png"/> </a>
+        </div>
+    </div>
+    <h1 align="center" class="am-header-title">记录比分</h1>
+  
+</header>
+        <h1 >比赛分制: {=$activity->score_system==0?'标准分':$activity->score_system}</h1>
+<!-- Menu -->
+<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
+    <h2 class="am-titlebar-title ">
+        {$team_match->team_a_name}
+        VS
+        {$team_match->team_b_name}
+    </h2>
+    <hr>
+
+
+    <div class="am-tabs-bd">
+        <!--s-data这个div里面存放比赛信息（比赛的ID、比赛的项目以及比赛的轮次）-->
+        {loop $list $row}
+        <div class="s-data" activity="{$activity_id}" lunci="1" activityCategory="1"></div>
+        <!--从这里开始做循环输出 S-->
+        <h3 class="s-title">
+
+            {loop $row->category_a_list $key $val}
+            {$val->user_team_member_name}
+            {if $key<1}
+            &
+            {/if}
+            {/loop}
+            VS
+            {loop $row->category_b_list $key $val}
+            {$val->user_team_member_name}
+            {if $key<1}
+            &
+            {/if}
+            {/loop}
+
+        </h3>
+
+        <div class="z-game s-game">
+            <table class="z-team" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="s-team-a" team-id="222"></td>
+                    <td class="s-team-b" team-id="333"></td>
+                </tr>
+                <tr class="s-member-match" member-match-id="{$row->id}">
+                    <td>
+                        {loop $row->category_a_list $val}
+                        {$val->user_team_member_name} &nbsp;{=$val->user_team_member_sex==1?'男':'女'} &nbsp;
+                        {/loop}
+                    </td>
+                    <td>
+                        {loop $row->category_b_list $val}
+                        {$val->user_team_member_name} &nbsp;{=$val->user_team_member_sex==1?'男':'女'} &nbsp;
+                        {/loop}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="score-a">{$row->win_a_count}</td>
+                    <td class="score-b">{$row->win_b_count}</td>
+                </tr>
+            </table>
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-2">&nbsp;&nbsp;</div>
+                <div class="am-u-sm-4">
+                    <input value="" type="number" class="a">
+                </div>
+                <div class="am-u-sm-2">&nbsp;&nbsp;</div>
+                <div class="am-u-sm-4">
+                    <input value="" type="number" class="b">
+                </div>
+            </div>
+
+            <div class="am-u-sm-12" style="text-align:right;padding:20px;">
+                已打分{$row->score_count}次，共三次机会
+                {if $row->score_count <3}
+                <button type="button" class="am-btn am-btn-primary s-btn">提交比分</button>
+                {/if}
+            </div>
+
+        </div>
+        {/loop}
+        <!--从这里开始做循环输出 E-->
+    </div>
+</div>
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".s-title").click(function () {
+            var $this = $(this);
+            $this.next(".s-game").toggle();
+        });
+
+        //提交表单
+        var postJson = {
+            activityId: $(".s-data").attr("activity"),
+            lunci: $(".s-data").attr("lunci"),
+            activityCategory: $(".s-data").attr("activityCategory")
+        };
+        $(".s-btn").click(function () {
+            //获取元素
+            var $this = $(this);
+            var $game = $this.parent().parent();
+            //判断是否填写完整比分
+            var $scoreA = $game.find(".score-a");
+            var $scoreB = $game.find(".score-b");
+            var scoreA = $game.find(".a").val();
+            var scoreB = $game.find(".b").val();
+            if (!scoreA.trim() || !scoreB.trim()) {
+                alert("请填写完整的比分");
+                return false;
+            }
+            //提交数据
+            var teamA = $game.find(".s-team-a").attr("team-id");
+            var teamB = $game.find(".s-team-b").attr("team-id");
+            var memberMatchId = $game.find(".s-member-match").attr("member-match-id");
+            postJson.teamA = teamA;
+            postJson.teamB = teamB;
+            postJson.scoreA = scoreA;
+            postJson.scoreB = scoreB;
+            postJson.memberMatchId = memberMatchId;
+            //console.log(postJson);
+            $.post("/h5/activity/score", postJson, function (data, status) {
+                if (data.code == 0) {
+                    $scoreA.html(scoreA);
+                    $scoreB.html(scoreB);
+                    $game.find(".a").val("");
+                    $game.find(".b").val("");
+                    return;
+                } else {
+                    alert(data.msg);
+                    return;
+                }
+            });
+
+        });
+    });
+</script>
+</body>
+</html>

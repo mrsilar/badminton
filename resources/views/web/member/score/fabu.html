@@ -1,0 +1,245 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>登录</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" href="assets/i/favicon.png">
+<link rel="stylesheet" href="/assets/css/amazeui.min.css">
+<link rel="stylesheet" href="/assets/css/app.css">
+  
+
+<link rel="stylesheet" href="http://s.amazeui.org/assets/2.x/css/amazeui.min.css?v=ifp65slu">
+<link rel="stylesheet" href="http://s.amazeui.org/assets/2.x/css/amaze.min.css?v=ifp65slu">
+<link rel="canonical" href="http://amazeui.org?_ver=2.x"/>
+<script src="http://s.amazeui.org/assets/2.x/js/jquery.min.js?v=ifp65slu"></script>
+<script src="http://s.amazeui.org/assets/2.x/js/handlebars.min.js?v=ifp65slu"></script>
+<script src="http://s.amazeui.org/assets/2.x/js/amazeui.min.js?v=ifp65slu"></script>
+
+
+
+
+
+</head>
+<body style="background:#fff">
+<div align="center">
+  <!-- Header -->
+</div>
+<header data-am-widget="header"  class="am-header am-header-default">
+<div class="am-header-left am-header-nav">
+    <div align="center"><a href="javascript:history.go(-1)" class=""> <img  src="/assets/images/jtou.png"/> </a> </div>
+  </div>
+  <h1 align="center" class="am-header-title"> 发布活动 </h1>
+  <form class="am-form am-form-horizontal">
+
+     <div class="am-header-right am-header-nav">
+          <a href="fabu.html"  > <img src="/assets/images/fabu.png" width="80%">          </a>  </div>
+</header>
+ <!-- Menu -->
+
+<style>.am-g{ border-bottom:1px solid #ddd; border-top:none}</style>
+
+<p><input type="text" class="am-form-field am-radius"  placeholder="请输入活动名称" /></p>
+<div class="am-g margins">
+  <div class="am-u-sm-8"><img src="/assets/images/as.jpg"></div>
+  <div class="am-u-sm-4"> <button type="button" class="am-btn am-btn-default am-round">上传图片</button></div>
+</div>
+
+<div class="am-g " style="padding-top:10px;">
+ <div class="am-u-sm-4 ">项目类型:</div> <div class="am-u-sm-8">  <div class="am-form-group">
+ 
+      <select id="doc-select-1">
+        <option value="option1">羽毛球</option>
+        <option value="option2">台球</option>
+        <option value="option3">跑步</option>
+      </select>
+      <span class="am-form-caret"></span>
+    </div>
+ </div>
+ 
+</div>
+
+<div class="am-g" style="padding-top:10px; padding-bottom:10px;">
+ <div class="am-u-sm-4">人数:</div> <div class="am-u-sm-8"><input name="" type="text"  style="float:left; border:1px solid #ddd"> </div>
+ 
+</div>
+
+<div class="grayline1"></div>
+
+ 
+<div class="am-alert am-alert-danger" id="my-alert" style="display: none">
+  <p>活动开始日期应小于结束日期！</p>
+</div>
+<div class="am-g">
+  <div class="am-u-sm-12" style=" border-bottom:1px solid #ddd; margin-bottom:8px;">
+    <button type="button" class="am-btn am-btn-default am-margin-right selsei" style="background:none;border:none" id="my-start"><span class="kaishd" >活动开始日期</span><span id="my-startDate" style="text-align:right; float:right">设置时间</span>
+  </div></button>
+  <div class="am-u-sm-12">
+    <button type="button" class="am-btn am-btn-default am-margin-right selsei"  style="background:none; border:none"  id="my-end"><span class="kaishd">比赛截止日期</span><span id="my-endDate" style="text-align:right; float:right">设置时间</span>
+  </div></button>
+</div>
+<script>
+  $(function() {
+    var startDate = new Date(2014, 11, 20);
+    var endDate = new Date(2014, 11, 25);
+    var $alert = $('#my-alert');
+    $('#my-start').datepicker().
+      on('changeDate.datepicker.amui', function(event) {
+        if (event.date.valueOf() > endDate.valueOf()) {
+          $alert.find('p').text('活动开始日期应小比赛截止日期！').end().show();
+        } else {
+          $alert.hide();
+          startDate = new Date(event.date);
+          $('#my-startDate').text($('#my-start').data('date'));
+        }
+        $(this).datepicker('close');
+      });
+
+    $('#my-end').datepicker().
+      on('changeDate.datepicker.amui', function(event) {
+        if (event.date.valueOf() < startDate.valueOf()) {
+          $alert.find('p').text('比赛截止日期应大活动开始日期！').end().show();
+        } else {
+          $alert.hide();
+          endDate = new Date(event.date);
+          $('#my-endDate').text($('#my-end').data('date'));
+        }
+        $(this).datepicker('close');
+      });
+  });
+</script>
+
+<div class="am-alert am-alert-danger" id="my-alert" style="display: none">
+  <p>活动开始日期应小于结束日期！</p>
+</div>
+<div class="am-g">
+  <div class="am-u-sm-12" style=" border-bottom:1px solid #ddd; margin-bottom:8px;">
+    <button type="button" class="am-btn am-btn-default am-margin-right selsei" style="background:none; float:left; font-weight:normal;border:none" id="my-start"><span class="kaishd">报名开始日期</span><span id="my-startDate" style="text-align:right; float:right">设置时间</span>
+  </div></button>
+  <div class="am-u-sm-12">
+    <button type="button" class="am-btn am-btn-default am-margin-right selsei"  style="background:none; float:left; border:none"  id="my-end"><span class="kaishd">报名介绍日期</span><span id="my-endDate" style="text-align:right; float:right">设置时间</span>
+  </div></button>
+</div>
+ 
+<div class="am-input-group jfline" >
+ <span class="am-input-group-label" style="background:none; border:none">地点</span> <input style="background:none; text-align:right; border:none" type="text" placeholder="请输入活动地址"   class="am-form-field">
+  
+</div>
+
+<div class="am-input-group jfline" >
+ <span class="am-input-group-label" style="background:none; border:none">费用</span> <input style="background:none; text-align:right; border:none" type="text" placeholder="请输入活动费用"   class="am-form-field">
+  
+</div>
+<div class="grayline1"></div>
+<div class="am-form-group">
+      
+	  <span style="margin-left:15px;">报名类型：</span>
+	  <label class="am-radio-inline">
+        <input type="radio"  value="" name="docInlineRadio">个人
+      </label>
+      <label class="am-radio-inline">
+        <input type="radio" checked="checked" name="docInlineRadio"> 团体
+      </label> 
+    </div>   
+   
+   
+   
+   <div class="am-input-group jfline topline" >
+ <span class="am-input-group-label" style="background:none; border:none">真实姓名</span>  <span style="float:right; background:none;margin-right:5%;  border:none" class="am-input-group-label"><input type="checkbox"> </span>
+  
+</div>
+   
+   <div class="am-input-group jfline" >
+ <span class="am-input-group-label" style="background:none; border:none">性别</span>  <span style="float:right; background:none;margin-right:5%;  border:none" class="am-input-group-label"><input type="checkbox"> </span>
+  
+</div>  
+   
+  
+   <div class="am-input-group jfline" >
+ <span class="am-input-group-label" style="background:none; border:none">手机号码</span>  <span style="float:right; margin-right:5%; background:none; border:none" class="am-input-group-label"><input type="checkbox"> </span>
+  
+</div>   
+   <div class="am-input-group jfline" >
+ <span class="am-input-group-label" style="background:none; border:none">身份证号</span>  <span style="float:right; margin-right:5%;  background:none; border:none" class="am-input-group-label"><input type="checkbox"> </span>
+  
+</div>
+
+<div class="am-input-group jfline" >
+ <span class="am-input-group-label" style="background:none; border:none">队伍人数</span> <input style="background:none; text-align:right; width:60px;height:30px; margin-top:5px; " type="text"  class="am-form-field"><span style="font-size:12px;padding-top:8px;float:right">人 （一次团队报名的总人数）</span>
+</div>  
+
+<div class="am-g" style="padding-top:10px; padding-bottom:10px;">
+ <div class="am-u-sm-4">男女比例:</div> <div class="am-u-sm-8"><span style="float:left">至少男：</span><span style="float:left"><input style="background:none; text-align:right; width:60px;height:30px;   " type="text"  class="am-form-field"></span><span style="float:left">人</span></div>  <div class="am-u-sm-8" style="margin-top:5px;"><span style="float:left">至少女：</span><span style="float:left"><input style="background:none; text-align:right; width:60px;height:30px;   " type="text"  class="am-form-field"></span><span style="float:left">人</span></p>
+ </div>
+ 
+</div>
+                    
+<div class="am-panel-group"  id="accordion">
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd" >
+      <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}"> 活动介绍<span style="float:right; color:#999; font-size:14px;">添加内容&nbsp;></span></h4>
+    </div>
+     <div id="do-not-say-1" class="am-panel-collapse am-collapse">
+      <div class="am-form-group" style="margin-left:5%; margin-top:10px; width:90%"> 
+      <textarea class="" rows="5"  id="doc-ta-1"></textarea>
+    </div>
+
+ 
+  </div>
+  
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-2'}"> 活动规则<span style="float:right; color:#999; font-size:14px;">添加内容&nbsp;></span></h4>
+    </div>
+    <div id="do-not-say-2" class="am-panel-collapse am-collapse">
+  <div class="am-form-group"> 
+      <textarea class="" rows="5" id="doc-ta-1"></textarea>
+    </div>  
+  </div>
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-3'}"> 奖励办法<span style="float:right; color:#999; font-size:14px;">添加内容&nbsp;></span></h4>
+    </div>
+    <div id="do-not-say-3" class="am-panel-collapse am-collapse">
+      <div class="am-form-group"> 
+      <textarea class="" rows="5" id="doc-ta-1"></textarea>
+    </div>
+
+ 
+    </div>
+  </div>
+</div>
+<div class="grayline1"></div>
+<p style="text-align:center; border-bottom:1px solid #ddd">在线咨询</p>
+    <div class="am-input-group jfline" >
+ <span class="am-input-group-label" style="background:none; border:none">联系人</span> <input style="background:none; text-align:right; margin-bottom:-15px; border:none" type="text" placeholder="请输入联系人"   class="am-form-field">·
+</div>
+
+<div class="am-input-group jfline" >
+ <span class="am-input-group-label" style="background:none; border:none">邮箱</span> <input style="background:none; text-align:right; border:none" type="text" placeholder="请输入邮箱"   class="am-form-field">
+  
+</div>
+<div class="am-input-group jfline" >
+ <span class="am-input-group-label" style="background:none; border:none">手机</span> <input style="background:none; text-align:right; border:none" type="text" placeholder="请输入手机"   class="am-form-field">
+  
+</div>
+<div class="am-input-group " >
+ <span class="am-input-group-label" style="background:none; border:none">QQ</span> <input style="background:none; text-align:right; border:none" type="text" placeholder="请输入QQ"   class="am-form-field">
+  
+</div>
+
+
+  <div class="am-form-group" style="margin-top:20px;">
+    <div class="am-u-sm-10 am-u-sm-offset-1">
+      <button type="submit" class="am-btn am-btn-primary am-round" style="width:100%;margin:auto%">确定发布</button>
+    </div>
+  </div>						
+
+
+</body>
+</html>

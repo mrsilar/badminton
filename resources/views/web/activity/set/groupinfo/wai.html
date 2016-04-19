@@ -1,0 +1,60 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    {template h5/common/header}
+</head>
+<body>
+<header data-am-widget="header"
+        class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center"><a href="javascript:history.go(-1)" class=""> <img src="/assets/images/jtou.png"/> </a>
+        </div>
+    </div>
+    <h1 align="center" class="am-header-title"> 分组计分信息 </h1>
+</header>
+{loop $group_match_team_match $row}
+
+<table class="am-table am-table-bordered am-table-radius am-table-striped">
+    <thead>
+    <tr>
+        <th>第{$row->group_a}组&nbsp;&nbsp;&nbsp;第{$row->group_b}组</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td></td>
+        {loop $team_group[$row->group_b] $key $val}
+        <td>
+            {$val->team_name}
+        </td>
+        {/loop}
+    </tr>
+    {loop $team_group[$row->group_a] $ka $va}
+    <tr>
+        <td>
+            {$va->team_name}
+        </td>
+        {loop $team_group[$row->group_b] $kb $vb}
+        <td>
+            <a style="color: #52b2ff" href="/h5/activity/resultsubinfo?team_match_id={$team_match[$row->id][$va->team_id][$vb->team_id]->id}">
+                {$team_match[$row->id][$va->team_id][$vb->team_id]->win_a}
+                :
+                {$team_match[$row->id][$va->team_id][$vb->team_id]->win_b}
+            </a>
+
+        </td>
+        {/loop}
+    </tr>
+    {/loop}
+    </tbody>
+</table>
+{/loop}
+
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+</script>
+</body>
+</html>

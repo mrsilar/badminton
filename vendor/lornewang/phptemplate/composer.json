@@ -1,0 +1,23 @@
+{
+    "name": "lornewang/phptemplate", 
+    "type": "library",
+    "description": "PHP template view engine",
+    "keywords": ["view", "template"],
+    "homepage": "https://github.com/lornewang/phptemplate",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lorne.wang",
+            "homepage": "http://lorne.wang",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "PHPTemplate": "src"
+        }
+    }
+}

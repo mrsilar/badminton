@@ -1,0 +1,81 @@
+/* Write your styles */
+.rensu{ float:left; width:100%;}
+.redsliang{ color:#FF3300}
+.bmbtn{ padding:3px; width:80px;  height:29px; text-align:center; line-height:20px; background:#FF9900;color:#fff;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:0px 0px 10px 15px;           /* W3C syntax */}
+  
+  .timezhou p{ line-height:20px; padding:0px; margin:0px;}
+   .timezhou{ margin-top:10px;}
+   
+    .fbtn{ padding:3px; width:40px;    height:29px; text-align:center; line-height:20px; background:#FF9900;color:#fff;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+     
+    .fbtn-no{ padding:3px; width:40px;    height:29px; text-align:center; line-height:20px; background:#ddd;color:#333;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+  .m-widget-list li{ padding-left:15px;}
+.bm a{ color:#fff}
+.bm{margin:5px; width:96%;    height:30px; text-align:center; line-height:38px; background:#0e90d2;color:#fff;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+.bm1{ width:90%; margin-left:5%;    height:45px; padding-bottom:5px; text-align:center; line-height:45px; background:#0e90d2;color:#fff;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px; border:none;   /* Webkit browsers */
+  border-radius:10px;           /* W3C syntax */}
+.m-widget-list li{ padding-left:15px;}
+
+.bms{ padding-left:15px;}
+
+
+  #vld-tooltip {
+    position: absolute;
+    z-index: 1000;
+    padding: 5px 10px;
+    background: #F37B1D;
+    min-width: 150px;
+    color: #fff;
+    transition: all 0.15s;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+    display: none;
+  }
+
+  #vld-tooltip:before {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -8px;
+    content: "";
+    border-width: 0 8px 8px;
+    border-color: transparent transparent #F37B1D;
+    border-style: none inset solid;
+  } 
+ .rightdl{ text-align:right; padding-right:5%; margin-bottom:30px; }
+  .rightdl a{ text-decoration:none; color:#6699FF}
+ 
+  .margins{ margin-top:5px;}
+  .searchiput input{ width:90%; margin:auto; border:1px solid #ddd; line-height:40px; height:40px; margin-top:5px; margin-bottom:5px;}
+ .am-g{border-top:1px solid #ddd; border-left:1px solid #ddd;border-right:1px solid #ddd; }
+  .lineright{ border-bottom:1px solid #ddd;border-right:1px solid #ddd; line-height:30px; color:#6699CC }
+  .linebottom{ border-bottom:1px solid #ddd;line-height:30px; color:#333333}
+    .lineleft{ border-bottom:1px solid #ddd;border-left:1px solid #ddd; line-height:30px; color:#6699CC }
+ .jfline{ border-bottom:1px solid #ddd; width:100%; line-height:20px;}
+
+ .topline{ border-top:1px solid #ddd; width:100%; line-height:20px;} 
+ 
+ .grayline{ height:10px; background:#f3f3f3; border-bottom:1px solid #ccc;border-top:1px solid #ccc; margin-bottom:5px;}
+ .bottomline{  color:#666; border-bottom:1px solid #ddd}
+.am-form select, .am-form textarea, .am-form input[type=text], .am-form input[type=password], .am-form input[type=datetime], .am-form input[type=datetime-local], .am-form input[type=date], .am-form input[type=month], .am-form input[type=time], .am-form input[type=week], .am-form input[type=number], .am-form input[type=email], .am-form input[type=url], .am-form input[type=search], .am-form input[type=tel], .am-form input[type=color], .am-form-field { border:none}
+.textcenter{ text-align:center;}
+.borders{ border:1px solid #ddd; margin:auto 10px ; width:90%;}
+
+.selsei{width:100%; background:none; border:none}
+.kaishd{text-align:left; float:left;font-weight:normal; margin-left:-10px; padding:0px;}
+.am-list a{ color:#666}

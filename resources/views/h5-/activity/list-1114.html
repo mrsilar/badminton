@@ -1,0 +1,156 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    {template h5/common/header}
+	<style>img {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    max-width: 100%; height:200px;
+    vertical-align: middle;
+    border: 0;}</style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header data-am-widget="header" class="am-header am-header-default">
+        <h1 class="am-header-title"> <a href="#title-link">活动列表</a> </h1>
+        <div class="am-header-right am-header-nav">
+            <a href="fabu.html"> <img src="/assets/images/fabu.png"> </a>
+        </div>
+    </header>
+    <!-- Menu -->
+    <nav data-am-widget="menu" class="am-menu  am-menu-default">
+        <a href="javascript: void(0)" class="am-menu-toggle">
+            <i class="am-menu-toggle-icon am-icon-bars"></i>
+        </a>
+        <ul class="am-menu-nav am-avg-sm-3">
+            <li class="am-parent">
+                <a href="##" class="rightline">分类</a>
+                <ul class="am-menu-sub am-collapse  am-avg-sm-2 ">
+                    {loop $item $row}
+                    <li class="">
+                        <a href="?item={$row->id}" class="">{$row->name}</a>
+                    </li>
+                    {/loop}
+                </ul>
+            </li>
+            <li class="am-parent">
+                <a href="##" class="rightline">区域</a>
+                  <ul class="am-menu-sub am-collapse  am-avg-sm-4 ">
+                省：<select id="Select1" ></select>
+                市：<select id="Select2"></select>
+                 </ul>
+            </li>
+            <li class="am-parent">
+                <a href="##" class="">状态</a>
+                <ul class="am-menu-sub am-collapse  am-avg-sm-4 ">
+                    {loop $status $key $row}
+                    <li class="">
+                        <a href="?status={$key}" class="">{$row}</a>
+                    </li>
+                    {/loop}
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div  class="am-tabs am-tabs-default" style="background:#ddd">
+        {loop $list $row}
+        <div class="am-comment" style="border:1px solid #ccc; margin-bottom:10px;">
+            <div class="am-gallery-item">
+                <a href="/h5/activity/show/{$row->id}">
+                    <!--<div class="bmbtn" style=" position:absolute; z-index:1; right:5% ">报名中</div>-->
+                    <img src="{$row->cover_img}" width="100%" height="200" style="margin-bottom:5px;" /> </a>
+            </div>
+            <div class="am-g" style="width:100%; margin:0px; border:none;0text-align:center; padding:0px;">
+                <div class="am-u-sm-12" style="margin:0px; padding:0px; width:100%">
+                    <h3 class="am-gallery-title" style="margin-top:-30px;  line-height:25px; text-align:center;  background: #000000;opacity: 0.7; font-size:98%;     color:#fff">{$row->title}</h3>
+                </div>
+            </div>
+          <!--  <div class="am-g" style="border:none; width:100%; padding:0px; margin:0px;">
+                <div class="am-gallery-desc bms">
+                    <a href="/h5/activity/show/{$row->id}"> <img src="/assets/images/time.png" width="18">{$row->start_time}-{$row->end_time}</a>
+                </div>
+                <div class="am-gallery-desc bms">
+                    <a href="/h5/activity/show/{$row->id}"><img src="/assets/images/dizhi.png" width="18">{$row->postion}</a>
+                </div>
+                <a href="hdetail.html">
+                    <div class="bming">报名</div>
+                </a>
+            </div>
+            <div class="grayline5"></div>-->
+            <!--<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="font-size:80%">
+                <tr>
+                    <td align="center" width="33%">已报名
+                        <br> 100人
+                    </td>
+                    <td align="center" style="border-left:1px solid #ddd;border-right:1px solid #ddd;" width="33%">总人数
+                        <br> {$row->people_count}人
+                    </td>
+                    <td align="center" width="33%">倒计时
+                        <br>
+                        <div class="time"> <span id="t_d{$row->id}">00天</span> <span id="t_h{$row->id}">00时</span> <span id="t_m{$row->id}">00分</span> <span id="t_s{$row->id}">00秒</span> </div>
+                        <script>
+                        function GetRTime() {
+                            var EndTime = new Date('2015/10/30 00:00:00');
+                            var NowTime = new Date();
+                            var t = EndTime.getTime() - NowTime.getTime();
+                            var d = 0;
+                            var h = 0;
+                            var m = 0;
+                            var s = 0;
+                            if (t >= 0) {
+                                d = Math.floor(t / 1000 / 60 / 60 / 24);
+                                h = Math.floor(t / 1000 / 60 / 60 % 24);
+                                m = Math.floor(t / 1000 / 60 % 60);
+                                s = Math.floor(t / 1000 % 60);
+                            }
+
+
+                            document.getElementById("t_d{$row->id}").innerHTML = d + "天";
+                            document.getElementById("t_h{$row->id}").innerHTML = h + "时";
+                            document.getElementById("t_m{$row->id}").innerHTML = m + "分";
+                            document.getElementById("t_s{$row->id}").innerHTML = s + "秒";
+                        }
+                        setInterval(GetRTime, 0);
+                        </script>
+                    </td>
+                </tr>
+            </table>-->
+        </div>
+        {/loop}
+    </div>
+    </div>
+    <!-- Gallery -->
+    <!-- 防止底部遮盖 -->
+    <div style="width:100%;height:49px"></div>
+    <!-- Footer -->
+    <!-- Footer -->
+    {template h5/common/footer}
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/amazeui.min.js"></script>
+    <script src="/assets/js/jsAddressless.js" type="text/javascript"></script>
+    <script>
+      addressInit('Select1', 'Select2');
+        $(document).ready(function(){
+            $('#Select2').change(function(){
+                var p2=$(this).children('option:selected').val();
+                var p1=$('#Select1').children('option:selected').val();
+                window.location.href="?province="+p1+"&city="+p2+"";
+            })
+        })
+    </script>
+
+    <style>
+    li.sle a img {
+        width: 80px;
+        height: 40px;
+    }
+    
+    .am-comment {
+        background: #fff;
+    }
+    </style>
+</body>
+
+</html>

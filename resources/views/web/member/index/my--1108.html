@@ -1,0 +1,64 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    {template h5/common/header}
+</head>
+
+<body>
+    <div align="center">
+        <!-- Header -->
+    </div>
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <div align="center">
+                <a href="javascript:history.go(-1)" class=""> <img src="/assets/images/jtou.png" /> </a>
+            </div>
+        </div>
+        <h1 class="am-header-title"> 用户中心 </h1>
+        <div class="am-header-right am-header-nav"> <img src="/assets/images/search-vector.png"> </div>
+    </header>
+    <!-- Menu -->
+    <div class="am-container" style=" width:113%; margin-left:-10%; ">
+        <div style="float:left; width:100%; background:#fffddc; color:#666; text-align:center; padding-top:10px ">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td><img src="{$mem->cover_img}" class="am-img-thumbnail am-circle" width="80" height="80"> </td>
+                    <td align="left" valign="top">
+                        <div class="listuser">{$mem->phone_number}&nbsp;<span style=" font-size:80%">
+                           <a href="/h5/member/my/edit""> <img src="/assets/images/xiugaitb.png" width="30"></a>
+                        </span></div>
+                        <div class="listuser">积分：<span class="redsliang">0</span></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="grayline4"></div>
+    <ul class="am-list am-list-border" style="margin:0px; padding:0px;">
+        <li>
+            <a href="/h5/member/activity"> <i><img src="/assets/images/icon-user3.png" width="40" style="padding-right:8px;"></i> 我的活动<span style="float:right; color:#999; font-size:14px;">></span></a>
+            </a>
+        </li>
+        <li><a href="/h5/member/club"><i><img src="/assets/images/icon-user.png" width="40" style="padding-right:8px;"></i>我的俱乐部<span style="float:right; color:#999; font-size:14px;">></span></a></a>
+        </li>
+        <li><a href="/h5/member/person"><i><img src="/assets/images/icon-user1.png" width="40" style="padding-right:8px;"></i>队员管理<span style="float:right; color:#999; font-size:14px;">></span></a></a>
+        </li>
+        <li><a href="/h5/member/score"><i><img src="/assets/images/icon-user2.png" width="40" style="padding-right:8px;"></i>活动成绩<span style="float:right; color:#999; font-size:14px;">></span></a></a>
+        </li>
+        <li><a href="#"><i><img src="/assets/images/icon-user5.png" width="40" style="padding-right:8px;"></i>关于益乐赛<span style="float:right; color:#999; font-size:14px;">></span></a></a>
+        </li>
+    </ul>
+    <!-- Footer -->
+    {template h5/common/footer}
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/amazeui.min.js"></script>
+    <style>
+    li.sle a img {
+        width: 80px;
+        height: 40px;
+    }
+    </style>
+</body>
+
+</html>

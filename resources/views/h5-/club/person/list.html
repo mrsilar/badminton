@@ -1,0 +1,26 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    {template h5/common/header}
+</head>
+<body>
+  <form  method="post" action="/h5/club/person">
+   {loop $list $row}
+  <p> <input  type="checkbox"  name="person_list[]"  value="{$row->id}"     checked="checked"   />{$row->name}</p>
+   {/loop}
+   <input type="hidden"  name="club_id"  value="{$club_id}"/>
+   <button  type="submit" >确认</button>
+   </form>
+    </div>
+    {template h5/common/footer}
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/amazeui.min.js"></script>
+    <style>
+    li.sle a img {
+        width: 80px;
+        height: 40px;
+    }
+    </style>
+</body>
+
+</html>

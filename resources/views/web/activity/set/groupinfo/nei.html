@@ -1,0 +1,69 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    {template h5/common/header}
+</head>
+<body>
+<header data-am-widget="header"
+        class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center"><a href="javascript:history.go(-1)" class=""> <img src="/assets/images/jtou.png"/> </a>
+        </div>
+    </div>
+    <h1 align="center" class="am-header-title"> 第{$turn}阶段分组计分信息 </h1>
+</header>
+{loop $team_group $key $row}
+
+<table class="am-table am-table-bordered am-table-radius am-table-striped">
+    <thead>
+    <tr>
+        <th>第{$key}组</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td></td>
+        {loop $row $ke $va}
+        <td>
+            {$va->team_name}
+        </td>
+        {/loop}
+    </tr>
+    {loop $row $ka $va}
+    <tr>
+        <td>
+            {$va->team_name}
+        </td>
+        {loop $row $kb $vb}
+        <td>
+            {if $va->team_id!=$vb->team_id}
+            {if isset($team_match[$key][$va->team_id][$vb->team_id])}
+            <a style="color: #52b2ff" href="/h5/activity/resultsubinfo?team_match_id={$team_match[$key][$va->team_id][$vb->team_id]->id}">
+                {$team_match[$key][$va->team_id][$vb->team_id]->win_a}
+                :
+                {$team_match[$key][$va->team_id][$vb->team_id]->win_b}
+            </a>
+            {else}
+            <a style="color: #52b2ff" href="/h5/activity/resultsubinfo?team_match_id={$team_match[$key][$vb->team_id][$va->team_id]->id}">
+                {$team_match[$key][$vb->team_id][$va->team_id]->win_b}
+                :
+                {$team_match[$key][$vb->team_id][$va->team_id]->win_a}
+            </a>
+            {/if}
+            {/if}
+        </td>
+        {/loop}
+    </tr>
+    {/loop}
+    </tbody>
+</table>
+{/loop}
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

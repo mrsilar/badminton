@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js">
+<head>{template h5/common/header}
+</head>
+<body>
+	<header data-am-widget="header" class="am-header am-header-default">
+		<div class="am-header-left am-header-nav">
+			<div align="center">
+				<a href="javascript:history.go(-1)" class=""> <img
+					src="/assets/images/jtou.png" />
+				</a>
+			</div>
+		</div>
+	</header>
+	<!-- Menu -->
+	<a class="am-btn am-btn-success"   href="/h5/member/four/chang_table?activity_id={$activity_id}">人员调整</a>
+	<table
+		class="am-table am-table-bordered am-table-radius am-table-striped">
+		<thead>
+			<tr>
+				<th>总表</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td> 
+				{loop $team_group $ki $vi}
+				<td>{$vi->team_name}</td> 
+				{/loop}
+				<td>胜次</td>
+				<td>净胜</td>
+				<td>名次</td>
+			</tr>
+			{loop $team_group $key $val}
+			<tr>
+				<td>{$val->team_name}</td>
+				 {loop $team_group $kii $vii}
+				<td>
+				{if $val->team_id==$vii->team_id}
+				 {else}
+						{if   isset($team_match[$val->team_id][$vii->team_id]) }
+						{if   $team_match[$val->team_id][$vii->team_id]->win_a+$team_match[$val->team_id][$vii->team_id]->win_b>0 }
+							 <a style="color: #52b2ff" href="/h5/member/activity/specail/four/score_sub_show?team_match_id={$team_match[$val->team_id][$vii->team_id]->id}">
+						 {/if}   
+						    {$team_match[$val->team_id][$vii->team_id]->win_a} :	{$team_match[$val->team_id][$vii->team_id]->win_b}
+						  	{if   $team_match[$val->team_id][$vii->team_id]->win_a+$team_match[$val->team_id][$vii->team_id]->win_b>0 }
+						    </a>
+						    	{/if}
+						 {else}
+						 
+						 	{if   $team_match[$vii->team_id][$val->team_id]->win_b+$team_match[$vii->team_id][$val->team_id]->win_a>0 }
+						 	 <a style="color: #52b2ff" href="/h5/member/activity/specail/four/score_sub_show?team_match_id={$team_match[$vii->team_id][$val->team_id]->id}">
+						      	{/if}
+						      {$team_match[$vii->team_id][$val->team_id]->win_b} :	{$team_match[$vii->team_id][$val->team_id]->win_a}
+						       	{if   $team_match[$vii->team_id][$val->team_id]->win_b+$team_match[$vii->team_id][$val->team_id]->win_a>0 }
+						      </a>
+						      	{/if}
+						{/if}
+					</a>
+				 {/if}
+					</td> 
+					{/loop}
+
+				<td>{$val->win_count}</td>
+				<td>{$val->win_count_all}</td>
+				<td>{=$val->rank==10000?'':$val->rank}</td>
+			</tr>
+			{/loop}
+		</tbody>
+	</table>
+	<table class="am-table">
+    <thead>
+        <tr>
+            <th>第一轮</th>
+        </tr>
+    </thead>
+    <tbody>
+    {loop $team_match_data $k $v}
+	{if $k==0||$k==1}
+        <tr>
+            <td>{$v->team_a_name}</td>
+            <td>vs</td>
+            <td>{$v->team_b_name}</td>
+        </tr>
+	{/if}
+        {/loop}
+    </tbody>
+</table>
+	<table class="am-table">
+		<thead>
+		<tr>
+			<th>第二轮</th>
+		</tr>
+		</thead>
+		<tbody>
+		{loop $team_match_data $k $v}
+		{if $k==2||$k==3}
+		<tr>
+			<td>{$v->team_a_name}</td>
+			<td>vs</td>
+			<td>{$v->team_b_name}</td>
+		</tr>
+		{/if}
+		{/loop}
+		</tbody>
+	</table>
+	<table class="am-table">
+		<thead>
+		<tr>
+			<th>第三轮</th>
+		</tr>
+		</thead>
+		<tbody>
+		{loop $team_match_data $k $v}
+		{if $k==3||$k==4}
+		<tr>
+			<td>{$v->team_a_name}</td>
+			<td>vs</td>
+			<td>{$v->team_b_name}</td>
+		</tr>
+		{/if}
+		{/loop}
+		</tbody>
+	</table>
+	{template h5/common/footer}
+	<script src="/assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+	<script src="/assets/js/amazeui.min.js"></script>
+	<script type="text/javascript">
+		
+	</script>
+</body>
+</html>

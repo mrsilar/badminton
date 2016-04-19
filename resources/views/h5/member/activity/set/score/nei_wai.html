@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    {template h5/common/header}
+</head>
+<body>
+<header data-am-widget="header"
+        class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center"><a href="javascript:history.go(-1)" class=""> <img src="/assets/images/jtou.png"/> </a>
+        </div>
+    </div>
+    <h1 align="center" class="am-header-title"> 第{$turn->turn}轮打分 </h1>
+</header>
+<div class="am-tabs-bd">
+           {loop $list $key2 $row2}
+           <h1>第{$key2}大组</h1>
+    <div >
+       {loop $row2   $key $row}
+<table class="am-table am-table-bordered am-table-radius am-table-striped">
+    <thead>
+    <tr>
+        <th>第{$row->group_a}组&nbsp;&nbsp;&nbsp;&nbsp;第{$row->group_b}组</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td></td>
+        {loop $team_group_list[$key2][$row->group_b]  $ki $vi}
+        <td>
+            {$vi->team_name}
+        </td>
+        {/loop}
+    </tr>
+    {loop $team_group_list[$key2][$row->group_a]     $kii $vii}
+    <tr>
+        <td>
+            {$vii->team_name}
+        </td>
+        {loop  $team_group_list[$key2][$row->group_b] $kib $vib}
+        <td>
+            {if isset($team_match[$row->id][$vii->team_id][$vib->team_id])}
+            <a style="color: #52b2ff" href="/h5/member/activity/set/score_sub?team_match_id={$team_match[$row->id][$vii->team_id][$vib->team_id]->id}">
+                {$team_match[$row->id][$vii->team_id][$vib->team_id]->win_a}
+                :
+                {$team_match[$row->id][$vii->team_id][$vib->team_id]->win_b}
+            </a>
+            {/if}
+        </td>
+        {/loop}
+    </tr>
+    {/loop}
+    </tbody>
+</table>
+{/loop}
+{/loop}
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

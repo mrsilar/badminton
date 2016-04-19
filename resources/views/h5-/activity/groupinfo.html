@@ -1,0 +1,102 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>赛况</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="http://s.amazeui.org/assets/2.x/css/amaze.min.css?v=ifp65slu">
+    <style>
+        li.sle a img {
+            width: 80px;
+            height: 40px;
+        }
+
+        .z-game {
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            width: 100%;
+        }
+
+        .z-game-info {
+            background: #66CCFF;
+            font-size: 12px;
+        }
+
+        .z-game-info .fbtn {
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header data-am-widget="header"
+        class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center"><a href="javascript:history.go(-1)" class=""> <img src="/assets/images/jtou.png"/> </a>
+        </div>
+    </div>
+    <h1 align="center" class="am-header-title"> 第{$turn}轮分组信息 </h1>
+</header>
+<div data-am-widget="tabs"
+     class="am-tabs am-tabs-default"
+        >
+    <ul class="am-tabs-nav am-cf">
+        <li class="am-active"><a href="[data-tab-panel-0]">分组</a></li>
+        <li class=""><a href="[data-tab-panel-1]">分队</a></li>
+    </ul>
+    <div class="am-tabs-bd">
+        <div data-tab-panel-0 class="am-tab-panel am-active">
+            {loop $team_group $key $row}
+            <h3 style="padding-left:20px;">第{$key}组</h3>
+            {loop $row $val}
+            <a href="##" class="z-game-link">
+                <table class="z-game" cellpadding="0" cellspacing="0">
+                    <td>{$val->team_name}</td>
+                </table>
+
+            </a>
+            {/loop}
+            {/loop}
+
+
+        </div>
+        <div data-tab-panel-1 class="am-tab-panel ">
+            <h3 style="padding-left:20px;"></h3>
+            {loop $list $row}
+            <h3 style="padding-left:20px;">{$row['title']}</h3>
+            {loop $row['data'] $r}
+            <a href="##" class="z-game-link">
+                <table class="z-game" cellpadding="0" cellspacing="0">
+                    <!--		<tr>
+                        <td class="z-game-info">12:00<br>
+                            <div class="fbtn">1号场</div></td>
+                            -->
+                    <td>{$r->team_a_name}</td>
+                    <td>VS</td>
+                    <td>{$r->team_b_name}</td>
+                    </tr>
+                </table>
+
+            </a>
+            {/loop}
+            {/loop}
+        </div>
+
+    </div>
+</div>
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

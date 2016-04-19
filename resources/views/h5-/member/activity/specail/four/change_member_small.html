@@ -1,0 +1,87 @@
+<!doctype html>
+<html class="no-js">
+<head>{template h5/common/header}
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center">
+            <a href="javascript:history.go(-1)" class=""> <img
+                    src="/assets/images/jtou.png" />
+            </a>
+        </div>
+    </div>
+</header>
+<!-- Menu -->
+<table
+        class="am-table am-table-bordered am-table-radius am-table-striped">
+    <thead>
+    <tr>
+        <th>{$team_match->team_a_name}&nbsp;&nbsp;{$team_match->team_b_name}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {loop $team_member_match $key $val}
+    <tr>
+        {loop $val $k $v}
+        <td>
+            {if $v->win_a_count+$v->win_b_count>0}
+            {$v->category_a_list[0]->name} <br>
+            {$v->category_a_list[1]->name}<br>
+            vs<br>
+            {$v->category_b_list[0]->name} <br>
+            {$v->category_b_list[1]->name}<br>
+            {else}
+            {if $c_a}
+            <a href="/h5/member/activity/specail/four/change_member_last?type=a&team_member_match_category_member_id={$v->category_a_list[0]->team_member_match_category_member_id}&team_match_id={$v->team_match_id}"
+               style="color: #52b2ff">
+               {/if}
+                {$v->category_a_list[0]->name}
+             {if $c_a}
+            </a>
+            {/if}
+                <br>
+                            {if $c_a}
+            <a href="/h5/member/activity/specail/four/change_member_last?type=a&team_member_match_category_member_id={$v->category_a_list[1]->team_member_match_category_member_id}&team_match_id={$v->team_match_id}"
+               style="color: #52b2ff">
+               {/if}
+                {$v->category_a_list[1]->name}
+                            {if $c_a}
+            </a>
+            {/if}
+                <br>
+                vs<br>
+                            {if $c_b}
+            <a href="/h5/member/activity/specail/four/change_member_last?type=b&team_member_match_category_member_id={$v->category_b_list[0]->team_member_match_category_member_id}&team_match_id={$v->team_match_id}"
+               style="color: #52b2ff">
+               {/if}
+                {$v->category_b_list[0]->name}
+                  {if $c_b}
+            </a>
+            {/if}
+                <br>
+                  {if $c_b}
+            <a href="/h5/member/activity/specail/four/change_member_last?type=b&team_member_match_category_member_id={$v->category_b_list[1]->team_member_match_category_member_id}&team_match_id={$v->team_match_id}"
+               style="color: #52b2ff">
+               {/if}
+                {$v->category_b_list[1]->name}
+                  {if $c_b}
+            </a>
+            {/if}
+                <br>
+            {/if}
+        </td>
+        {/loop}
+    </tr>
+    {/loop}
+    </tbody>
+</table>
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

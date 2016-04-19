@@ -1,0 +1,198 @@
+<!doctype html>
+<html class="no-js">
+<head>{template h5/common/header}
+    <style>
+        .z-mask{display:none;z-index:10;position:fixed;width:100%;height:100%;top:0;left:0;background-color:white;padding-top:2em;overflow-y:scroll;padding-bottom:100px;}
+        .z-team{border-bottom:1px solid #ddd;text-align:center;width:100%;}
+        .z-team td{border:1px solid #ddd;}
+        h2 {margin-top:10px !important;}
+        input{display:inline-block;width:60px !important;}
+    </style>
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center">
+            <a href="javascript:history.go(-1)" class=""> <img
+                    src="/assets/images/jtou.png" />
+            </a>
+        </div>
+    </div>
+</header>
+<!--弹出层-->
+<div class="z-mask s-mask">
+    <div>
+        <h3 class="s-title"></h3>
+        <div>
+            <table class="z-team" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="s-name-a"></td>
+                    <td class="s-name-b"></td>
+                </tr>
+                <tr>
+                    <td class="s-score-a"></td>
+                    <td class="s-score-b"></td>
+                </tr>
+            </table>
+            <div class="am-u-sm-12" style="padding-top:20px;">
+                <div class="am-u-sm-6">
+                    <input value=0 type="text" class="a">
+                </div>
+                <div class="am-u-sm-6">
+                    <input value=0 type="text" class="b">
+                </div>
+            </div>
+            <div class="am-u-sm-12 s-score-time" style="padding-top:30px;text-align:right;">
+                已提交0次，最多提交3次
+            </div>
+            <div class="am-u-sm-12" style="padding-top:20px; text-align:right;">
+                {if $activity->score_system>0}({$activity->score_system}分制){/if}<br>
+                <button type="button" class="am-btn am-btn-primary s-cancel">取消</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="am-btn am-btn-primary s-submit">提交比分</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Menu -->
+<table
+        class="am-table am-table-bordered am-table-radius am-table-striped">
+    <thead>
+    <tr>
+        <th>{$team_match->team_a_name}VS{$team_match->team_b_name}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td></td>
+        {loop $team_item[0] $ki $vi}
+        <td>
+            {$vi[0]->user_team_member_name}&nbsp;
+            {$vi[0]->user_team_member_sex}<br>
+            {$vi[1]->user_team_member_name}&nbsp;
+            {$vi[1]->user_team_member_sex}
+        </td>
+        {/loop}
+    </tr>
+    {loop $team_item[1] $kii $val}
+    <tr>
+        <td>
+            {$val[0]->user_team_member_name}&nbsp;
+            {$val[0]->user_team_member_sex}<br>
+            {$val[1]->user_team_member_name}&nbsp;
+            {$val[1]->user_team_member_sex}
+        </td>
+        {loop $team_item[0] $key $vii}
+        <td class="s-item"
+            name-b="{$team_member_match[$key][$kii]->category_a_list[0]->user_team_member_name}
+				{$team_member_match[$key][$kii]->category_a_list[1]->user_team_member_name} "
+            name-a="{$team_member_match[$key][$kii]->category_b_list[0]->user_team_member_name}
+				 {$team_member_match[$key][$kii]->category_b_list[1]->user_team_member_name}"
+            match-id="{$team_member_match[$key][$kii]->id}"
+            score-a="{$team_member_match[$key][$kii]->win_a_count}"
+            score-b="{$team_member_match[$key][$kii]->win_b_count}"
+            score-time="{$team_member_match[$key][$kii]->score_count}"
+                >
+            {$team_member_match[$key][$kii]->win_a_count}:{$team_member_match[$key][$kii]->win_b_count}
+        </td>
+        {/loop}
+    </tr>
+    {/loop}
+    </tbody>
+</table>
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+    var actId={$activity_id};
+    $(function(){
+        //获取要编辑的对象
+        var $mask=$(".z-mask");
+        var $title=$(".s-title");
+        var $nameA=$(".s-name-a");
+        var $nameB=$(".s-name-b");
+        var $scoreA=$(".s-score-a");
+        var $scoreB=$(".s-score-b");
+        var $matchId=$(".s-match-id");
+        var $activityId=$(".s-activity-id");
+        var $inputA=$(".a");
+        var $inputB=$(".b");
+        var $scoreTime=$(".s-score-time");
+        //数据变量
+        var DATA_INFO={
+            scoreAi:$inputA,
+            scoreBi:$inputB,
+            matchId:$matchId,
+            activityId:$activityId
+        };
+        var DATA_SCORE={};
+        var current_match=null;
+        //填充弹出层数据
+        function addData(data){
+            DATA_SCORE=data;
+            $title.html(DATA_SCORE.nameA+" VS "+DATA_SCORE.nameB);
+            $nameA.html(DATA_SCORE.nameA);
+            $nameB.html(DATA_SCORE.nameB);
+            $scoreA.html(DATA_SCORE.scoreA);
+            $scoreB.html(DATA_SCORE.scoreB);
+            $inputA.val(0);
+            $inputB.val(0);
+            $scoreTime.html("已打分 "+DATA_SCORE.scoreTime+" 次,共3次机会");
+        }
+        //点击编辑项
+        $(".s-item").each(function(){
+            var $this=$(this);
+            var thisData={
+                matchId:$this.attr("activity-id"),
+                matchId:$this.attr("match-id"),
+                nameA:$this.attr("name-a"),
+                nameB:$this.attr("name-b"),
+                scoreA:parseInt($this.attr("score-a")),
+                scoreB:parseInt($this.attr("score-b")),
+                scoreTime:parseInt($this.attr("score-time"))
+            };
+            $this.click(function(){
+                current_match=thisData.matchId;
+                addData(thisData);
+                $mask.show();
+            });
+        });
+        //取消
+        $(".s-cancel").click(function(){
+            current_match=null;
+            addData({});
+            $mask.hide();
+        });
+        //提交
+        $(".s-submit").click(function(){
+            if(DATA_SCORE.scoreTime==3){
+                alert("打分次数已用完");
+                addData({});
+                $mask.hide();
+            }
+            else{
+
+                var postJson={
+                    scoreA:$inputA.val(),
+                    scoreB:$inputB.val(),
+                    memberMatchId:current_match,
+                    activityId:actId
+                };
+                //console.log(postJson);
+
+                $.post("/h5/activity/score", postJson, function (data, status) {
+                    if (data.code == 0) {
+                        window.location.reload();
+                        return;
+                    } else {
+                        alert(data.msg);
+                        return;
+                    }
+
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

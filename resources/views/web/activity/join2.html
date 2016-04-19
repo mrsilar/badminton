@@ -1,0 +1,92 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    {template h5/common/header}
+    <style>
+    .am-form select,
+    .am-form textarea,
+    .am-form input[type="text"],
+    .am-form input[type="password"],
+    .am-form input[type="datetime"],
+    .am-form input[type="datetime-local"],
+    .am-form input[type="date"],
+    .am-form input[type="month"],
+    .am-form input[type="time"],
+    .am-form input[type="week"],
+    .am-form input[type="number"],
+    .am-form input[type="email"],
+    .am-form input[type="url"],
+    .am-form input[type="search"],
+    .am-form input[type="tel"],
+    .am-form input[type="color"],
+    .am-form-field {
+        border: none;
+        font-size: 90%;
+        line-height: 30px;
+    }
+    
+    .am-g {
+        border: none;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+        margin-top: 20px;
+    }
+    
+    .am-form-group {
+        border-bottom: 1px solid #ddd;
+        width: 100%
+    }
+    
+    .am-form-group label {
+        font-weight: normal;
+        padding-bottom: 8px;
+    }
+    </style>
+</head>
+
+<body>
+    <div align="center">
+        <!-- Header -->
+    </div>
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <div align="center">
+                <a href="javascript:history.go(-1)" class="">
+                    <img src="/assets/images/jtou.png" /> </a>
+            </div>
+        </div>
+        <h1 align="center" class="am-header-title"> 报名 </h1>
+        <div class="am-header-right am-header-nav">
+            <a href="fabu.html"><img src="/assets/images/fabu.png"></a>
+        </div>
+    </header>
+    <div class="am-container">
+        <div class="am-g">
+            <div class="am-u-sm-4">
+                <span class="suzi">1</span>创建队伍></div>
+            <div class="am-u-sm-4"><span class="suzi">2</span>队长信息></div>
+            <div class="am-u-sm-4"><span class="suzi-gray">3</span>队员信息
+            </div>
+        </div>
+        <p style="text-align:center">2.队长信息</p>
+        <a href="/h5/activity/join/person?type=captain">
+            <div class="am-form-group" style="border:none; margin-top:40px;">
+                <div class="am-u-sm-8 am-u-sm-offset-2">
+                    <button type="submit" class="am-btn am-btn-primary am-round" style="width:100%;margin:auto">创建/选择队长</button>
+                </div>
+            </div>
+        </a>
+    </div>
+    {template h5/common/footer}
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/amazeui.min.js"></script>
+    <style>
+    li.sle a img {
+        width: 80px;
+        height: 40px;
+    }
+    </style>
+</body>
+
+</html>

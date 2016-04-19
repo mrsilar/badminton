@@ -1,0 +1,40 @@
+<!doctype html>
+<html class="no-js">
+<head>
+{template h5/common/header}
+</head>
+<header data-am-widget="header" class="am-header am-header-default">
+<div class="am-header-left am-header-nav">
+<div align="center"><a href="javascript:history.go(-1)" class="">
+<img src="/assets/images/jtou.png" /> </a></div>
+</div>
+<h1 align="center" class="am-header-title">队员调整</h1>
+</header>
+{if $c_a && $team_match->team_a_mem_id == $user_id} 
+{$team_match->team_a_name}
+<hr data-am-widget="divider" style=""class="am-divider am-divider-default" />
+{loop $c_a $v } 
+{loop $v['category_list'] $vv}
+<a style="color: #52b2ff"  href="/h5/member/activity/specail/four/change_member_last?category_member_id={$vv->team_member_match_category_member_id}&type=a&mem_id={$vv->id}&team_match_id={$team_match->id}">{$vv->name}</a>
+<br>
+{/loop} 
+ {/loop}
+ {/if} 
+{if $c_b && $team_match->team_b_mem_id == $user_id}
+<br>
+<br>
+ {$team_match->team_b_name}
+<hr data-am-widget="divider" style=""class="am-divider am-divider-default" />
+{loop $c_b $vi }
+ {loop $vi['category_list'] $vivi}
+<a style="color: #52b2ff" href="/h5/member/activity/specail/four/change_member_last?category_member_id={$vivi->team_member_match_category_member_id}&type=b&mem_id={$vivi->id}&team_match_id={$team_match->id}">{$vivi->name}</a>  
+<br>
+{/loop} 
+{/loop} 
+{/if} 
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+</body>
+</html>

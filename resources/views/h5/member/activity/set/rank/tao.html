@@ -1,0 +1,40 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  {template h5/common/header}
+</head>
+<body>
+<header data-am-widget="header"
+        class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center"><a href="javascript:history.go(-1)" class=""> <img src="/assets/images/jtou.png"/> </a>
+        </div>
+    </div>
+    <h1 align="center" class="am-header-title"> 第{$turn}阶段比赛晋级</h1>
+</header>
+
+<div data-am-widget="tabs" class="am-tabs am-tabs-default">
+    {loop $rank $key $row}
+    <table class="am-table am-table-bordered am-table-radius am-table-striped">
+        <tbody>
+        {loop $row $r}
+        <tr>
+            <td>
+                {$r->team_a_name}&nbsp;&nbsp;&nbsp;&nbsp;
+            {$r->status_a}
+            <td>~</td>
+            <td>{$r->team_b_name} &nbsp;&nbsp;&nbsp;&nbsp;
+                  {$r->status_b}</td>
+        </tr>
+        {/loop}
+        </tbody>
+    </table>
+    {/loop}
+
+
+</div>
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+</body>
+</html>

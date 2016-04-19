@@ -1,0 +1,252 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    {template h5/common/header}
+    <style>
+        body{position:relative;}
+        .noborder{ border:1px solid #ddd}
+        .am-form select,.am-form textarea,.am-form input[type="text"],.am-form input[type="password"],.am-form input[type="datetime"],.am-form input[type="datetime-local"],.am-form input[type="date"],.am-form input[type="month"],.am-form input[type="time"],.am-form input[type="week"],.am-form input[type="number"],.am-form input[type="email"],.am-form input[type="url"],.am-form input[type="search"],.am-form input[type="tel"],.am-form input[type="color"],.am-form-field {border: none;font-size: 90%;line-height: 30px;}
+        .am-g { border: none;border-bottom: 1px solid #ddd;padding-bottom: 5px;margin-top: 20px;}
+        .am-form-group {border-bottom: 1px solid #ddd; width: 100%;}
+        .am-form-group label {font-weight: normal; padding-bottom: 8px;}
+
+        /*zz*/
+		.z-read-item{padding:10px 5px;background-color:#eee;}
+		.z-read h2{padding:10px 0;margin:0;}
+        .mask{z-index:10;position:fixed;width:100%;height:100%;top:0;left:0;background-color:white;display:none;font-size:1.5em;padding-top:2em;overflow-y:scroll;padding-bottom:100px;}
+        .mask-content{}
+        .mask-item{display:block;width:100%;height:2em;line-height:2em;border-bottom:1px solid #e0e0e0;padding-left:20px;}
+        .mask-item:last-child{border:none;}
+        .z-add{position:fixed;top:0;left:0;display:block;background-color:#0e90d2;color:white;}
+        .z-add a,.z-add span{display:inline-block;height:100%;position:absolute;top:0;}
+        .z-add a,.z-add a:hover{color:white;}
+        .z-add a{right:20px;}
+        .z-add span{left:20px;}
+        .z-panel{padding:25px 18px; background:#f6f6f6; margin-bottom:10px;}
+        .z-activity{padding-left:18px;background-color:#0e90d2;color:white;}
+        .fn-red{color:red;}
+    </style>
+</head>
+
+<body>
+
+<script type="text/javascript">
+DATA_APPLY_TYPE="2";
+DATA_ACTIVITY_CATEGORY=[
+	{id:1,item:"11",name:"男单",number:1},
+	{id:2,item:"12",name:"女单",number:2},
+	{id:3,item:"21",name:"男双",number:1},
+	{id:4,item:"22",name:"女双",number:1},
+	{id:5,item:"23",name:"混双",number:1},
+];
+DATA_ACTIVITY_ID="33";
+DATA_PEOPLE=[
+	{
+		identity_card:"111111111111111111",
+		id:"1",
+		name:"刘某某",
+		sex:"1",
+		phone_number:"111111111111"
+	},
+	{
+		identity_card:"222222222222222222",
+		id:"2",
+		name:"随便",
+		sex:"1",
+		phone_number:"222222222222"
+	},
+	{
+		identity_card:"333333333333333333",
+		id:"3",
+		name:"测试",
+		sex:"2",
+		phone_number:"33333333333333"
+	},
+	{
+		identity_card:"444444444444444444",
+		id:"4",
+		name:"啊啊啊",
+		sex:"1",
+		phone_number:"44444444444"
+	},
+	{
+		identity_card:"555555555555555555",
+		id:"5",
+		name:"大米",
+		sex:"2",
+		phone_number:"5555555555"
+	},
+	{
+		identity_card:"666666666666666666",
+		id:"6",
+		name:"小鱼",
+		sex:"1",
+		phone_number:"6666666666"
+	},
+	{
+		identity_card:"777777777777777777",
+		id:"7",
+		name:"娜娜",
+		sex:"2",
+		phone_number:"77777777777"
+	},
+	{
+		identity_card:"888888888888888888",
+		id:"8",
+		name:"碎碎",
+		sex:"1",
+		phone_number:"888888888888"
+	},
+	{
+		identity_card:"999999999999999999",
+		id:"9",
+		name:"呵呵",
+		sex:"2",
+		phone_number:"999999999999"
+	},
+	{
+		identity_card:"000000000000000000",
+		id:"10",
+		name:"磕磕碰碰",
+		sex:"1",
+		phone_number:"0000000000000"
+	},
+];
+DATA_CAN_CHANGE=1;
+DATA_TEAM={
+	team_id:"9",
+	name:"队伍名称",
+	duizhang_id:"7",
+	duizhang_name:"刘某某",
+	item:[
+		{
+			id:"1",
+			item:"11",
+			name:"男单",
+			people:[{id:'0',name:'啊啊啊',sex:'1',phone_number:'90990'}]
+		}
+	]
+}
+</script>
+<div align="center">
+    <!-- Header -->
+</div>
+<header data-am-widget="header" class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <div align="center">
+            <a href="javascript:history.go(-1)" class="">
+                <img src="/assets/images/jtou.png"/> </a>
+        </div>
+    </div>
+    <h1 align="center" class="am-header-title"> 报名详情 </h1>
+
+    <div class="am-header-right am-header-nav">
+        <button class="am-btn am-btn-primary s-edit-btn" >编辑</button>
+    </div>
+</header>
+<!--只读面板 S-->
+<div class="s-readonly z-read">
+<div class="am-container">
+	<h2>队伍名称</h2>
+	<div class="am-u-sm-12 z-read-item">呵呵队</div>
+	<h2>队长</h2>
+	<div class="am-u-sm-12 z-read-item">刘某某，男</div>		
+	<h2>队员</h2>
+	<div class='z-activity'>男单</div>
+	<div class="am-u-sm-12 z-read-item">刘某某，男</div>
+	<div class="am-u-sm-12 z-read-item">刘某某，男</div>
+</div>
+</div>
+<!--只读面板 E-->
+<!--编辑面板 S-->
+<div class="s-edit z-edit" style="display:none;">
+<div class="mask s-mask">
+    <div class="mask-item z-add">
+        <span class="s-choose-sure">确定</span>
+        <a href="/h5/member/person/create">+ 增加队员</a>
+    </div>
+    <div class="mask-content s-mask-content">
+					
+    </div>
+</div>
+<div class="am-container">
+    <form class="am-form am-form-horizontal">
+        <div class="s-title-panel">
+            <div class="am-form-group" style=" border-bottom:none">
+                <div class="am-u-sm-12" style="padding-top:25px;">创建队伍
+                    <input type="text" id="team_name_id" style="border:1px solid #ddd" placeholder="输入你的队伍名称">
+                </div>
+            </div>
+        </div>
+        <div class="s-duizhang-panel">
+            <div class="am-form-group">
+                <div class="am-u-sm-12">选择队长:
+                    <input class="s-choose s-choose-duizhang" type="button" value="选择">
+                </div>
+            </div>
+            <div class="z-panel s-panel s-duizhang">队长：<br/>
+
+            </div>
+        </div>
+        <div class="s-duiyuan-panel">
+            <div class="am-form-group">
+                <div class="am-u-sm-12">
+                    选择队员:
+                </div>
+            </div>
+        </div>
+        <div class="am-form-group s-submit" style="border:none; margin-top:40px;">
+            <div class="am-u-sm-8 am-u-sm-offset-2">
+                <button type="button" id="nextid" class="am-btn am-btn-primary am-round" style="width:100%;margin:auto">
+                    提交
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<!--编辑面板 E-->
+{template h5/common/footer}
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<!--ZZ start-->
+<script type="text/javascript">
+    $(function(){
+        if($.cookie('join_team_name'))
+        {
+            $("#team_name_id").val($.cookie('join_team_name'));
+        }
+       // var admin_activity_id = {$data_activity_id};
+	   var admin_activity_id = 33;
+        var date = new Date();
+        date.setTime(date.getTime() + (60 * 60 * 1000));
+        $.cookie('join_activity_id', admin_activity_id, {
+            expires: date,
+            path: '/'
+        });
+//获取数据
+var canChange=DATA_CAN_CHANGE;
+var $edit=$(".s-edit");
+var $readonly=$(".s-readonly");
+var $editBtn=$(".s-edit-btn");
+if(!canChange){
+	$editBtn.hide();
+}
+else{
+	$editBtn.show();
+}
+
+});
+</script>
+<!--ZZ end-->
+<style>
+    li.sle a img {
+        width: 80px;
+        height: 40px;
+    }
+</style>
+</body>
+
+</html>

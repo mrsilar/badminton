@@ -1,0 +1,106 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    {template h5/common/header}
+</head>
+
+<body>
+    <!-- Header -->
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <div align="center">
+                <a href="javascript:history.go(-1)" class="">
+                    <img src="/assets/images/jtou.png" /> </a>
+            </div>
+        </div>
+        <h1 class="am-header-title"> 我的活动 </h1>
+        <nav data-am-widget="menu" class="am-menu  am-menu-dropdown1" data-am-menu-collapse>
+            <a href="javascript: void(0)" class="am-menu-toggle">
+                <img src="/assets/images/fabu.png">
+            </a>
+            <ul class="am-menu-nav am-avg-sm-1 am-collapse">
+                <li>
+                    <a href="/h5/member/activity/create" class="">发布活动</a> </li>
+            </ul>
+        </nav>
+    </header>
+    <div data-am-widget="tabs" class="am-tabs am-tabs-d2" style="width:100%">
+        <ul class="am-tabs-nav am-cf">
+            <li class="am-active"><a href="[data-tab-panel-0]">我参加的活动</a></li>
+            <li class=""><a href="[data-tab-panel-1]">我发布的活动</a></li>
+        </ul>
+        <div class="am-tabs-bd">
+            <div data-tab-panel-0 class="am-tab-panel am-active">
+                <div class="am-comment">
+                    {loop $join $row}
+                    <table width="100%" align="center" height="30" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td style="padding-left:10px;"><a href="/h5/activity/show/{$row->id}"> {$row->title}</a></td>
+                            <td align="rigth" valign="top">
+                                <div class="bmbtn"><a href="/h5/activity/show/{$row->id}">{$row->status}</a></div>
+                            </td>
+                        </tr>
+                    </table>
+                    <a href="/h5/activity/show/{$row->id}"><img src="{$row->cover_img}" width="100%" style="margin-bottom:5px;" /> </a>
+                    <div class="am-g" style="border:none">
+                        <div class="am-u-sm-9">
+                            <div class="am-gallery-desc bms">
+                                <a href="/h5/activity/show/{$row->id}"> <img src="{$row->cover_img}" width="18">{$row->start_time}-{$row->end_time}</a>
+                            </div>
+                            <div class="am-gallery-desc bms">
+                                <a href="/h5/activity/show/{$row->id}"><img src="/assets/images/dizhi.png" width="18">{$row->postion}</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="grayline"></div>
+                    {/loop}
+                </div>
+            </div>
+            <div data-tab-panel-1 class="am-tab-panel ">
+                <div class="am-comment">
+                    {loop $create $row}
+                    <table width="100%" align="center" height="30" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td style="padding-left:10px;"><a href="/h5/activity/show/{$row->id}"> {$row->title}</a></td>
+                            <td align="rigth" valign="top">
+                                <div class="bmbtn"><a href="/h5/activity/show/{$row->id}">{$row->status}</a></div>
+                            </td>
+                        </tr>
+                    </table>
+                    <a href="/h5/activity/show/{$row->id}"><img src="{$row->cover_img}" width="100%" style="margin-bottom:5px;" /> </a>
+                    <div class="am-g" style="border:none">
+                        <div class="am-u-sm-9">
+                            <div class="am-gallery-desc bms">
+                                <a href="/h5/activity/show/{$row->id}"> <img src="/assets/images/time.png" width="18">{$row->start_time}-{$row->end_time}</a>
+                            </div>
+                            <div class="am-gallery-desc bms">
+                                <a href="/h5/activity/show/{$row->id}"><img src="{$row->cover_img}" width="18">{$row->postion}</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    {if $row->status=="报名中"}
+                    <a href="/h5/member/activity/create?id={$row->id}">编辑</a>
+                    <a href="/h5/member/activity/delete?id={$row->id}">删除</a>
+                    {/if}
+                    <div class="grayline"></div>
+                    {/loop}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    {template h5/common/footer}
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/amazeui.min.js"></script>
+    <style>
+    li.sle a img {
+        width: 80px;
+        height: 40px;
+    }
+    </style>
+</body>
+
+</html>
