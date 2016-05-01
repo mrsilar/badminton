@@ -41,7 +41,7 @@ class FourController extends H5Controller
 		$activity_detail = ActivityModel::detail($request->input('activity_id'));
 		if (!$activity_detail) {
 			Template::assign('url', "/h5/member/activity/set?activity_id={$request->input('activity_id')}");
-			Template::assign('error', '改活动不存在');
+			Template::assign('error', '该活动不存在');
 			Template::render('h5/common/error_redirect');
 			exit();
 		}
@@ -50,7 +50,7 @@ class FourController extends H5Controller
 		->first();
 		if (!$config) {
 			Template::assign('url', "/h5/member/activity/set?activity_id={$request->input('activity_id')}");
-			Template::assign('error', '改活动不是特色活动');
+			Template::assign('error', '该活动不是特色活动');
 			Template::render('h5/common/error_redirect');
 			exit();
 		}
@@ -524,12 +524,12 @@ class FourController extends H5Controller
 		$team_id=$request->input('type')=='a'?$team_match->team_a:$team_match->team_b;
 		//$data_member_person = UserModel::person_list(true, $user->id, $activity_turn->activity_id);
 		$team_member =  DB::table('team_member')
-		->where('mem_id',$user->id)
+		->where('mem_id',$request->input('team_mem_id'))
 		->where('activity_id',$activity_turn->activity_id)
 	//	->where('team_id',$team_id)
 		->get();
 		$team_member_back=DB::table('team_member_back')
-		->where('mem_id',$user->id)
+		->where('mem_id',$request->input('team_mem_id'))
 		->where('activity_id',$activity_turn->activity_id)
 		//->where('team_id',$team_id)
 		->get();
@@ -553,6 +553,7 @@ class FourController extends H5Controller
 		Template::assign('category_member_id', $request->input('category_member_id'));
 		Template::assign('type', $request->input('type'));
 		Template::assign('mem_id', $request->input('mem_id'));
+//		Template::assign('team_mem_id', $request->input('team_mem_id'));
 		Template::render('h5/member/activity/specail/four/change_member_last');
 	}
 
@@ -589,7 +590,7 @@ class FourController extends H5Controller
 	->first();
 
 		$activity = ActivityModel::detail($activity_turn->activity_id);	
-		if ($activity->mem_id == $user->id||$team_one->mem_id==$user->id) {
+		if ($activity->mem_id == $user->id||$team_one->mem_id==$user->id||$user->admin==1) {
 
 		} else{
 			Template::assign('url', $redirect_url);
@@ -746,7 +747,7 @@ class FourController extends H5Controller
 		->where('id', $team_match->activity_turn_id)
 		->first();
 		$act = ActivityModel::detail($activty_turn->activity_id);
-		if($user->id==$act->mem_id){
+		if($user->id==$act->mem_id || $user->admin == 1){
 			$c_a=1;
 			$c_b=1;
 		}
@@ -833,6 +834,7 @@ class FourController extends H5Controller
 		Template::assign('c_b', $c_b_out);  
 		Template::assign('team_match', $team_match);
 		Template::assign('user_id', $user->id);
+		Template::assign('user_admin', $user->is_admin);
 		Template::render('h5/member/activity/specail/four/change_team');
 	}
 }

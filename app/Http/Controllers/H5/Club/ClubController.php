@@ -171,6 +171,7 @@ class ClubController extends H5Controller
 
                              $mem_list=DB::table('club_member')
                              	->leftJoin('user_team_member', 'club_member.user_team_member_id', '=', 'user_team_member.id')
+								->where('club_id',$id)
                              	->get();
 
 		Template::assign('mem_list', $mem_list);

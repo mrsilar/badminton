@@ -10,24 +10,28 @@
 </div>
 <h1 align="center" class="am-header-title">队员调整</h1>
 </header>
-{if $c_a && $team_match->team_a_mem_id == $user_id} 
+{if $c_a && ($team_match->team_a_mem_id == $user_id || $user_admin == 1 )}
 {$team_match->team_a_name}
 <hr data-am-widget="divider" style=""class="am-divider am-divider-default" />
 {loop $c_a $v } 
 {loop $v['category_list'] $vv}
-<div style="float:left;width:50%; border-bottom:1px solid #ddd; text-align:center"><a style="color: #52b2ff" href="/h5/member/activity/specail/four/change_member_last?category_member_id={$vv->team_member_match_category_member_id}&type=a&mem_id={$vv->id}&team_match_id={$team_match->id}">{$vv->name}</a></div>
+<div style="float:left;width:50%; border-bottom:1px solid #ddd; text-align:center"><a style="color: #52b2ff" href="/h5/member/activity/specail/four/change_member_last?category_member_id={$vv->team_member_match_category_member_id}&type=a&mem_id={$vv->id}&team_match_id={$team_match->id}&team_mem_id={$team_match->team_a_mem_id}">{$vv->name}</a></div>
  
 {/loop} 
  {/loop}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
  {/if} 
-{if $c_b && $team_match->team_b_mem_id == $user_id}
-<br>
-<br>
+{if $c_b && ($team_match->team_b_mem_id == $user_id || $user_admin == 1)}
  {$team_match->team_b_name}
 <hr data-am-widget="divider" style=""class="am-divider am-divider-default" />
 {loop $c_b $vi }
  {loop $vi['category_list'] $vivi}
-<div style="float:left;width:50%; border-bottom:1px solid #ddd; text-align:center"><a style="color: #52b2ff" href="/h5/member/activity/specail/four/change_member_last?category_member_id={$vivi->team_member_match_category_member_id}&type=b&mem_id={$vivi->id}&team_match_id={$team_match->id}">{$vivi->name}</a>  
+<div style="float:left;width:50%; border-bottom:1px solid #ddd; text-align:center"><a style="color: #52b2ff" href="/h5/member/activity/specail/four/change_member_last?category_member_id={$vivi->team_member_match_category_member_id}&type=b&mem_id={$vivi->id}&team_match_id={$team_match->id}&team_mem_id={$team_match->team_b_mem_id}">{$vivi->name}</a>
 </div>
 {/loop} 
 {/loop} 

@@ -241,7 +241,7 @@ class ActivitySetController extends H5Controller
 		//简单权限
 		if ($user->id != $activity->mem_id) {
 			Template::assign('url', "/h5/member/activity");
-			Template::assign('error', '改活动不是您创建的，没有权限');
+			Template::assign('error', '该活动不是您创建的，没有权限');
 			Template::render('h5/common/error_redirect');
 			exit();
 		}

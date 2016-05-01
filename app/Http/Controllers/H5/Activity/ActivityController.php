@@ -289,7 +289,7 @@ class ActivityController extends H5Controller
 		$activity_detail=ActivityModel::detail($id);
 		if (!$activity_detail) {
 			Template::assign('url', "/h5/member/activity/set?activity_id={$request->input('activity_turn_id')}");
-			Template::assign('error', '改活动不存在');
+			Template::assign('error', '该活动不存在');
 			Template::render('h5/common/error_redirect');
 			exit();
 		}
@@ -357,8 +357,7 @@ class ActivityController extends H5Controller
 		Template::assign('team_match_data', $out_team_match['data']);
 		Template::assign('activity_turn_id', $activity_turn->id);
 		Template::assign('user_id', $user_id);
-
-		
+		Template::assign('user_admin', $user->is_admin);
 
 		Template::render('h5/activity/detail');
 	}
