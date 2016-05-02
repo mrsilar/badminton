@@ -970,16 +970,15 @@ class ActivityController extends H5Controller
 			if($key%2!=0){
 				$key=$key-1;
 			}
-		$x=$key/2;
-		if(!isset($activity_category[$x])){
-			break;
-		}
-		$activity_category_member_insert = [];
-		$activity_category_member_insert['activity_category_id'] =$activity_category[$x]->id;
-		$activity_category_member_insert['user_team_member_id'] = $val;
-		$activity_category_member_insert['team_id'] = $insert_id;
-		$activity_category_member_inserts[] = $activity_category_member_insert;
-		
+			$x=$key/2;
+			if(!isset($activity_category[$x])){
+				break;
+			}
+			$activity_category_member_insert = [];
+			$activity_category_member_insert['activity_category_id'] =$activity_category[$x]->id;
+			$activity_category_member_insert['user_team_member_id'] = $val;
+			$activity_category_member_insert['team_id'] = $insert_id;
+			$activity_category_member_inserts[] = $activity_category_member_insert;
 		}
 
 		DB::table('activity_category_member')
