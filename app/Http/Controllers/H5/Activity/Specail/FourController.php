@@ -563,83 +563,94 @@ class FourController extends H5Controller
 		$out['msg'] = 'ok';
 		$out['data'] = array();
 
+		$person_id = $request->input('person_id');
+		$mem_id = $request->input('mem_id');
+		$category_member_id = $request->input('category_member_id');
+		$type = $request->input('type');
+		$team_match_id = $request->input('team_match_id');
+
+		//检查 相邻两个person_id不能重复
+		for ($i = 0; $i < count($person_id); $i+=2) {
+			if ($person_id[$i] == $person_id[$i+1]) {
+				$out['code'] = -1;
+				$out['msg'] = '同队队员重复，请重新选择';
+				return $out;
+			}
+		}
 
 		$user = Auth::user();
-		
+
+		for ($i = 0; $i < count($person_id); $i++){
 			$team_match = DB::table('team_match')
-		->where('id', $request->input('team_match_id'))
-		->first();
-		$redirect_url = "/h5/member/activity/specail/four/chang_team?team_match_id={$request->input('team_match_id')}";
-		if (!$team_match) {
-			Template::assign('url', $redirect_url);
-			Template::assign('error', '不存在');
-			Template::render('h5/common/error_redirect');
-			exit();
-		}
-		
-		if($request->input('type')=='a'){
-		$team_id=$team_match->team_a;
-		}else{
-			$team_id=$team_match->team_b;
-		}
-		$team_one = DB::table('team')
-		->where('id', $team_id)
-		->first();
-	$activity_turn=DB::table('activity_turn')
-	->where('id',$team_match->activity_turn_id)
-	->first();
-
-		$activity = ActivityModel::detail($activity_turn->activity_id);	
-		if ($activity->mem_id == $user->id||$team_one->mem_id==$user->id||$user->admin==1) {
-
-		} else{
-			Template::assign('url', $redirect_url);
-			Template::assign('error', '该队伍不是您创建的');
-			Template::render('h5/common/error_redirect');
-			exit();
-		}
-
-		DB::beginTransaction();
-		try {
-			//
-			$team_member_match=DB::table('team_member_match')
-			->where('team_match_id',$request->input('team_match_id'))
-			->get();
-			$team_member_match_ids=class_column($team_member_match,'id');
-			$up = [];
-
-			if ($request->input('type') == 'a') {
-				$up['user_team_member_id_a'] =$request->input('person_id');
-				DB::table('team_member_match_category_member')
-			->whereIn('team_member_match_id', $team_member_match_ids)
-			->where('user_team_member_id_a',$request->input('mem_id'))
-			->where('id',$request->input('category_member_id'))
-			->update($up);
-			} else {
-				$up=[];
-			$up['user_team_member_id_b'] =$request->input('person_id');
-				DB::table('team_member_match_category_member')
-			->whereIn('team_member_match_id', $team_member_match_ids)
-			->where('user_team_member_id_b',$request->input('mem_id'))
-			->where('id',$request->input('category_member_id'))
-			->update($up);
+				->where('id', $team_match_id[$i])
+				->first();
+			$redirect_url = "/h5/member/activity/specail/four/chang_team?team_match_id={$team_match_id[$i]}";
+			if (!$team_match) {
+				Template::assign('url', $redirect_url);
+				Template::assign('error', '不存在');
+				Template::render('h5/common/error_redirect');
+				exit();
 			}
 
-			DB::commit();
+			if($type[$i]=='a'){
+				$team_id=$team_match->team_a;
+			}else{
+				$team_id=$team_match->team_b;
+			}
+			$team_one = DB::table('team')
+				->where('id', $team_id)
+				->first();
+			$activity_turn=DB::table('activity_turn')
+				->where('id',$team_match->activity_turn_id)
+				->first();
 
-		} catch (\Exception $e) {
-			DB::rollBack();
-			$out['code'] = $e->getCode();
-			$out['msg'] = $e->getMessage();
-			Template::assign('url', $redirect_url);
-			Template::assign('error', $out['msg']);
-			Template::render('h5/common/error_redirect');
-			exit();
+			$activity = ActivityModel::detail($activity_turn->activity_id);
+			if ($activity->mem_id == $user->id||$team_one->mem_id==$user->id||$user->admin==1) {
+
+			} else{
+				Template::assign('url', $redirect_url);
+				Template::assign('error', '该队伍不是您创建的');
+				Template::render('h5/common/error_redirect');
+				exit();
+			}
+
+			DB::beginTransaction();
+			try {
+				//
+				$team_member_match=DB::table('team_member_match')
+					->where('team_match_id',$team_match_id[$i])
+					->get();
+				$team_member_match_ids=class_column($team_member_match,'id');
+				$up = [];
+
+				if ($type[$i] == 'a') {
+					$up['user_team_member_id_a'] =$person_id[$i];
+					DB::table('team_member_match_category_member')
+						->whereIn('team_member_match_id', $team_member_match_ids)
+						->where('user_team_member_id_a',$mem_id[$i])
+						->where('id',$category_member_id[$i])
+						->update($up);
+				} else {
+					$up=[];
+					$up['user_team_member_id_b'] =$person_id[$i];
+					DB::table('team_member_match_category_member')
+						->whereIn('team_member_match_id', $team_member_match_ids)
+						->where('user_team_member_id_b',$mem_id[$i])
+						->where('id',$category_member_id[$i])
+						->update($up);
+				}
+				DB::commit();
+			} catch (\Exception $e) {
+				DB::rollBack();
+				$out['code'] = $e->getCode();
+				$out['msg'] = $e->getMessage();
+				Template::assign('url', $redirect_url);
+				Template::assign('error', $out['msg']);
+				Template::render('h5/common/error_redirect');
+				exit();
+			}
 		}
-		Template::assign('url', $redirect_url);
-		Template::assign('error', '更新成功');
-		Template::render('h5/common/error_redirect');
-		exit();
+		return $out;
 	}
 
 	/**
@@ -650,38 +661,36 @@ class FourController extends H5Controller
 		return preg_match('/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/', $str);
 	}
 
-	public function add_member_and_modify(Request $request)
+	public function add_member(Request $request)
 	{
+		$out['code'] = 0;
+		$out['msg'] = 'ok';
+		$out['data'] = array();
+
 		$user = Auth::user();
 		//1. 添加队员到队员名单
-		$redirect_url = "/h5/member/activity/specail/four/change_member_last?category_member_id=".$request->input('category_member_id')."&type=".$request->input('type')."&mem_id=".$request->input('mem_id')."&team_match_id=".$request->input('team_match_id')."&team_mem_id=".$request->input('team_mem_id');
-
 		$insert = [];
 		if (!$request->input('name')) {
-			Template::assign('url', $redirect_url);
-			Template::assign('error', '名字不能为空');
-			Template::render('h5/common/error_redirect');
-			exit();
+			$out['code'] = -1;
+			$out['msg'] = '名字不能为空';
+			return $out;
 		}
 
 		if (!$request->input('phone_number')) {
-			Template::assign('url', $redirect_url);
-			Template::assign('error', '手机号不能为空');
-			Template::render('h5/common/error_redirect');
-			exit();
+			$out['code'] = -1;
+			$out['msg'] = '手机号不能为空';
+			return $out;
 		}
 
 		if (!phone_filter($request->input('phone_number'))) {
-			Template::assign('url', $redirect_url);
-			Template::assign('error', '手机号不正确');
-			Template::render('h5/common/error_redirect');
-			exit();
+			$out['code'] = -1;
+			$out['msg'] = '手机号不正确';
+			return $out;
 		}
 		if ($request->input('identity_card') && !check_id($request->input('identity_card'))) {
-			Template::assign('url', $redirect_url);
-			Template::assign('error', '身份证号不正确');
-			Template::render('h5/common/error_redirect');
-			exit();
+			$out['code'] = -1;
+			$out['msg'] = '身份证号不正确';
+			return $out;
 		}
 
 		$insert['name'] = $request->input('name');
@@ -740,70 +749,7 @@ class FourController extends H5Controller
 		];
 		DB::table('team_member_back')->insert($data);
 
-		//4. 将选中队员替换为该队员
-		$redirect_url = "/h5/member/activity/specail/four/chang_team?team_match_id={$request->input('team_match_id')}";
-		if (!$team_match_row) {
-			Template::assign('url', $redirect_url);
-			Template::assign('error', '不存在');
-			Template::render('h5/common/error_redirect');
-			exit();
-		}
-
-		$activity_turn=DB::table('activity_turn')
-			->where('id',$team_match_row->activity_turn_id)
-			->first();
-
-		$activity = ActivityModel::detail($activity_turn->activity_id);
-		if ($activity->mem_id == $user->id||$team_row->mem_id==$user->id||$user->admin==1) {
-
-		} else{
-			Template::assign('url', $redirect_url);
-			Template::assign('error', '您无权修改');
-			Template::render('h5/common/error_redirect');
-			exit();
-		}
-
-		DB::beginTransaction();
-		try {
-			//
-			$team_member_match=DB::table('team_member_match')
-				->where('team_match_id',$request->input('team_match_id'))
-				->get();
-			$team_member_match_ids=class_column($team_member_match,'id');
-			$up = [];
-
-			if ($request->input('type') == 'a') {
-				$up['user_team_member_id_a'] = $new_id;
-				DB::table('team_member_match_category_member')
-					->whereIn('team_member_match_id', $team_member_match_ids)
-					->where('user_team_member_id_a',$request->input('mem_id'))
-					->where('id',$request->input('category_member_id'))
-					->update($up);
-			} else {
-				$up=[];
-				$up['user_team_member_id_b'] = $new_id;
-				DB::table('team_member_match_category_member')
-					->whereIn('team_member_match_id', $team_member_match_ids)
-					->where('user_team_member_id_b',$request->input('mem_id'))
-					->where('id',$request->input('category_member_id'))
-					->update($up);
-			}
-
-			DB::commit();
-
-		} catch (\Exception $e) {
-			DB::rollBack();
-			$out['code'] = $e->getCode();
-			$out['msg'] = $e->getMessage();
-			Template::assign('url', $redirect_url);
-			Template::assign('error', $out['msg']);
-			Template::render('h5/common/error_redirect');
-			exit();
-		}
-		Template::assign('url', $redirect_url);
-		Template::assign('error', '更新成功');
-		Template::render('h5/common/error_redirect');
-		exit();
+		return $out;
 	}
 	
 	public  function  chang_table(Request $request){
@@ -992,8 +938,41 @@ class FourController extends H5Controller
 				$c_b_out=$b_team;
 		}
 
+		$team_member_a =  DB::table('team_member')
+			->where('team_id',$team_match->team_a)
+			->get();
+		$team_member_b =  DB::table('team_member')
+			->where('team_id',$team_match->team_b)
+			->get();
 
+		$xs1=[];
+		foreach ($team_member_a as $key => $value) {
+			$xs1[]=$value;
+		}
 
+		$xs2=[];
+		foreach ($team_member_b as $key => $value) {
+			$xs2[]=$value;
+		}
+
+		$data_member_person1=[];
+		$ids=class_column($xs1,'user_team_member_id');
+		if($ids){
+			$data_member_person1=DB::table('user_team_member')
+				->whereIn('id',$ids)
+				->get();
+		}
+
+		$data_member_person2=[];
+		$ids=class_column($xs2,'user_team_member_id');
+		if($ids){
+			$data_member_person2=DB::table('user_team_member')
+				->whereIn('id',$ids)
+				->get();
+		}
+
+		Template::assign('person_list_a', $data_member_person1);
+		Template::assign('person_list_b', $data_member_person2);
 		Template::assign('c_a', $c_a_out);
 		Template::assign('c_b', $c_b_out);  
 		Template::assign('team_match', $team_match);

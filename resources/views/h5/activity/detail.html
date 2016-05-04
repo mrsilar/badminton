@@ -12,8 +12,10 @@
     <meta name="full-screen" content="yes">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" type="image/png" href="assets/i/favicon.png">
-    <link rel="stylesheet" href="http://tiyu.haijiayou.com/assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="http://tiyu.haijiayou.com/assets/css/app.css"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
     <body>
         <style>
         .am-list, .m-widget-list ul li {
@@ -293,7 +295,7 @@
 				</td>
 				<td>
 				{if (($v->team_a_mem_id == $user_id || $v->team_b_mem_id == $user_id)&&(time()<=strtotime ($detail->apply_end_time))) || (($detail->mem_id == $user_id || $user_admin == 1)&&(time()<=strtotime ($detail->end_time)))}
-					<a href="/h5/member/activity/specail/four/chang_team?team_match_id={$v->id}">人员调整</a>
+					<a href="/h5/member/activity/specail/four/chang_team?team_match_id={$v->id}">对阵调整</a>
 				{/if}
 				</td>
 			</tr>
@@ -322,7 +324,7 @@
 				</td>
 				<td>
                     {if (($v->team_a_mem_id == $user_id || $v->team_b_mem_id == $user_id)&&(time()<=strtotime ($detail->apply_end_time))) || (($detail->mem_id == $user_id || $user_admin == 1)&&(time()<=strtotime ($detail->end_time)))}
-					<a href="/h5/member/activity/specail/four/chang_team?team_match_id={$v->id}">人员调整</a>
+					<a href="/h5/member/activity/specail/four/chang_team?team_match_id={$v->id}">对阵调整</a>
 				{/if}
 				</td>
 			</tr>
@@ -352,7 +354,7 @@
 				</td>
 				<td>
                     {if (($v->team_a_mem_id == $user_id || $v->team_b_mem_id == $user_id)&&(time()<=strtotime ($detail->apply_end_time))) || (($detail->mem_id == $user_id || $user_admin == 1)&&(time()<=strtotime ($detail->end_time)))}
-					<a href="/h5/member/activity/specail/four/chang_team?team_match_id={$v->id}">人员调整</a>
+					<a href="/h5/member/activity/specail/four/chang_team?team_match_id={$v->id}">对阵调整</a>
 				{/if}
 				</td>
 			</tr>     

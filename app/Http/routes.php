@@ -199,7 +199,7 @@ Route::group(['namespace' => 'H5','middleware' => 'auth'], function()
 	Route::get('/h5/member/activity/specail/four/change_member_last','Activity\Specail\FourController@change_member_last');
 	Route::post('/h5/member/activity/specail/four/change_member_last','Activity\Specail\FourController@change_member_last_post');
 	Route::get('/h5/member/activity/specail/four/chang_team','Activity\Specail\FourController@chang_team');
-	Route::post('/h5/member/activity/specail/four/add_member_and_modify','Activity\Specail\FourController@add_member_and_modify');
+	Route::post('/h5/member/activity/specail/four/add_member','Activity\Specail\FourController@add_member');
 	//设置
 	Route::get('h5/member/activity/set', 'Activity\ActivitySetController@setlist');
 	Route::get('h5/member/activity/set/select', 'Activity\ActivitySetController@set_select');

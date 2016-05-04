@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js">
 <head>
+ <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 {template h5/common/header}
 </head>
 <header data-am-widget="header" class="am-header am-header-default">
@@ -11,13 +12,27 @@
 <h1 align="center" class="am-header-title">队员调整</h1>
 </header>
 {if $c_a && ($team_match->team_a_mem_id == $user_id || $user_admin == 1 )}
-{$team_match->team_a_name}
-<hr data-am-widget="divider" style=""class="am-divider am-divider-default" />
+<div>
+ {$team_match->team_a_name}
+ <button type="button" id="club1_add" class="btn" style="color:red; border: solid 1px;float: right">
+  添加队员
+ </button>
+</div>
+<hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 {loop $c_a $v } 
 {loop $v['category_list'] $vv}
-<div style="float:left;width:50%; border-bottom:1px solid #ddd; text-align:center"><a style="color: #52b2ff" href="/h5/member/activity/specail/four/change_member_last?category_member_id={$vv->team_member_match_category_member_id}&type=a&mem_id={$vv->id}&team_match_id={$team_match->id}&team_mem_id={$team_match->team_a_mem_id}">{$vv->name}</a></div>
- 
-{/loop} 
+<div style="float:left;width:50%; height: 30px; border-bottom:1px solid #ddd; text-align:center">
+ <!--<a style="color: #52b2ff" href="/h5/member/activity/specail/four/change_member_last?category_member_id={$vv->team_member_match_category_member_id}&type=a&mem_id={$vv->id}&team_match_id={$team_match->id}&team_mem_id={$team_match->team_a_mem_id}">{$vv->name}</a>-->
+ <select name="new_list" style="color: #52b2ff;">
+  <option value="{$vv->id},{$vv->id},{$vv->team_member_match_category_member_id},a,{$team_match->id}" selected>{$vv->name}</option>
+  {loop $person_list_a $vv2 }
+  {if $vv2->id != $vv->id}
+  <option value="{$vv2->id},{$vv->id},{$vv->team_member_match_category_member_id},a,{$team_match->id}">{$vv2->name}</option>
+  {/if}
+  {/loop}
+ </select>
+</div>
+{/loop}
  {/loop}
 <br>
 <br>
@@ -27,18 +42,170 @@
 <br>
  {/if} 
 {if $c_b && ($team_match->team_b_mem_id == $user_id || $user_admin == 1)}
+<div>
  {$team_match->team_b_name}
-<hr data-am-widget="divider" style=""class="am-divider am-divider-default" />
+ <!-- Button trigger modal -->
+ <button type="button" id="club2_add" class="btn" style="color:red; border: solid 1px;float: right">
+  添加队员
+ </button>
+</div>
+<hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 {loop $c_b $vi }
  {loop $vi['category_list'] $vivi}
-<div style="float:left;width:50%; border-bottom:1px solid #ddd; text-align:center"><a style="color: #52b2ff" href="/h5/member/activity/specail/four/change_member_last?category_member_id={$vivi->team_member_match_category_member_id}&type=b&mem_id={$vivi->id}&team_match_id={$team_match->id}&team_mem_id={$team_match->team_b_mem_id}">{$vivi->name}</a>
+<div style="float:left;width:50%; height: 30px; border-bottom:1px solid #ddd; text-align:center">
+ <!--<a style="color: #52b2ff" href="/h5/member/activity/specail/four/change_member_last?category_member_id={$vivi->team_member_match_category_member_id}&type=b&mem_id={$vivi->id}&team_match_id={$team_match->id}&team_mem_id={$team_match->team_b_mem_id}">{$vivi->name}</a>-->
+ <select name="new_list" style="color: #52b2ff;">
+  <option value="{$vivi->id},{$vivi->id},{$vivi->team_member_match_category_member_id},b,{$team_match->id}" selected>{$vivi->name}</option>
+  {loop $person_list_b $vivi2 }
+  {if $vivi2->id != $vivi->id}
+  <option value="{$vivi2->id},{$vivi->id},{$vivi->team_member_match_category_member_id},b,{$team_match->id}">{$vivi2->name}</option>
+  {/if}
+  {/loop}
+ </select>
 </div>
-{/loop} 
-{/loop} 
-{/if} 
+{/loop}
+{/loop}
+{/if}
+<button type="button" style="border-radius:10px; background:#09C; color:#fff; margin-top:20px; margin-bottom:20px; width:80%; margin-left:10%;" class="am-btn am-btn-default" id="reset_team">提交</button>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ <div class="modal-dialog" role="document">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">添加队员</h4>
+   </div>
+   <div class="modal-body">
+    <form>
+     <input type="hidden"  name="team_match_id" value="{$team_match->id}">
+     <input type="hidden"  name="type" value="{$type}">
+     <input type="hidden"  name="team_mem_id" value="{$team_match->team_b_mem_id}">
+
+     <div class="form-group">
+      <label for="name" class="control-label">姓名(*)</label>
+      <input type="text" id="name" name="name" class="form-control noborder"  placeholder="输入你的姓名">
+     </div>
+     <div class="form-group">
+      <label for="phone_number" class="control-label">手机号(*)</label>
+      <input type="text" id="phone_number" name="phone_number" class="form-control noborder"  placeholder="输入你的手机号码">
+     </div>
+     <div class="form-group">
+      <label for="identity_card" class="control-label">身份证</label>
+      <input type="text" id="identity_card" name="identity_card" class="form-control noborder"  placeholder="输入你的身份证">
+     </div>
+     <div class="form-group">
+      <label class="control-label">性别</label>
+      <label class="radio-inline">
+       <input type="radio" name="sex" value="1" checked> 男
+      </label>
+      <label class="radio-inline">
+       <input type="radio" name="sex" value="2"> 女
+      </label>
+     </div>
+    </form>
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+    <button type="button" class="btn btn-primary" id="add_member">添加</button>
+   </div>
+  </div>
+ </div>
+</div>
 {template h5/common/footer}
 <script src="/assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
 <script src="/assets/js/amazeui.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+ $("#reset_team").click(function() {
+  if (confirm("确认修改对阵？")) {
+   var tmp=[];
+   var person_id=[]; //替换id
+   var mem_id=[]; //被替换的id
+   var team_match_id=[];
+   var category_member_id=[];
+   var type=[];
+
+   $("select[name='new_list']").each( function(){
+     tmp = $(this).val().split(',');
+     person_id.push(tmp[0]);
+     mem_id.push(tmp[1]);
+     category_member_id.push(tmp[2]);
+     type.push(tmp[3]);
+     team_match_id.push(tmp[4]);
+   });
+
+   console.log(person_id);
+
+   $.ajax({
+    type: "post",
+    url: "/h5/member/activity/specail/four/change_member_last",
+    data: {
+     person_id:person_id,
+     mem_id:mem_id,
+     category_member_id:category_member_id,
+     type:type,
+     team_match_id:team_match_id
+    },
+    dataType: "json",
+    success: function(data){
+      if (data.code == 0 && data.msg == 'ok') {
+       //修改成功
+       alert("修改成功");
+       window.location.reload();
+      } else {
+       alert("修改失败！"+data.msg);
+      }
+    },
+    error: function() {
+     alert("网络错误，请稍后再试");
+    }
+   });
+  }
+ });
+
+ $("#club1_add").click(function() {
+  $('input[name="type"]').val('a');
+  $('input[name="team_mem_id"]').val('{$team_match->team_a_mem_id}');
+  $('#myModal').modal('show');
+ });
+
+ $("#club2_add").click(function() {
+  $('input[name="type"]').val('b');
+  $('input[name="team_mem_id"]').val('{$team_match->team_b_mem_id}');
+  $('#myModal').modal('show');
+ });
+
+ $("#add_member").click(function() {
+  $.ajax({
+   type: "post",
+   url: "/h5/member/activity/specail/four/add_member",
+   data: {
+    team_match_id:$("input[name='team_match_id']").val(),
+    type:$("input[name='type']").val(),
+    team_mem_id:$("input[name='team_mem_id']").val(),
+    name:$("input[name='name']").val(),
+    phone_number:$("input[name='phone_number']").val(),
+    identity_card:$("input[name='identity_card']").val(),
+    sex:$("input[name='sex']").val()
+   },
+   dataType: "json",
+   success: function(data){
+    if (data.code == 0 && data.msg == 'ok') {
+     //修改成功
+     alert("添加成功");
+     $('#myModal').modal('hide');
+     window.location.reload();
+    } else {
+     alert("添加失败！"+data.msg);
+    }
+   },
+   error: function() {
+    alert("网络错误，请稍后再试");
+   }
+  });
+ });
+
+</script>
 </body>
 </html>
