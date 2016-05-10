@@ -34,8 +34,8 @@
                     <a href="/h5/club/show/{$row->id}">
                         <div class="leftlist"><img src="{$row->cover_img}" alt="{$row->summary}" /> </div>
                         <div class="rightlist">
-                            <h3 class="am-list-item-hd"><span class="quyu">浦东新区</span>{$row->name}</h3>
-                            <div class="am-list-item-text">活动数量：0人 </div>
+                            <h3 class="am-list-item-hd"><span class="quyu">{$row->city}</span>{$row->name}</h3>
+                            <div class="am-list-item-text">活动数量：{$row->activity_count} </div>
                             <div class="am-list-item-text">创建时间:{$row->created_at}</div>
                         </div>
                         <div class="rightlistw"> <span class="guanzhu">+关注</span> </div>

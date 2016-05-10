@@ -644,6 +644,8 @@ class ActivityController extends H5Controller
 		->get();
 		$specail_game_system = tran_key($specail_game_system, 'type', true);
 
+
+
 		Template::assign('specail_game_system', $specail_game_system);
 		Template::assign('detail', $detail);
 		Template::assign('item', $item);
@@ -656,6 +658,9 @@ class ActivityController extends H5Controller
 		$out['code'] = 0;
 		$out['msg'] = 'ok';
 		$out['data'] = array();
+
+
+
 		// 验证
 		$out = ActivityModel::save_specail($request->all());
 

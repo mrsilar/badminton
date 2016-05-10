@@ -10,7 +10,7 @@
                 <a href="/h5/activity/list/1"><img src="/assets/images/yuesai.png" width="80" height="" border="0"></a>
             </li>
             <li>
-                <a href="http://tiyu.haijiayou.com/h5/club/list/1"> <span><img src="/assets/images/ems.png"></span> <span class="am-navbar-label">俱乐部</span> </a>
+                <a href="/h5/club/list/1"> <span><img src="/assets/images/ems.png"></span> <span class="am-navbar-label">俱乐部</span> </a>
             </li>
             <li>
                 <a href="/h5/home/my"> <span><img src="/assets/images/my.png"></span> <span class="am-navbar-label">我的</span> </a>

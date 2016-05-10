@@ -908,10 +908,25 @@ class ActivityModel extends BaseModel
         $out['msg'] = 'ok';
         $out['data'] = array();
         //
+        $user = Auth::user();
+
+        $user_club = DB::table('user_club')
+            ->where('mem_id', $user->id)
+            ->first();
+
+        $club = DB::table('club')
+            ->where('mem_id', $user->id)
+            ->first();
+
         $zhsh_id = DB::table('activity')
                             ->where('specail_config','>',0)
                             ->count();
-        $request['title'] =   '纵横四海'.$request['city'].($zhsh_id+1);
+
+        $activity_count = DB::table('activity')
+            ->where('club_id', $club->id)
+            ->count();
+
+        $request['title'] =   '纵横四海'.$request['city'].($zhsh_id+1).' 举办方:'.$club->name.'-'.($activity_count+1);
         $request['start_time'] = isset($request['start_time']) ? $request['start_time'] : '';
         $request['end_time'] = isset($request['end_time']) ? $request['end_time'] : '';
         $request['apply_start_time'] = isset($request['apply_start_time']) ? $request['apply_start_time'] : '';
@@ -1077,15 +1092,7 @@ class ActivityModel extends BaseModel
             $ormActivity->city = $request['city'];
         }
 
-        $user = Auth::user();
 
-        $user_club = DB::table('user_club')
-            ->where('mem_id', $user->id)
-            ->first();
-
-        $club = DB::table('club')
-            ->where('mem_id', $user->id)
-            ->first();
 			
         if (!isset($club->status)){
 		    $out['code'] = 2;

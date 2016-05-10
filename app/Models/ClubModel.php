@@ -45,6 +45,14 @@ class ClubModel extends BaseModel
             ->take($pageSize) //limit 5
             ->get();
 
+        for($i=0; $i<sizeof($res);$i++){
+            $res[$i]->activity_count = DB::table('activity')
+                ->where('club_id', $res[$i]->id)
+                ->count();
+        }
+
+
+
         if ($res) {
             $out['list'] = $res;
         }
