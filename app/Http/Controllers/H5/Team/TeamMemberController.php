@@ -124,9 +124,11 @@ class TeamMemberController extends H5Controller
 
 	public function destroy(Request $request)
 	{
-		//
 		$id= $request->input('id');
 		DB::table('user_team_member')->delete($id);
+		DB::table('club_member')
+			->where('user_team_member_id',$id)
+			->delete();
 		return Redirect::to('/h5/member/person');
 	}
 }
