@@ -707,6 +707,18 @@ class FourController extends H5Controller
 		$new_id = DB::table('user_team_member')
 			  ->insertGetId($insert);
 
+		$cnt = DB::table('user_team_member')
+			->where('name',$insert['name'])
+			->count();
+
+		$up['name'] = $insert['name'].'-'.$new_id;
+
+		if ($cnt > 1) {
+			DB::table('user_team_member')
+				->where('id',$new_id)
+				->update($up);
+		}
+
 		//2. 添加队员到俱乐部名单
 
 		//获取club_id

@@ -85,8 +85,20 @@ class TeamMemberController extends H5Controller
 						$user = Auth::user();
 						$insert['mem_id'] = $user->id;
 
-						DB::table('user_team_member')
-						->insert($insert);
+						$newID = DB::table('user_team_member')
+						->insertGetId($insert);
+
+						$cnt = DB::table('user_team_member')
+							->where('name',$insert['name'])
+							->count();
+
+						$up['name'] = $insert['name'].'-'.$newID;
+
+						if ($cnt > 1) {
+							DB::table('user_team_member')
+								->where('id',$newID)
+								->update($up);
+						}
 					}
 					echo '导入成功,正在跳转...';
 					
