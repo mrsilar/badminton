@@ -3,6 +3,72 @@
 <head>
  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 {template h5/common/header}
+ <style type="text/css">
+  ul,li{
+   margin:0;
+   padding:0;
+  }
+  li{
+   display:inline;
+   list-style:none;
+   list-style-position:outside;
+   text-align:center;
+   font-weight:bold;
+   float:left;
+  }
+  .list{
+   line-height:20px;
+   text-align:left;
+   padding:4px;
+   font-weight:normal;
+  }
+  .menu1{
+   width:120px;
+   height:auto;
+   /*margin:6px 4px 0px 0px;*/
+   border:1px solid #eeeeee;
+   background-color:#eeeeee;
+   /*color:#336601;*/
+   padding:6px 0px 0px 0px;
+   cursor:hand;
+   overflow-y:hidden;
+   filter:Alpha(opacity=70);
+   -moz-opacity:0.7;
+  }
+  .menu2{
+   width:120px;
+   height:36px;
+   /*margin:6px 4px 0px 0px;*/
+   background-color:#eeeeee;
+   /*color:#999999;*/
+   border:1px solid #eeeeee;
+   padding:6px 0px 0px 0px;
+   overflow-y:hidden;
+   cursor:hand;
+  }
+  #nav1{
+   /*width:200px;*/
+   height:30px;
+   border-bottom:0px;
+   padding:0px 5px;
+   position:relative;
+   z-index:1;
+   float: right;
+   /*left: 240px;*/
+   /*top: 53px;*/
+  }
+  #nav2{
+   /*width:200px;*/
+   height:30px;
+   border-bottom:0px;
+   padding:0px 5px;
+   position:relative;
+   z-index:1;
+   /*left: 240px;*/
+   float: right;
+   /*top: 263px;*/
+  }
+ </style>
 </head>
 <header data-am-widget="header" class="am-header am-header-default">
 <div class="am-header-left am-header-nav">
@@ -14,9 +80,20 @@
 {if $c_a && ($team_match->team_a_mem_id == $user_id || $user_admin == 1 )}
 <div>
  {$team_match->team_a_name}
- <button type="button" id="club1_add" class="btn" style="color:red; border: solid 1px;float: right">
-  添加队员
- </button>
+<div id="nav1">
+ <ul>
+  <li class="menu2" onclick="changeStyle(this);">添加
+  <div class="list">
+   <button type="button" id="club1_add" class="btn" style="color:#52b2ff; border: solid 1px;float: right;margin-bottom: 5px">
+    新增队员报名
+   </button>
+   <button type="button" id="club1_had_add" class="btn" style="color:#52b2ff; border: solid 1px;float: right">
+    添加已有队员
+   </button>
+  </div>
+  </li>
+ </ul>
+</div>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 {loop $c_a $v } 
@@ -45,9 +122,20 @@
 <div>
  {$team_match->team_b_name}
  <!-- Button trigger modal -->
- <button type="button" id="club2_add" class="btn" style="color:red; border: solid 1px;float: right">
-  添加队员
- </button>
+ <div id="nav2">
+  <ul>
+   <li class="menu2" onclick="changeStyle(this);">添加
+    <div class="list">
+     <button type="button" id="club2_add" class="btn" style="color:#52b2ff; border: solid 1px;float: right;margin-bottom: 5px">
+      新增队员报名
+     </button>
+     <button type="button" id="club2_had_add" class="btn" style="color:#52b2ff; border: solid 1px;float: right">
+      添加已有队员
+     </button>
+    </div>
+   </li>
+  </ul>
+ </div>
 </div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 {loop $c_b $vi }
@@ -107,6 +195,29 @@
    <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
     <button type="button" class="btn btn-primary" id="add_member">添加</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ <div class="modal-dialog" role="document">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel2">添加队员</h4>
+   </div>
+   <div class="modal-body">
+    <input type="hidden"  name="mem_id" id="mem_id">
+    <input type="hidden"  name="type" id="type">
+    <form id="p_list">
+    </form>
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+    <button type="button" class="btn btn-primary" id="add_member2">添加</button>
    </div>
   </div>
  </div>
@@ -205,6 +316,131 @@
    }
   });
  });
+
+ $("#club1_had_add").click(function() {
+  $.ajax({
+   type: "post",
+   url: "/h5/club/person_ingame",
+   data: {
+    mem_id:"{$team_match->team_a_mem_id}",
+    type:"a",
+    team_match_id:"{$team_match->id}"
+   },
+   dataType: "json",
+   success: function(data){
+    if (data.code == 0 && data.msg == 'ok') {
+     //获取list成功
+     //填数据
+     $("#mem_id").val("{$team_match->team_a_mem_id}");
+     $("#type").val("a");
+     var person_list = data.list;
+     $("#p_list").empty();
+     $("#add_member2").show();
+     for (var i = 0; i < person_list.length; ++i) {
+      $("#p_list").append('<div class="checkbox">'+
+      '<label>'+
+      '<input type="checkbox" name="person_list" value="'+person_list[i]['id']+'">'+person_list[i]['name']+
+      '</label>'+
+      '</div>');
+     }
+     if (person_list.length == 0) {
+      $("#p_list").append("暂无可添加的队员");
+      $("#add_member2").hide();
+     }
+     $('#myModal2').modal('show');
+    } else {
+     alert("获取名单失败！"+data.msg);
+    }
+   },
+   error: function() {
+    alert("网络错误，请稍后再试");
+   }
+  });
+
+ });
+
+ $("#club2_had_add").click(function() {
+  $.ajax({
+   type: "post",
+   url: "/h5/club/person_ingame",
+   data: {
+    mem_id:"{$team_match->team_b_mem_id}",
+    type:"b",
+    team_match_id:"{$team_match->id}"
+   },
+   dataType: "json",
+   success: function(data){
+    if (data.code == 0 && data.msg == 'ok') {
+     //获取list成功
+     //填数据
+     $("#mem_id").val("{$team_match->team_b_mem_id}");
+     $("#type").val("b");
+     var person_list = data.list;
+     $("#p_list").empty();
+     $("#add_member2").show();
+     for (var i = 0; i < person_list.length; ++i) {
+      $("#p_list").append('<div class="checkbox">'+
+      '<label>'+
+      '<input type="checkbox" name="person_list" value="'+person_list[i]['id']+'">'+person_list[i]['name']+
+      '</label>'+
+      '</div>');
+     }
+     if (person_list.length == 0) {
+      $("#p_list").append("暂无可添加的队员");
+      $("#add_member2").hide();
+     }
+     $('#myModal2').modal('show');
+    } else {
+     alert("获取名单失败！"+data.msg);
+    }
+   },
+   error: function() {
+    alert("网络错误，请稍后再试");
+   }
+  });
+ });
+
+ $("#add_member2").click(function() {
+  var person_list=[];
+  $("input[name='person_list']:checked").each(function(){
+   person_list.push($(this).val());
+  });
+
+  $.ajax({
+   type: "post",
+   url: "/h5/club/person_ingame_add",
+   data: {
+    mem_id:$("#mem_id").val(),
+    type:$("#type").val(),
+    team_match_id:"{$team_match->id}",
+    person_list:person_list
+   },
+   dataType: "json",
+   success: function(data){
+    if (data.code == 0 && data.msg == 'ok') {
+     //修改成功
+     alert("添加成功");
+     $('#myModal2').modal('hide');
+     window.location.reload();
+    } else {
+     alert("添加失败！"+data.msg);
+    }
+   },
+   error: function() {
+    alert("网络错误，请稍后再试");
+   }
+  });
+
+ });
+
+ function changeStyle(ele) {
+//  console.log($(ele).attr('class'));
+  if ($(ele).attr('class') == 'menu1') {
+   $(ele).attr('class','menu2');
+  } else {
+   $(ele).attr('class','menu1')
+  }
+ }
 
 </script>
 </body>

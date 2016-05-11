@@ -245,6 +245,8 @@ Route::group(['namespace' => 'H5','middleware' => 'auth'], function()
 	Route::post('h5/member/club/join', 'Club\ClubController@join');
 	Route::get('h5/club/person', 'Club\ClubController@person_list');
 	Route::post('h5/club/person', 'Club\ClubController@person_insert');
+	Route::post('h5/club/person_ingame', 'Club\ClubController@person_list_ingame');
+	Route::post('h5/club/person_ingame_add', 'Club\ClubController@person_insert_ingame_add');
 	
 	Route::get('h5/member/team', 'Center\MyController@myTeamList');
 	Route::get('h5/member/team/delete', 'Team\TeamController@destroy');

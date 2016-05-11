@@ -373,4 +373,92 @@ class ClubController extends H5Controller
 	}
 	echo "<a href='http://www.yilesai.com'>返回</a>";
 	}
+
+	//比赛中要添加的人员列表
+	public function person_list_ingame(Request $request){
+		$out['code'] = 0;
+		$out['msg'] = 'ok';
+		$out['data'] = array();
+
+		//获取club_id
+		$team_match_row=DB::table('team_match')
+			->where('id',$request->input('team_match_id'))
+			->first();
+
+		$team_row=DB::table('team')
+			->where('id',($request->input('type')=='a'?$team_match_row->team_a:$team_match_row->team_b))
+			->first();
+
+		$club_row=DB::table('club')
+			->where('name',substr($team_row->name,0,strpos($team_row->name,'俱乐部--')))//截取
+			->where('mem_id',$request->input('mem_id'))
+			->first();
+
+		//获取俱乐部队员名单  TODO: 未加入俱乐部队员名单？？
+//		$person_list=DB::table('user_team_member')
+//			->where('mem_id',$request->input('mem_id'))
+//			->get();
+
+		$person_list=DB::table('club_member')
+			->leftJoin('user_team_member', 'club_member.user_team_member_id', '=', 'user_team_member.id')
+			->where('club_id',$club_row->id)
+			->get();
+
+		//去除已经添加的人员
+		$team_member = DB::table('team_member')
+			->where('team_id',$team_row->id)
+			->get();
+
+		$team_member_ids=class_column($team_member,'user_team_member_id');
+
+		$list=[];
+		foreach ($person_list as $row){
+			if(!in_array($row->id,$team_member_ids)){
+				$list[]=$row;
+			}
+		}
+
+		$out['list'] = $list;
+		return $out;
+	}
+
+	//比赛中添加人员
+	public function person_insert_ingame_add(Request $request){
+		$out['code'] = 0;
+		$out['msg'] = 'ok';
+		$out['data'] = array();
+
+		//获取team信息
+		$team_match_row=DB::table('team_match')
+			->where('id',$request->input('team_match_id'))
+			->first();
+
+		$team_row=DB::table('team')
+			->where('id',($request->input('type')=='a'?$team_match_row->team_a:$team_match_row->team_b))
+			->first();
+
+		//添加到比赛列表里
+		$person_list = $request->input('person_list');
+		foreach ($person_list as $pid) {
+			$data=[
+				'team_id'=>$team_row->id,
+				'activity_id'=>$team_row->activity_id,
+				'team_name'=>$team_row->name,
+				'mem_id'=>$request->input('mem_id'),
+				'user_team_member_id'=>$pid
+			];
+			DB::table('team_member')->insert($data);
+
+			$data=[
+				'team_id'=>$team_row->id,
+				'activity_id'=>$team_row->activity_id,
+				'team_name'=>$team_row->name,
+				'mem_id'=>$request->input('mem_id'),
+				'user_team_member_id'=>$pid
+			];
+			DB::table('team_member_back')->insert($data);
+		}
+
+		return $out;
+	}
 }
