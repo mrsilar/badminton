@@ -340,5 +340,8 @@ class MyController extends H5Controller
         return Redirect::to('/');
     }
 
+    public function rank(){
+        Template::render('h5/member/rank');
+    }
 
 }

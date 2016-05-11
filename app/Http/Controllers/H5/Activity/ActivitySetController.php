@@ -111,6 +111,13 @@ class ActivitySetController extends H5Controller
 			$out['msg'] = '已排名，不能打分！';
 			return $out;
 		}
+
+		if ($team_member_match->score_count >=3) {
+			$out['code'] = 35;
+			$out['msg'] = '打分次数已经到达三次，不能继续修改！';
+			return $out;
+		}
+
 		$out = ActivityModel::postscore($request->all());
 
 		return $out;

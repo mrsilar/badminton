@@ -718,6 +718,59 @@ class ActivityModel extends BaseModel
                 ->where('id', $team_member_match->team_match_id)
                 ->first();
 
+
+            $t_m_m_c_m = DB::table('team_member_match_category_member')
+                ->where('team_member_match_id', $team_member_match->id)
+                ->get();
+
+            foreach($t_m_m_c_m as $row) {
+                $user_a = DB::table('user_team_member')
+                    ->where('id', $row->user_team_member_id_a)
+                    ->first();
+                $user_b = DB::table('user_team_member')
+                    ->where('id', $row->user_team_member_id_b)
+                    ->first();
+
+                $user_a_data = [];
+                $user_a_data['rank'] =  $user_a->rank;
+                $user_a_data['exp'] =  $user_a->exp;
+
+                $user_b_data = [];
+                $user_b_data['rank'] =  $user_b->rank;
+                $user_b_data['exp'] =  $user_b->exp;
+
+                if ($team_member_match->score_count == 0) {
+                    if ($request['scoreA'] > $request['scoreB']) {
+                        $user_a_data['rank'] += 10;
+                        $user_a_data['exp'] += 10;
+                        $user_b_data['exp'] += 10;
+                    } else {
+                        $user_a_data['exp'] += 10;
+                        $user_b_data['rank'] += 10;
+                        $user_b_data['exp'] += 10;
+                    }
+                } else {
+                    if ($request['scoreA'] > $request['scoreB'] && $team_member_match->win_a_count < $team_member_match->win_b_count) {
+                        $user_a_data['rank'] += 10;
+                        $user_b_data['rank'] -= 10;
+                    } elseif ($request['scoreA'] < $request['scoreB'] && $team_member_match->win_a_count > $team_member_match->win_b_count) {
+                        $user_a_data['rank'] -= 10;
+                        $user_b_data['rank'] += 10;
+                    }
+                }
+
+
+
+
+                DB::table('user_team_member')
+                    ->where('id', $user_a->id)
+                    ->update($user_a_data);
+                DB::table('user_team_member')
+                    ->where('id', $user_b->id)
+                    ->update($user_b_data);
+            }
+
+
             $insert_data = [];
             $insert_data['win_a_count'] = $request['scoreA'];
             $insert_data['win_b_count'] = $request['scoreB'];
@@ -802,7 +855,9 @@ class ActivityModel extends BaseModel
             	}
             	
             }
-            
+
+
+
  
             DB::commit();
         } catch (\Exception $e) {

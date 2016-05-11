@@ -12,8 +12,10 @@
     <meta name="full-screen" content="yes">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" type="image/png" href="assets/i/favicon.png">
-    <link rel="stylesheet" href="http://tiyu.haijiayou.com/assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="http://tiyu.haijiayou.com/assets/css/app.css"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
     <body>
         <style>
         .am-list, .m-widget-list ul li {
@@ -46,7 +48,7 @@
         .am-nav-tabs > li > a {
             text-align: center;
             margin-right: 5px;
-            ` line-height: 1.6;
+            line-height: 1.6;
             border: 1px solid transparent;
             border-radius: 0px;
             color: #666;
@@ -108,10 +110,8 @@
             <td align="center" style="border-left:1px solid #ddd;border-right:1px solid #ddd;" width="33%">队伍数<br>
                  <?php echo isset($team_count) ? $team_count : ''; ?>支
             </td>
-            <td align="center" width="33%">倒计时<br>
-
-                <div class="time"><span id="t_d">00天</span> <span id="t_h">00时</span> <span
-                    id="t_m">00分</span>
+            <td align="center" width="33%">距离比赛开始<br>
+                <div class="time"><span id="t_d">00天</span> <span id="t_h">00时</span> <span id="t_m">00分</span> <span id="t_s">00秒</span>
                 </div>
                 <script>
                 function GetRTime() {
@@ -126,12 +126,13 @@
                         d = Math.floor(t / 1000 / 60 / 60 / 24);
                         h = Math.floor(t / 1000 / 60 / 60 % 24);
                         m = Math.floor(t / 1000 / 60 % 60);
+                        s = Math.floor(t / 1000 % 60);
                     }
-
 
                     document.getElementById("t_d").innerHTML = d + "天";
                     document.getElementById("t_h").innerHTML = h + "时";
                     document.getElementById("t_m").innerHTML = m + "分";
+                    document.getElementById("t_s").innerHTML = s + "秒";
                 }
                 setInterval(GetRTime, 0);
                 </script>
@@ -293,8 +294,8 @@
 					<a href="/h5/member/activity/specail/four/score_sub?team_match_id=<?php echo isset($v->id) ? $v->id : ''; ?>">查看详情</a>
 				</td>
 				<td>
-				<?php if ($v->team_a_mem_id == $user_id || $v->team_b_mem_id == $user_id) { ?>
-					<a href="/h5/member/activity/specail/four/chang_team?team_match_id=<?php echo isset($v->id) ? $v->id : ''; ?>">人员调整</a>
+				<?php if ((($v->team_a_mem_id == $user_id || $v->team_b_mem_id == $user_id)&&(time()<=strtotime ($detail->apply_end_time))) || (($detail->mem_id == $user_id || $user_admin == 1)&&(time()<=strtotime ($detail->end_time)))) { ?>
+					<a href="/h5/member/activity/specail/four/chang_team?team_match_id=<?php echo isset($v->id) ? $v->id : ''; ?>">对阵调整</a>
 				<?php } ?>
 				</td>
 			</tr>
@@ -317,17 +318,14 @@
 				<td><?php echo isset($v->team_a_name) ? $v->team_a_name : ''; ?></td>
 				<td>vs</td>
 				<td><?php echo isset($v->team_b_name) ? $v->team_b_name : ''; ?></td>
-
 			&nbsp;&nbsp;&nbsp;&nbsp;
-
 				<td>
 					<a href="/h5/member/activity/specail/four/score_sub?team_match_id=<?php echo isset($v->id) ? $v->id : ''; ?>">查看详情</a>
 				</td>
 				<td>
-				<?php if ($v->team_a_mem_id == $user_id || $v->team_b_mem_id == $user_id) { ?>
-					<a href="/h5/member/activity/specail/four/chang_team?team_match_id=<?php echo isset($v->id) ? $v->id : ''; ?>">人员调整</a>
+                    <?php if ((($v->team_a_mem_id == $user_id || $v->team_b_mem_id == $user_id)&&(time()<=strtotime ($detail->apply_end_time))) || (($detail->mem_id == $user_id || $user_admin == 1)&&(time()<=strtotime ($detail->end_time)))) { ?>
+					<a href="/h5/member/activity/specail/four/chang_team?team_match_id=<?php echo isset($v->id) ? $v->id : ''; ?>">对阵调整</a>
 				<?php } ?>
-					
 				</td>
 			</tr>
 		<?php } ?>
@@ -355,8 +353,8 @@
 					<a href="/h5/member/activity/specail/four/score_sub?team_match_id=<?php echo isset($v->id) ? $v->id : ''; ?>">查看详情</a>
 				</td>
 				<td>
-				<?php if ($v->team_a_mem_id == $user_id || $v->team_b_mem_id == $user_id) { ?>
-					<a href="/h5/member/activity/specail/four/chang_team?team_match_id=<?php echo isset($v->id) ? $v->id : ''; ?>">人员调整</a>
+                    <?php if ((($v->team_a_mem_id == $user_id || $v->team_b_mem_id == $user_id)&&(time()<=strtotime ($detail->apply_end_time))) || (($detail->mem_id == $user_id || $user_admin == 1)&&(time()<=strtotime ($detail->end_time)))) { ?>
+					<a href="/h5/member/activity/specail/four/chang_team?team_match_id=<?php echo isset($v->id) ? $v->id : ''; ?>">对阵调整</a>
 				<?php } ?>
 				</td>
 			</tr>     
@@ -607,7 +605,7 @@
                 <td colspan="2" valign="top" style="width:100%; background:#3399CC; color:#fff">
 
                                       <?php if (time()<strtotime ($detail->apply_start_time)) { ?>
-                    <li class="bm">+预告 
+                    <li class="bm">+报名未开始
                     </li>
                     <?php } elseif (time()>strtotime($detail->apply_start_time)&&time()<strtotime ($detail->apply_end_time)) { ?>
                     <li class="bm">

@@ -231,6 +231,9 @@ Route::group(['namespace' => 'H5','middleware' => 'auth'], function()
 	Route::post('h5/member/person/import', 'Team\TeamMemberController@import');
 	Route::get('h5/member/person/delete', 'Team\TeamMemberController@destroy');
 
+	Route::get('h5/member/rank',
+		'Center\MyController@rank');
+	
 	Route::get('h5/member/score', 'Center\MyController@myScore');
 	Route::post('h5/member/score', 'Center\MyController@postscore');
 
@@ -245,6 +248,7 @@ Route::group(['namespace' => 'H5','middleware' => 'auth'], function()
 	
 	Route::get('h5/member/team', 'Center\MyController@myTeamList');
 	Route::get('h5/member/team/delete', 'Team\TeamController@destroy');
+
 
 });
 

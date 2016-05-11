@@ -259,6 +259,7 @@ class ActivityController extends H5Controller
 		//是否能够抽签
 		$can_draw = 0;
 		$user_id = 0;
+		$is_admin = 0;
 		if ($user) {
 			$user_id = $user->id;
 			if (time() > strtotime($res->apply_end_time) && time() < strtotime($res->start_time)) {
@@ -270,6 +271,7 @@ class ActivityController extends H5Controller
 					$can_draw = 1;
 				}
 			}
+			$is_admin = $user->is_admin;
 			
 		}
 
@@ -357,7 +359,7 @@ class ActivityController extends H5Controller
 		Template::assign('team_match_data', $out_team_match['data']);
 		Template::assign('activity_turn_id', $activity_turn->id);
 		Template::assign('user_id', $user_id);
-		Template::assign('user_admin', $user->is_admin);
+		Template::assign('user_admin', $is_admin);
 
 		Template::render('h5/activity/detail');
 	}
