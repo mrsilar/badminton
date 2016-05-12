@@ -30,7 +30,84 @@
         </div>
     </div>
     <h1 align="center" class="am-header-title"> 排行榜 </h1>
+
 </header>
+
+
+
+
+<div data-am-widget="tabs" class="am-tabs am-tabs-d2" style="width:100%;">
+    <ul class="am-tabs-nav am-cf">
+        <li class="am-active"><a href="[data-tab-panel-0]">战力值排行榜</a></li>
+        <li class=""><a href="[data-tab-panel-1]">经验值排行榜</a></li>
+    </ul>
+    <div class="am-tabs-bd">
+        <div data-tab-panel-0 class="am-tab-panel am-active">
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+
+                <table class="am-table am-table-bordered am-table-radius am-table-striped">
+                    <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>姓名</th>
+                        <th>战力值</th>
+                        <th>经验值</th>
+                    </tr>
+                    </thead>
+                    {loop $list_rank $r }
+                    <tbody>
+                    <tr>
+                        <td>{$r->count}</td>
+                        <td>{$r->name},{=$r->sex==1?'男':'女'}</td>
+                        <td> {$r->rank}</td>
+                        <td> {$r->exp}</td>
+                    </tr>
+                    {/loop}
+
+                </table>
+
+            </div>
+        </div>
+
+        <div data-tab-panel-1 class="am-tab-panel am-active">
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+                <table class="am-table am-table-bordered am-table-radius am-table-striped">
+                    <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>姓名</th>
+                        <th>经验值</th>
+                        <th>战力值</th>
+                    </tr>
+                    </thead>
+                    {loop $list_exp $r }
+                    <tbody>
+                    <tr>
+                        <td>{$r->count}</td>
+                        <td>{$r->name},{=$r->sex==1?'男':'女'}</td>
+                        <td> {$r->exp}</td>
+                        <td> {$r->rank}</td>
+                    </tr>
+                    {/loop}
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {template h5/common/footer}
 <script src="/assets/js/jquery.min.js"></script>
