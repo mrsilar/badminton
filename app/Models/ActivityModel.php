@@ -753,8 +753,10 @@ class ActivityModel extends BaseModel
                     if ($request['scoreA'] > $request['scoreB'] && $team_member_match->win_a_count < $team_member_match->win_b_count) {
                         $user_a_data['rank'] += 10;
                         $user_b_data['rank'] -= 10;
+                        if($user_b_data['rank'] < 0) $user_b_data['rank'] = 0;
                     } elseif ($request['scoreA'] < $request['scoreB'] && $team_member_match->win_a_count > $team_member_match->win_b_count) {
                         $user_a_data['rank'] -= 10;
+                        if($user_a_data['rank'] < 0) $user_a_data['rank'] = 0;
                         $user_b_data['rank'] += 10;
                     }
                 }

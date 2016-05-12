@@ -341,6 +341,34 @@ class MyController extends H5Controller
     }
 
     public function rank(){
+
+        $list_exp =
+            DB::table('user_team_member')
+                ->where('exp', '>', '0')
+                ->orderBy('exp', 'DESC')
+                ->orderBy('rank', 'DESC')
+                ->get();
+        $count = 1;
+        foreach($list_exp as $row){
+            $row->count = $count;
+            $count++;
+        }
+
+        $list_rank =
+            DB::table('user_team_member')
+                ->where('exp', '>', '0')
+                ->orderBy('rank', 'DESC')
+                ->orderBy('exp', 'DESC')
+                ->get();
+
+        $count = 1;
+        foreach($list_rank as $row){
+            $row->count = $count;
+            $count++;
+        }
+
+        Template::assign('list_exp',$list_exp);
+        Template::assign('list_rank',$list_rank);
         Template::render('h5/member/rank');
     }
 
