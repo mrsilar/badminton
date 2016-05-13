@@ -17,9 +17,10 @@
 <form role="form" id="myForm" action="/h5/member/activity/specail/four/upload" method="post" enctype="multipart/form-data" >
     <div class="form-group">
         <!--<label for="exampleInputFile">选择照片</label>-->
-        <input type="file" id="exampleInputFile" name="file[]" multiple accept="image/jpeg,image/png,image/gif,image/*,video/mp4,video/x-m4v,video/*">
+        <input type="file" id="files" name="file[]" multiple accept="image/jpeg,image/png,image/gif,image/*,video/mp4,video/x-m4v,video/*">
         <input type="hidden" name="activity_id" value="{$activity_id}">
     </div>
+    <div class="alert alert-info" role="alert">注意：一次性最多上传20个文件，文件总大小不得超过128M。如有超过限制，请分开上传。</div>
     <div id="status">
     </div>
     <div style="width: 50%; margin: 0 auto;">
@@ -34,6 +35,20 @@
 <script src="/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $('form').on('submit', function(event) {
+        var fcount = $("#files")[0].files.length;
+        var fbyte = 0;
+        var files = $("#files")[0].files;
+        for (var i = 0,file;file=files[i];++i) {
+            fbyte += file.size;
+        }
+        if (fcount > 20) {
+            alert("文件数过多，请分批上传。");
+            return false;
+        }
+        if (fbyte > 128*1024*1024) {
+            alert("文件总大小超过128M，请分批上传。");
+            return false;
+        }
         event.stopPropagation(); // Stop stuff happening
         event.preventDefault(); // Totally stop stuff happening
 
