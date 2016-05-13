@@ -60,7 +60,7 @@
         <header data-am-widget="header"
         class="am-header am-header-default">
         <div class="am-header-left am-header-nav">
-            <div align="center"><a href="javascript:history.go(-1)" class=""> <img src="http://www.yilesai.com/assets/images/jtou.png"/> </a>
+            <div align="center"><a href="/h5/activity/list/1" class=""> <img src="http://www.yilesai.com/assets/images/jtou.png"/> </a>
             </div>
 
         </div>
