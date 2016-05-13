@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>上传比赛照片和视频</title>
+
+    <!-- Bootstrap -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<h1>上传照片和视频</h1>
+<form role="form" id="myForm" action="/h5/member/activity/specail/four/upload" method="post" enctype="multipart/form-data" >
+    <div class="form-group">
+        <!--<label for="exampleInputFile">选择照片</label>-->
+        <input type="file" id="exampleInputFile" name="file[]" multiple accept="image/jpeg,image/png,image/gif,image/*,video/mp4,video/x-m4v,video/*">
+        <input type="hidden" name="activity_id" value="{$activity_id}">
+    </div>
+    <div id="status">
+    </div>
+    <div style="width: 100px; margin: 0 auto;">
+        <button type="submit" class="btn btn-primary" style="width: 100px;">上传</button>
+    </div>
+</form>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/js/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $('form').on('submit', function(event) {
+        event.stopPropagation(); // Stop stuff happening
+        event.preventDefault(); // Totally stop stuff happening
+
+        var formData = new FormData($("#myForm")[0]);
+        $.ajax({
+            url : "/h5/member/activity/specail/four/upload",
+            type : 'POST',
+            dataType: 'JSON',
+            data : formData,
+            cache: false,
+            processData : false,
+            contentType : false,
+            beforeSend: function(){
+                $("#status").html("正在上传…");
+            },
+            complete: function() {
+                $("#status").empty();
+            },
+            success : function(data) {
+                alert(data.msg);
+//                window.location.reload();
+                return false;
+            },
+            error : function() {
+                alert("网络错误，请联系管理员");
+            }
+        });
+    });
+</script>
+</body>
+</html>

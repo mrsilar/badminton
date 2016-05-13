@@ -992,4 +992,38 @@ class FourController extends H5Controller
 		Template::assign('user_admin', $user->is_admin);
 		Template::render('h5/member/activity/specail/four/change_team');
 	}
+
+	public function upload(Request $request){
+		Template::assign('activity_id', $request->input('activity_id'));
+		Template::render('h5/member/activity/specail/four/uploadEvent');
+	}
+
+	public function upload_post(Request $request){
+		$out['code'] = 0;
+		$out['msg'] = '上传成功';
+		$out['data'] = '';
+
+		if ($request->hasFile("file")){
+			$files = $request->file("file");
+			$file_count = count($files);
+			$uploadcount = 0;
+			$t = time();
+			foreach($files as $file) {
+				$destinationPath = 'uploads/'.$request->input('activity_id');
+
+				$filename = $file->getClientOriginalName();
+				$upload_success = $file->move($destinationPath, $t.'-'.$uploadcount.'-'.$filename);
+				if ($upload_success) {
+					$uploadcount ++;
+					//插入数据库
+				}
+			}
+			$out['msg'] = $uploadcount."个文件成功上传,".($file_count-$uploadcount)."个文件上传失败。";
+			return $out;
+		} else {
+			$out['code'] = -1;
+			$out['msg'] = "没有选择文件";
+			return $out;
+		}
+	}
 }

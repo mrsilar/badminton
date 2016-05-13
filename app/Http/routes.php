@@ -11,6 +11,9 @@
 |
 */
 
+ini_set('post_max_size', '128M');
+ini_set('upload_max_filesize', '128M');
+
 use Illuminate\Http\Request;
 Route::get('/', 'H5\Home\IndexController@index');
 Route::get('/Web', 'H5\Home\IndexController@index');
@@ -200,6 +203,8 @@ Route::group(['namespace' => 'H5','middleware' => 'auth'], function()
 	Route::post('/h5/member/activity/specail/four/change_member_last','Activity\Specail\FourController@change_member_last_post');
 	Route::get('/h5/member/activity/specail/four/chang_team','Activity\Specail\FourController@chang_team');
 	Route::post('/h5/member/activity/specail/four/add_member','Activity\Specail\FourController@add_member');
+	Route::get('/h5/member/activity/specail/four/upload', 'Activity\Specail\FourController@upload');
+	Route::post('/h5/member/activity/specail/four/upload','Activity\Specail\FourController@upload_post');
 	//设置
 	Route::get('h5/member/activity/set', 'Activity\ActivitySetController@setlist');
 	Route::get('h5/member/activity/set/select', 'Activity\ActivitySetController@set_select');
