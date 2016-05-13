@@ -371,7 +371,7 @@ class ClubController extends H5Controller
 		
 		}
 	}
-	echo "<a href='http://www.yilesai.com'>返回</a>";
+	echo "<a href='/h5/member/club'>返回</a>";
 	}
 
 	//比赛中要添加的人员列表

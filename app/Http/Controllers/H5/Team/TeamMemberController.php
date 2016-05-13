@@ -73,7 +73,7 @@ class TeamMemberController extends H5Controller
 						$name = $data->sheets[0]['cells'][$i][1];
 						$phone = $data->sheets[0]['cells'][$i][2];
 						$id = isset($data->sheets[0]['cells'][$i][3])?$data->sheets[0]['cells'][$i][3]:'';
-						$sex = $data->sheets[0]['cells'][$i][4];
+						$sex = isset($data->sheets[0]['cells'][$i][4])?$data->sheets[0]['cells'][$i][4]:1;
 						
 						$insert['name'] = $name;
 						$insert['phone_number'] = $phone;
