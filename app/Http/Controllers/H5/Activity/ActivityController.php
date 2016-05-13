@@ -354,6 +354,13 @@ class ActivityController extends H5Controller
 		}
 
 		unset($row);
+
+		//获取该活动照片视频信息
+		$files = DB::table('files')
+			->where('activity_id',$id)
+			->get();
+
+		Template::assign('files', $files);
 		Template::assign('team_group', $out_team_group['data']);
 		Template::assign('team_match', $team_match_rela);
 		Template::assign('team_match_data', $out_team_match['data']);

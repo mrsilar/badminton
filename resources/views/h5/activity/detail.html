@@ -166,8 +166,8 @@
         <div class="tabs">
             <a href="#" hidefocus="true" class="active">报名</a>
             <a href="#" hidefocus="true">比赛</a>
-
             <a href="#" hidefocus="true">成绩</a>
+            <a href="#" hidefocus="true">风采</a>
          <!--   <a href="#" hidefocus="true">评论</a>      
 -->
         </div>    
@@ -251,20 +251,6 @@
         .am-panel{ margin-bottom:10px;}
 
         </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
 </div>
 
@@ -433,23 +419,17 @@
 
 <div class="swiper-slide">
  <div class="content-slide">
-
-  <textarea cols="" rows="" style="width:90%; float:left; margin-left:5%; border:1px solid #ddd; height:80px;">我也说两句</textarea>
-  <div style="width:90%; float:left; margin-left:5%; margin-top:15px; text-align:right"><input type="button" value="评论">
-  </div>
-
-
-
+    {loop $files $file}
+     {if in_array($file->type,['png','PNG','jpg','JPG','gif','GIF','JPEG','jpeg'])}
+     <img src="{$file->url}">
+     {else}
+     <video width="320" height="240" controls="controls">
+         <source src="{$file->url}" type="video/{$file->type}">
+     </video>
+     {/if}
+    {/loop}
+ </div>
 </div>
-</div>
-
-
-
-
-
-
-
-
 
 </div>
 </div>

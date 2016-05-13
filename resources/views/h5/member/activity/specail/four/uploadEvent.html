@@ -12,6 +12,7 @@
 
 </head>
 <body>
+
 <h1>上传照片和视频</h1>
 <form role="form" id="myForm" action="/h5/member/activity/specail/four/upload" method="post" enctype="multipart/form-data" >
     <div class="form-group">
@@ -21,8 +22,9 @@
     </div>
     <div id="status">
     </div>
-    <div style="width: 100px; margin: 0 auto;">
-        <button type="submit" class="btn btn-primary" style="width: 100px;">上传</button>
+    <div style="width: 50%; margin: 0 auto;">
+        <button type="submit" class="btn btn-primary" style="width: 80px;">上传</button>
+        <button type="button" class="btn btn-danger" style="width: 80px;" onclick="javascript:history.go(-1)">返回</button>
     </div>
 </form>
 
@@ -52,7 +54,7 @@
             },
             success : function(data) {
                 alert(data.msg);
-//                window.location.reload();
+                window.location.reload();
                 return false;
             },
             error : function() {

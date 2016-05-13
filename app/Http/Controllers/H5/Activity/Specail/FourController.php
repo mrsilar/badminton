@@ -1010,12 +1010,18 @@ class FourController extends H5Controller
 			$t = time();
 			foreach($files as $file) {
 				$destinationPath = 'uploads/'.$request->input('activity_id');
-
 				$filename = $file->getClientOriginalName();
-				$upload_success = $file->move($destinationPath, $t.'-'.$uploadcount.'-'.$filename);
+				$newName = $t.'-'.$uploadcount.'-'.$filename;
+				$upload_success = $file->move($destinationPath, $newName);
 				if ($upload_success) {
 					$uploadcount ++;
 					//插入数据库
+					$insert['activity_id'] = $request->input('activity_id');
+					$insert['name'] = $newName;
+					$insert['size'] = $file->getClientSize();
+					$insert['type'] = $file->getClientOriginalExtension();
+					$insert['url'] = '/'.$destinationPath.'/'.$newName;
+					DB::table('files')->insert($insert);
 				}
 			}
 			$out['msg'] = $uploadcount."个文件成功上传,".($file_count-$uploadcount)."个文件上传失败。";
