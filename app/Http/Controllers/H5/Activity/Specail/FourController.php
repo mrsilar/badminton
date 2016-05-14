@@ -1003,6 +1003,8 @@ class FourController extends H5Controller
 		$out['msg'] = '上传成功';
 		$out['data'] = '';
 
+		$videoArray = ['avi','AVI','wmv','WMV','mov','MOV','mkv','MKV','rmvb','RMVB'];
+
 		if ($request->hasFile("file")){
 			$files = $request->file("file");
 			$file_count = count($files);
@@ -1021,7 +1023,7 @@ class FourController extends H5Controller
 					$insert['size'] = $file->getClientSize();
 					$insert['type'] = $file->getClientOriginalExtension();
 					$insert['url'] = '/'.$destinationPath.'/'.$newName;
-					if ($insert['type'] == "MOV" || $insert['type'] == 'mov') {
+					if (in_array($insert['type'], $videoArray)) {
 						$insert['type'] = "mp4";
 						exec("ffmpeg -y -i ".$destinationPath.'/'.$newName.' '.$destinationPath.'/'.$newName.'.mp4');
 						$insert['name'] = $newName.'.mp4';

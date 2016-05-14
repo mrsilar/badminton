@@ -62,7 +62,7 @@
             processData : false,
             contentType : false,
             beforeSend: function(){
-                $("#status").html("正在上传…");
+                $("#status").html("正在上传，请等待…");
                 $("button").addClass('disabled');
             },
             complete: function() {
