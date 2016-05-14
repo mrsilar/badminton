@@ -63,9 +63,11 @@
             contentType : false,
             beforeSend: function(){
                 $("#status").html("正在上传…");
+                $("button").addClass('disabled');
             },
             complete: function() {
                 $("#status").empty();
+                $("button").removeClass('disabled');
             },
             success : function(data) {
                 alert(data.msg);

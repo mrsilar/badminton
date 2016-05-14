@@ -1020,10 +1020,13 @@ class FourController extends H5Controller
 					$insert['name'] = $newName;
 					$insert['size'] = $file->getClientSize();
 					$insert['type'] = $file->getClientOriginalExtension();
+					$insert['url'] = '/'.$destinationPath.'/'.$newName;
 					if ($insert['type'] == "MOV" || $insert['type'] == 'mov') {
 						$insert['type'] = "mp4";
+						exec("ffmpeg -y -i ".$destinationPath.'/'.$newName.' '.$destinationPath.'/'.$newName.'.mp4');
+						$insert['name'] = $newName.'.mp4';
+						$insert['url'] = '/'.$destinationPath.'/'.$newName.'.mp4';
 					}
-					$insert['url'] = '/'.$destinationPath.'/'.$newName;
 					DB::table('files')->insert($insert);
 				}
 			}
