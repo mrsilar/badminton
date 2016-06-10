@@ -85,6 +85,7 @@ Route::group(['namespace' => 'H5'], function()
 	//首页
 	Route::get('h5/home/index', 'Home\IndexController@index');
 	Route::get('h5/home/find', 'Home\IndexController@find');
+	Route::get('h5/home/moments', 'Home\IndexController@moments');
 	// Authentication routes...
 	Route::get('h5/auth/login', 'Auth\AuthController@getLogin');
 	Route::post('h5/auth/login', 'Auth\AuthController@postLogin');

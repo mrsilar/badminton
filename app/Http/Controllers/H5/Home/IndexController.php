@@ -81,4 +81,14 @@ class IndexController extends H5Controller
         Template::render('h5/index/my');
     }
 
+    //动态
+    public function moments() {
+        //获取该活动照片视频信息
+        $files = DB::table('files')
+            ->orderBy('id','desc')
+            ->get();
+        Template::assign('files', $files);
+        Template::render('h5/index/moments');
+    }
+
 }
