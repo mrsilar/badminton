@@ -5,8 +5,18 @@
 .z-mask{display:none;z-index:10;position:fixed;width:100%;height:100%;top:0;left:0;background-color:white;padding-top:2em;overflow-y:scroll;padding-bottom:100px;}
 .z-team{border-bottom:1px solid #ddd;text-align:center;width:100%;}
 .z-team td{border:1px solid #ddd;}
+p,hr,.s-item {
+	margin: 5px 0;
+}
+.s-item {
+	color: #52b2ff;
+	font-size: 25px;
+}
 h2 {margin-top:10px !important;}
 input{display:inline-block;width:60px !important;}
+.text-center {
+    text-align: center;
+}
 </style>
 </head>
 <body>
@@ -51,53 +61,34 @@ input{display:inline-block;width:60px !important;}
 		</div>
 	</div>
 	<!-- Menu -->
-	<table
-		class="am-table am-table-bordered am-table-radius am-table-striped">
-		<thead>
-			<tr>
-				<th>{$team_match->team_a_name}&nbsp;{$team_match->team_b_name}</th>
-			</tr>
-		</thead>
-		<tbody>
-				<tr>
-			<td></td>
-			{loop $team_item_b $ki $vi}
-			<td>
-			{loop $vi   $vio}
-				{$vio->name}&nbsp;
-				{$vio->sex}<br>
-			{/loop}  
-			</td>
+	<h2>{$team_match->team_a_name}&nbsp;{$team_match->team_b_name}</h2>
+	{loop $team_item_a $ka $va}
+		{loop $team_item_b $kb $vb}
+        <p class="text-center">
+			{loop $va $vio}
+			{$vio->name}({$vio->sex})&nbsp;
 			{/loop}
-		</tr>
-					{loop $team_item_a $ka $va}
-			<tr>
-				<td>
-			{loop $va   $vio}
-				{$vio->name}&nbsp;
-				{$vio->sex}<br>
-			{/loop}  
-				</td>
-				{loop $team_item_b $kb $vb}
-						<td style="color: #52b2ff"  class="s-item"
-				name-a="{loop $va   $vio}{$vio->name}&nbsp;&nbsp;{$vio->sex}&nbsp;&nbsp;{/loop}  "
-				 name-b="{loop $vb   $vio}{$vio->name}&nbsp;&nbsp;	{$vio->sex}&nbsp;&nbsp;	{/loop}  "
-				 match-id="{$team_member_match[$ka][$kb]->id}"
-				 score-a="{$team_member_match[$ka][$kb]->win_a_count}"
-				 score-b="{$team_member_match[$ka][$kb]->win_b_count}"
-				  score-time="1"
-				  >
+			&nbsp;VS&nbsp;
+			{loop $vb $vio}
+			{$vio->name}({$vio->sex})
+			{/loop}
+		<p class="text-center s-item"
+		name-a="{loop $va   $vio}{$vio->name}&nbsp;&nbsp;{$vio->sex}&nbsp;&nbsp;{/loop}  "
+		name-b="{loop $vb   $vio}{$vio->name}&nbsp;&nbsp;	{$vio->sex}&nbsp;&nbsp;	{/loop}  "
+		match-id="{$team_member_match[$ka][$kb]->id}"
+		score-a="{$team_member_match[$ka][$kb]->win_a_count}"
+		score-b="{$team_member_match[$ka][$kb]->win_b_count}"
+		score-time="1">
 			{if  isset($team_member_match[$ka][$kb])}
-				    {$team_member_match[$ka][$kb]->win_a_count}:
-					{$team_member_match[$ka][$kb]->win_b_count}
+			{$team_member_match[$ka][$kb]->win_a_count}:{$team_member_match[$ka][$kb]->win_b_count}
 			{/if}
+		</p>
+            <hr>
+        </p>
+		{/loop}
+	{/loop}
 
-				</td>
-				{/loop}
-			</tr>
-			{/loop}
-		</tbody>
-	</table>
+
 	{template h5/common/footer}
 	<script src="/assets/js/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
