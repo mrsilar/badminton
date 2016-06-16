@@ -8,21 +8,47 @@
     <title>赛场风采</title>
     <!-- Bootstrap -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="/assets/css/app.css">
 </head>
 <body>
 <div>
     <!--<button type="button" class="btn btn-danger" style="width: 80px;" onclick="javascript:history.go(-1)">返回</button>-->
     <h1 class="text-center">赛场风采</h1>
-    {loop $files $file}
-    {if in_array($file->type,['png','PNG','jpg','JPG','gif','GIF','JPEG','jpeg'])}
-    <img src="{$file->url}" width="100%">
-    {else}
-    <video width="100%" height="100%" controls="controls">
-        <source src="{$file->url}" type="video/{$file->type}">
-    </video>
-    {/if}
-    {/loop}
+    <!--{loop $files $file}-->
+    <!--{if in_array($file->type,['png','PNG','jpg','JPG','gif','GIF','JPEG','jpeg'])}-->
+    <!--<img src="{$file->url}" width="100%">-->
+    <!--{else}-->
+    <!--<video width="100%" height="100%" controls="controls">-->
+        <!--<source src="{$file->url}" type="video/{$file->type}">-->
+    <!--</video>-->
+    <!--{/if}-->
+    <!--{/loop}-->
+    <div style=" height:10px; float:left; background:#f0efed; width:100%;border-top:1px solid #ddd8ce; border-bottom:1px solid #ddd8ce; margin-bottom:10px;"></div>
+    <div class="am-tabs am-tabs-default" style="background:#ddd">
+        {loop $files $file}
+        <div class="am-comment"
+             style="padding: 10px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; margin-bottom: 10px;">
+            <div class="am-gallery-item">
+                {if in_array($file->type,['png','PNG','jpg','JPG','gif','GIF','JPEG','jpeg'])}
+                <img src="{$file->url}" width="100%">
+                {else}
+                <video width="100%" height="100%" controls="controls">
+                    <source src="{$file->url}" type="video/{$file->type}">
+                </video>
+                {/if}
+            </div>
+            <div class="am-g" style="width:100%; margin:0px; border:none; text-align:center; padding:0px;">
+                <div class="am-u-sm-12" style="width:100%; margin:0px;padding:0px;">
+                    <h3 class="am-gallery-title"
+                        style="margin: 0px 1px 0px; text-align:left; padding-left:8px; line-height:25px; background: rgba(0,0,0,0.5);opacity: 0.85; font-size:98%;color:#fff">
+                        {$file->title}<span class="quyuan">{$file->end_time}</span>
+                        <!--<div style="line-height:25px; padding-left:2px;text-align:left"></div>-->
+                    </h3>
+                </div>
+            </div>
+        </div>
+        {/loop}
+    </div>
 </div>
 </body>
 </html>

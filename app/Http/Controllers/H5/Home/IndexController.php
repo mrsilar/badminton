@@ -84,9 +84,11 @@ class IndexController extends H5Controller
     //动态
     public function moments() {
         //获取该活动照片视频信息
-        $files = DB::table('files')
-            ->orderBy('id','desc')
-            ->get();
+//        $files = DB::table('files')
+//            ->join('activity',)
+//            ->orderBy('id','desc')
+//            ->get();
+        $files = DB::select('select files.id as id, files.name as name, files.type as type, files.url as url, activity.title as title, activity.end_time as end_time from files,activity where files.activity_id = activity.id order by id desc');
         Template::assign('files', $files);
         Template::render('h5/index/moments');
     }
